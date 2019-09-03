@@ -1,0 +1,19 @@
+<%=form_for @promotion do |f|%>
+<%=f.label :name, 'Nome'%>
+<%=f.text_field :name%>
+<%=f.label :description, 'Descriçāo' %>
+<%=f.text_area :description%>
+<%=f.label :value_percent_discount ,'Porcentegem do desconto' %>
+<%=f.number_field :value_percent_discount%>
+<%=f.label :discount_max, 'Valor máximo de desconto'%>
+<%=f.number_field :discount_max%>
+<%=f.label :cod_promotion, 'Código da promoçāo'%>
+<%=f.text_field :cod_promotion%>
+<%=f.label :cupom_number, 'Número de cupons'%>
+<%=f.number_field :cupom_number%>
+<%=f.label :begin_promotion, 'Início da promoçāo'%>
+<%=f.text_field :begin_promotion%>
+<%=f.label :end_promotion, 'Fim da promoçāo'%>
+<%=f.text_field :end_promotion%>
+<%=f.submit 'Enviar'%>
+<%end%>

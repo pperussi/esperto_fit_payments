@@ -1,0 +1,5 @@
+<h1>Promoções Cadastradas e Criaçāo </h1>
+
+<% if current_user && current_user.admin? %>
+  <%= link_to 'Criar Promoçāo', new_promotion_path %>
+<% end %>
