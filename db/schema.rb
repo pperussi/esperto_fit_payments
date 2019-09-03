@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_191307) do
+ActiveRecord::Schema.define(version: 2019_09_03_195430) do
 
   create_table "payments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "pay_method"
+    t.string "pay_method"
   end
 
   create_table "registrations", force: :cascade do |t|
