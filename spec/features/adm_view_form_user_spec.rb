@@ -11,7 +11,7 @@ describe 'adm can create payment method' do
     click_on 'Log in'
     click_on 'Criar metodo de pagamento'
     fill_in 'Metodo de pagamento', with: 'Boleto'
-    click_on 'cadastrar'
+    click_on 'Cadastrar'
 
     expect(page).to have_content('Cadastrado com sucesso')
   end

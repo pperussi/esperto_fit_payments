@@ -1,0 +1,5 @@
+<%=form_for @method_pay do |m| %>
+    <%= m.label :pay_method, 'Metodo de pagamento' %>
+    <%= m.text_field :pay_method %>
+    <%= m.submit 'Cadastrar' %>
+<%end%>
