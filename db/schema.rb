@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_173146) do
+ActiveRecord::Schema.define(version: 2019_09_03_191307) do
 
   create_table "payments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pay_method"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -23,9 +24,16 @@ ActiveRecord::Schema.define(version: 2019_09_03_173146) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.boolean "adm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.boolean "adm", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
