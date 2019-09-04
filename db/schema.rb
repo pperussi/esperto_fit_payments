@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_03_194434) do
+ActiveRecord::Schema.define(version: 2019_09_04_193420) do
 
   create_table "payments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "value"
+    t.date "dt_venc"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "value"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -22,8 +31,18 @@ ActiveRecord::Schema.define(version: 2019_09_03_194434) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "cpf"
-    t.string "unity"
-    t.string "plan"
+    t.integer "unity_id"
+    t.integer "plan_id"
+    t.integer "payment_id"
+    t.index ["payment_id"], name: "index_registrations_on_payment_id"
+    t.index ["plan_id"], name: "index_registrations_on_plan_id"
+    t.index ["unity_id"], name: "index_registrations_on_unity_id"
+  end
+
+  create_table "unities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

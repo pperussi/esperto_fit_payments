@@ -5,11 +5,11 @@
   <%= f.label :cpf, 'CPF' %>
   <%= f.number_field :cpf %>
 
-  <%= f.label :unity, 'Unidade' %>
-  <%= f.text_field :unity %>
+  <%= f.label :unity_id, 'Unidade' %>
+  <%= f.collection_select(:unity_id, @unity, :id, :name) %>
 
-  <%= f.label :plan, 'Plano' %>
-  <%= f.text_field :plan %>
+  <%= f.label :plan_id, 'Plano' %>
+  <%= f.collection_select(:plan_id, @plan, :id, :name) %>
 
   <%= f.submit 'Enviar' %>
 <%end%>
