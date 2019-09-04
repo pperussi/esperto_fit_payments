@@ -1,0 +1,2 @@
+class Singleclass < ApplicationRecord
+end

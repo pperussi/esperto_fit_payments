@@ -5,5 +5,8 @@ Rails.application.routes.draw do
 
   resources :administrator, only: %i[index] 
   resources :payments, only: %i[new create]
+  resources :client  do
+      get 'singleclass', on: :member
+  end
 
 end
