@@ -1,6 +1,6 @@
 class PromotionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin, only: %i[index new create]
+  before_action :admin, only: %i[ new create]
 
   def index
     @promotions = Promotion.all
@@ -8,6 +8,7 @@ class PromotionsController < ApplicationController
 
   def show
     @promotion = Promotion.find(params[:id])
+    @cupons = Cupon.all
   end
 
   def new
@@ -25,7 +26,7 @@ class PromotionsController < ApplicationController
   end
 
   def admin
-    return promotion_path unless current_user.admin?
+    return promotions_path unless current_user.admin?
   end
 
   private
