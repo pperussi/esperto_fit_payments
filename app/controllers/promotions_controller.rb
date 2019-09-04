@@ -19,6 +19,7 @@ class PromotionsController < ApplicationController
     if @promotion.save
       redirect_to @promotion
     else
+      flash.now[:alert] = 'Nāo foi possível salvar a promoçāo'
       render :new
     end    
   end

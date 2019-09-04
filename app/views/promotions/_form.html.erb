@@ -1,3 +1,9 @@
+<%if @promotion.errors.any?%>
+  <% @promotion.errors.full_messages.each do |message|%>
+  byebug
+    <%=message%>
+  <%end%>
+<%end%>
 <%=form_for @promotion do |f|%>
 <%=f.label :name, 'Nome'%>
 <%=f.text_field :name%>
