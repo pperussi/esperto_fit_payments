@@ -12,7 +12,7 @@ describe 'User have a page to login' do
 
     expect(page).to have_content('Signed in successfully')
   end
-  scenario "confirm auth of user" do
+  scenario "and he confirm auth of user" do
     user = create(:user, email:'teste@teste.com', password:'123456', adm: true)
 
     visit root_path
@@ -24,4 +24,5 @@ describe 'User have a page to login' do
     expect(page).to have_content('Signed in successfully')
     expect(page).to have_content('BEM VINDO AO SISTEMA ADMINISTRADOR')
   end
+
 end

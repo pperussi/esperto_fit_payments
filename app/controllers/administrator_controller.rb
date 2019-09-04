@@ -1,6 +1,13 @@
 class  AdministratorController < ApplicationController
   before_action :authenticate_user!
-  def index
+  before_action :is_admin
 
+  def index
+    @payments = Payment.all
   end
+  private
+  def is_admin
+    redirect_to root_path unless current_user.adm?
+  end
+
 end

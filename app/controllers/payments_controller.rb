@@ -1,14 +1,16 @@
-class  PaymentsController < ApplicationController
-
+class  PaymentsController < AdministratorController
   def new
     @method_pay = Payment.new
   end
   
   def create
-    @method_pay =  Payment.create(params_payment)
-    flash[:alert] = "Cadastrado com sucesso"
-    byebug
-    redirect_to administrator_index_path
+    @method_pay =  Payment.new(params_payment)
+    if @method_pay.save
+      flash[:alert] = "Cadastrado com sucesso"
+      redirect_to administrator_index_path
+    else
+      render :new
+    end
   end
 
   private

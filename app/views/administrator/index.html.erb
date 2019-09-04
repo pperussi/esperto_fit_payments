@@ -1,2 +1,7 @@
 <h1>BEM VINDO AO SISTEMA ADMINISTRADOR</h1>
+
+
+<% @payments.each do |payment| %>
+  <%= payment.pay_method %>
+<%end%>
 <%= link_to "Criar metodo de pagamento" ,new_payment_path%>

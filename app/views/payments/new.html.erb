@@ -1,3 +1,9 @@
+<% if @method_pay.errors.any? %>
+  <%  @method_pay.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <%end %> 
+<%end %> 
+
 <%=form_for @method_pay do |m| %>
     <%= m.label :pay_method, 'Metodo de pagamento' %>
     <%= m.text_field :pay_method %>
