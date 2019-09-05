@@ -7,8 +7,8 @@ feature 'Admin register Cupons in promotion' do
     visit promotions_path 
 
     within('form') do 
-      fill_in 'Email', with: administrator.email 
-      fill_in 'Password', with: administrator.password
+      fill_in 'email', with: administrator.email 
+      fill_in 'password', with: administrator.password
       click_on 'Log in'
     end
 
@@ -19,23 +19,20 @@ feature 'Admin register Cupons in promotion' do
   end 
   
   scenario 'User not admin not create cupons' do 
-    administrator = create(:user)
+    user = create(:user)
     carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', cupom_number: 10)
 
     visit promotions_path 
 
     within('form') do 
-      fill_in 'Email', with: administrator.email 
-      fill_in 'Password', with: administrator.password
+      fill_in 'email', with: user.email 
+      fill_in 'password', with: user.password
       click_on 'Log in'
     end
 
     click_on carnaval.name
 
     expect(current_path).to eq promotion_path(carnaval)
-    expect(page).to have_css('li',text:'CARNA0002')
     expect(page).not_to have_button('Gerar cupons')
   end 
-
-
 end

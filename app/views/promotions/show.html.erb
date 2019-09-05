@@ -7,6 +7,8 @@
 <%=@promotion.begin_promotion%>
 <%=@promotion.end_promotion%>
 
-<%= button_to 'Gerar cupons', promotion_cupons_path(@promotion) %>
+<% if current_user && current_user.admin? %>
+  <%= button_to 'Gerar cupons', promotion_cupons_path(@promotion) %>
+<% end %>
 
 <%= render 'cupom'%>

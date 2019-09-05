@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'adm can create payment method' do
+describe 'admin can create payment method' do
   scenario 'successfuly' do
-    user = create(:user, email:'teste@teste.com', password:'123456', adm: true)
+    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
 
     login_as(user, scope: :user)
 
@@ -18,7 +18,7 @@ describe 'adm can create payment method' do
   end
   
   scenario 'and he can view all payment methods' do
-    user = create(:user, email:'teste@teste.com', password:'123456', adm: true)
+    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
     create(:payment, pay_method: 'Boleto')
     create(:payment, pay_method: 'Credito')
 
@@ -30,7 +30,7 @@ describe 'adm can create payment method' do
   end
 
   scenario 'cant be duplicate' do
-    user = create(:user, email:'teste@teste.com', password:'123456', adm: true)
+    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
     create(:payment, pay_method: 'Boleto')
     login_as(user, scope: :user)
 
@@ -44,7 +44,7 @@ describe 'adm can create payment method' do
   end
   
   scenario 'cant be blank' do 
-    user = create(:user, email:'teste@teste.com', password:'123456', adm: true)
+    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
     login_as(user, scope: :user)
 
     visit root_path
