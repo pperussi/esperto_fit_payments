@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_09_04_182622) do
   create_table "payments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "pay_method"
   end
 
   create_table "promotions", force: :cascade do |t|

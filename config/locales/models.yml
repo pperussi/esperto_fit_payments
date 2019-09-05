@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      payment: Pagamento
+      promotion: Promoçāo
+      cupon: Cupom
+    attributes:
+      payment:
+        pay_method: Metodo de pagamento
+      promotion:
+        name: Nome
+        description: Descriçāo
+        value_percent_discount: Porcentagem de Desconto
+        discount_max: Valor Máximo de Desconto
+        cod_promotion: Código da Promoçāo
+        cupom_number: Número de Cupons
+        begin_promotion: Início da Promoção
+        end_promotion: Fim da Promoção
+      
