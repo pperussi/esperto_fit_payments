@@ -3,4 +3,7 @@
 <p><%= @registration.unity.name %></p>
 <p><%= @registration.plan.name %></p>
 <p>Pagamento 1</p>
-<p><%= @registration.payment.value %></p>
+<% @registration.payments.each do |payment| %>
+  <p><%= payment.value %> - 
+  <%= payment.dt_venc %></p>
+<%end%>

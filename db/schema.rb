@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_04_193420) do
+ActiveRecord::Schema.define(version: 2019_09_05_172321) do
 
   create_table "payments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "value"
     t.date "dt_venc"
+    t.integer "registration_id"
+    t.index ["registration_id"], name: "index_payments_on_registration_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -33,8 +35,6 @@ ActiveRecord::Schema.define(version: 2019_09_04_193420) do
     t.string "cpf"
     t.integer "unity_id"
     t.integer "plan_id"
-    t.integer "payment_id"
-    t.index ["payment_id"], name: "index_registrations_on_payment_id"
     t.index ["plan_id"], name: "index_registrations_on_plan_id"
     t.index ["unity_id"], name: "index_registrations_on_unity_id"
   end

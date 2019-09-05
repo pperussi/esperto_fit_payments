@@ -4,5 +4,6 @@ class Registration < ApplicationRecord
   has_many :payments
 
   validates :name, :cpf, presence: true
+  validates :cpf, uniqueness:true
 
 end

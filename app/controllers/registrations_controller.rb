@@ -1,5 +1,7 @@
 class RegistrationsController < ApplicationController
   before_action :load_plan_unity, only: %i[new create]
+  before_action :authenticate_user!
+  before_action :auth_redirect
 
   def new   
     @registration = Registration.new
@@ -9,7 +11,7 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(require_params)
 
     if @registration.save
-      @registration.payments.new(value: @registration.plan.value , dt_venc: (Time.zone.now + 1.month) )
+      generate_payment
       redirect_to @registration
     else
       flash.now[:alert] = 'Nao foi possivel salvar matricula'
@@ -23,8 +25,10 @@ class RegistrationsController < ApplicationController
 
   private
 
-  def generate_payment(client)
-    # Payment.create(value: client.plan.value, dt_venc: (Time.zone.now + 1.month))
+  def generate_payment()
+    12.times do |i|
+      @registration.payments.new(value: @registration.plan.value , dt_venc: Time.zone.now.to_date + 1.month).save
+    end
   end
 
   def load_plan_unity
@@ -34,6 +38,10 @@ class RegistrationsController < ApplicationController
 
   def require_params
     params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id)
+  end
+
+  def auth_redirect
+    redirect_to new_user_session_path unless current_user.adm?
   end
 
 
