@@ -5,6 +5,7 @@ feature 'new registration'do
     user = create(:user, adm: true)
     unity = create(:unity, name:'Paulista')
     plan = create(:plan, name:'Executivo')
+    create(:payment, pay_method:'Boleto')
 
     login_as user
     visit root_path
@@ -15,6 +16,7 @@ feature 'new registration'do
     fill_in 'CPF', with: '345678098'
     select 'Paulista', from: 'Unidade'
     select 'Executivo', from: 'Plano'
+    select 'Boleto', from: 'Metodo de Pagamento'
     click_on 'Enviar'
 
     expect(page).to have_css('h2', text: 'Fulano de tal')
@@ -43,6 +45,7 @@ feature 'new registration'do
     user = create(:user, adm: true)
     unity = create(:unity, name:'Paulista')
     plan = create(:plan, name:'Executivo', value: 40)
+    create(:payment, pay_method:'Boleto')
 
     login_as user
     visit root_path
@@ -53,6 +56,7 @@ feature 'new registration'do
     fill_in 'CPF', with: '345678098'
     select 'Paulista', from: 'Unidade'
     select 'Executivo', from: 'Plano'
+    select 'Boleto', from: 'Metodo de Pagamento'
     click_on 'Enviar'
 
     expect(page).to have_css('h2', text: 'Fulano de tal')
@@ -75,7 +79,8 @@ feature 'new registration'do
     user = create(:user, adm: true)
     unity = create(:unity, name:'Barra funda')
     plan = create(:plan, name:'Master', value: 40)
-    create(:registration, cpf: '123456789', unity:unity, plan:plan)
+    payment = create(:payment)
+    create(:registration, cpf: '123456789', unity:unity, plan:plan, pay_method:payment)
 
     login_as user
     visit root_path
@@ -86,6 +91,7 @@ feature 'new registration'do
     fill_in 'CPF', with: '123456789'
     select unity.name, from: 'Unidade'
     select plan.name, from: 'Plano'
+    select 'Boleto', from: 'Metodo de Pagamento'
     click_on 'Enviar'
 
     expect(page).to have_content('Nao foi possivel salvar matricula')

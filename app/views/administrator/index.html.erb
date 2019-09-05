@@ -1,0 +1,8 @@
+<h1>BEM VINDO AO SISTEMA ADMINISTRADOR</h1>
+
+
+<% @pay_methods.each do |pay_method| %>
+  <%= pay_method.name %>
+<%end%>
+<%= link_to "Criar metodo de pagamento" ,new_pay_method_path%>
+<%= link_to 'Nova Matrícula', new_registration_path%>
