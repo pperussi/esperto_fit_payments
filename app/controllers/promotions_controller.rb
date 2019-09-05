@@ -8,7 +8,7 @@ class PromotionsController < ApplicationController
 
   def show
     @promotion = Promotion.find(params[:id])
-    @cupons = Cupon.all
+    @cupons = Cupon.where('promotion_id  =  ?', @promotion)
   end
 
   def new
