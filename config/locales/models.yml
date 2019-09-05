@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      payment: Pagamento
+    attributes:
+      payment:
+        pay_method: Metodo de pagamento
