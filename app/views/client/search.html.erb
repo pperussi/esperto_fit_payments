@@ -1,0 +1,10 @@
+<%= form_with(url: "/client/search", method: "get") do %>
+  <%= label_tag(:q, "Pesquisar aluno") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Buscar") %>
+<% end %>
+
+
+<% @client.each do |f| %>
+ <%= link_to f.name, single_class_path(f) %>
+<%end%> 
