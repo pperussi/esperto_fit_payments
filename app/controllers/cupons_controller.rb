@@ -2,7 +2,6 @@ class CuponsController < ApplicationController
   before_action :authenticate_user!
   before_action :admin, only: %i[ create]
 
-  
   def create
     @promotion = Promotion.find(params[:promotion_id])
     Cupon.create_for(@promotion)
@@ -10,8 +9,8 @@ class CuponsController < ApplicationController
   end
 
   private
-    def admin
-      return promotions_path unless current_user.admin?
-    end
+  def admin
+    redirect_to root_path unless current_user.admin?
+  end
 
 end
