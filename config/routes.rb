@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :administrator, only: %i[index] 
   resources :payments, only: %i[new create]
   resources :single_classes
-  resources :client  do
+  resources :clients  do
       get 'singleclass', on: :collection
       get 'search', on: :collection
   end

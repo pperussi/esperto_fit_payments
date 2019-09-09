@@ -22,4 +22,8 @@ describe 'adm launch single class for a user' do
     expect(page).to have_content('Paulista')
     expect(page).to have_content(90.0)
   end
+
+  describe '' do
+
+  end
 end
