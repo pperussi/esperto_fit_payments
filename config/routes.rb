@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   root to: "user#index"
 
+  resources :promotions, only: %i[index show new create] do
+    resources :cupons, only: %i[create]
+  end
+  
   resources :administrator, only: %i[index] 
-  resources :payments, only: %i[new create]
+  resources :pay_methods, only: %i[new create]
+  resources :registrations, only: %i[index new create show edit update]
   resources :single_classes
   resources :clients  do
       get 'singleclass', on: :collection
@@ -12,5 +17,6 @@ Rails.application.routes.draw do
   end
 
   # get 'search', to: 'client#search'
-
+  
+  
 end

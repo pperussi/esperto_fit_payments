@@ -23,7 +23,7 @@ feature 'user navigation' do
     user = create(:user, email: 'teste@teste.com.br', password: '123456')
     
     login_as(user)
-    visit new_payment_path
+    visit new_pay_method_path
 
     expect(current_path).to eq root_path
   end
@@ -35,7 +35,7 @@ feature 'user navigation' do
   end
 
   scenario 'user not authenticated cant view payment page' do
-    visit new_payment_path
+    visit new_pay_method_path
 
     expect(current_path).to eq new_user_session_path
   end

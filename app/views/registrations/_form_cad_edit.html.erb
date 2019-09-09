@@ -1,0 +1,18 @@
+<%= form_for @registration do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+
+  <%= f.label :cpf, 'CPF' %>
+  <%= f.number_field :cpf %>
+
+  <%= f.label :unity_id, 'Unidade' %>
+  <%= f.collection_select(:unity_id, @unities, :id, :name) %>
+
+  <%= f.label :plan_id, 'Plano' %>
+  <%= f.collection_select(:plan_id, @plans, :id, :name) %>
+
+   <%= f.label :pay_method_id, 'Metodo de pagamento' %>
+  <%= f.collection_select(:pay_method_id, @pay_methods, :id, :name) %>
+
+  <%= f.submit 'Enviar' %>
+<%end%>

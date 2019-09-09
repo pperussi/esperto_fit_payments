@@ -1,10 +1,11 @@
-class  PaymentsController < AdministratorController
+class  PayMethodsController < AdministratorController
   def new
-    @method_pay = Payment.new
+    @method_pay = PayMethod.new
   end
   
   def create
-    @method_pay =  Payment.new(params_payment)
+    @method_pay =  PayMethod.new(params_payment)
+
     if @method_pay.save
       flash[:alert] = "Cadastrado com sucesso"
       redirect_to administrator_index_path
@@ -16,7 +17,7 @@ class  PaymentsController < AdministratorController
   private
 
   def params_payment
-    params.require(:payment).permit(:pay_method)
+    params.require(:pay_method).permit(:name)
   end
 
 end
