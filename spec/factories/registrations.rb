@@ -4,5 +4,6 @@ FactoryBot.define do
     cpf { "123456" }
     plan
     unity
+    pay_method
   end
 end

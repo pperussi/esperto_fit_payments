@@ -12,6 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_09_09_164203) do
 
+  create_table "cupons", force: :cascade do |t|
+    t.integer "promotion_id"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["promotion_id"], name: "index_cupons_on_promotion_id"
+  end
+
   create_table "pay_methods", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -36,6 +44,19 @@ ActiveRecord::Schema.define(version: 2019_09_09_164203) do
     t.float "value"
   end
 
+  create_table "promotions", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "value_percent_discount"
+    t.integer "discount_max"
+    t.string "cod_promotion"
+    t.integer "cupom_number"
+    t.string "begin_promotion"
+    t.string "end_promotion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "registrations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,12 +79,12 @@ ActiveRecord::Schema.define(version: 2019_09_09_164203) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.boolean "adm", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

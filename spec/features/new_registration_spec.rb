@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'new registration'do
   scenario 'view form' do
-    user = create(:user, adm: true)
+    user = create(:user, admin: true)
     unity = create(:unity, name:'Paulista')
     plan = create(:plan, name:'Executivo')
     create(:pay_method, name:'Boleto')
@@ -26,7 +26,7 @@ feature 'new registration'do
   end
   
   scenario 'empty fields' do
-    user = create(:user, adm: true)
+    user = create(:user, admin: true)
     
     login_as user
     visit root_path
@@ -42,7 +42,7 @@ feature 'new registration'do
   end
 
   scenario 'generate payments' do
-    user = create(:user, adm: true)
+    user = create(:user, admin: true)
     unity = create(:unity, name:'Paulista')
     plan = create(:plan, name:'Executivo', value: 40)
     create(:pay_method, name:'Boleto')
@@ -76,7 +76,7 @@ feature 'new registration'do
   end
 
   scenario 'can\'t be duplicate registrations ' do
-    user = create(:user, adm: true)
+    user = create(:user, admin: true)
     unity = create(:unity, name:'Barra funda')
     plan = create(:plan, name:'Master', value: 40)
     pay_method = create(:pay_method, name:'Boleto')
