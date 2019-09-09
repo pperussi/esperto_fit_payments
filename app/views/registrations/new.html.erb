@@ -11,5 +11,8 @@
   <%= f.label :plan_id, 'Plano' %>
   <%= f.collection_select(:plan_id, @plan, :id, :name) %>
 
+   <%= f.label :pay_method_id, 'Metodo de pagamento' %>
+  <%= f.collection_select(:pay_method_id, @pay_methods, :id, :name) %>
+
   <%= f.submit 'Enviar' %>
 <%end%>

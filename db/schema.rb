@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_05_192818) do
+ActiveRecord::Schema.define(version: 2019_09_09_164203) do
 
   create_table "pay_methods", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_09_05_192818) do
     t.string "cpf"
     t.integer "unity_id"
     t.integer "plan_id"
+    t.integer "pay_method_id"
+    t.index ["pay_method_id"], name: "index_registrations_on_pay_method_id"
     t.index ["plan_id"], name: "index_registrations_on_plan_id"
     t.index ["unity_id"], name: "index_registrations_on_unity_id"
   end

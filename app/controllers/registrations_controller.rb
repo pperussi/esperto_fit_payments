@@ -4,7 +4,6 @@ class RegistrationsController < ApplicationController
   before_action :auth_redirect
 
   def new   
-    @pay_mehods = Payment.all
     @registration = Registration.new
   end
 
@@ -28,17 +27,18 @@ class RegistrationsController < ApplicationController
 
   def generate_payment()
     12.times do |i|
-      @registration.payments.new(pay_method: require_params_payment,value: @registration.plan.value , dt_venc: Time.zone.now.to_date + 1.month).save
+      @registration.payments.new(pay_method_id: @registration.pay_method_id, value: @registration.plan.value , dt_venc: Time.zone.now.to_date + i.month).save
     end
   end
 
   def load_plan_unity
+    @pay_methods = PayMethod.all
     @plan = Plan.all
     @unity = Unity.all
   end
 
   def require_params
-    params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, pay_method_id)
+    params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, :pay_method_id)
   end
 
   def auth_redirect
