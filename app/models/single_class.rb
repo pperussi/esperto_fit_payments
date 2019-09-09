@@ -1,5 +1,4 @@
 class SingleClass < ApplicationRecord
-
-  #belongs_to :client
-  has_many :clients
+  has_many :clients_classes
+  has_many :clients, through: :clients_classes
 end

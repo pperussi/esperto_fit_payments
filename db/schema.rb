@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_05_183523) do
+ActiveRecord::Schema.define(version: 2019_09_09_165420) do
 
   create_table "clients", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+  end
+
+  create_table "clients_classes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "client_id"
+    t.integer "single_class_id"
+    t.index ["client_id"], name: "index_clients_classes_on_client_id"
+    t.index ["single_class_id"], name: "index_clients_classes_on_single_class_id"
   end
 
   create_table "payments", force: :cascade do |t|

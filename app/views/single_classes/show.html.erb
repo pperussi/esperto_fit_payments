@@ -8,8 +8,9 @@
   <%= f.submit 'Lancar' %>
 <% end %>
 
-
-<p>Cliente: <%= @single_class.clients_id %></p>
-<%= @single_class.name %>
+<% @client.clients.each do |client| %>
+  Cliente:<%= client.name %>
+<%end%>
+<p><%= @single_class.name %>
 <%= @single_class.unit %>
 <%= @single_class.price %>
