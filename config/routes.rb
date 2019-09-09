@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root to: "user#index"
 
   resources :promotions, only: %i[index show new create] do
-    resources :cupons, only: %i[create]
+    resources :cupons, only: %i[create show ] do
+
+    end
   end
   
   resources :administrator, only: %i[index] 

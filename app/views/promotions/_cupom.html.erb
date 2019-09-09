@@ -1,5 +1,21 @@
+
 <ul>
-  <% @cupons.each do |cupon| %>
-    <li><%= cupon.code%></li>
+  <%= form_tag("apply",method: :post) do %>
+    <li >
+         <%= label_tag(:code, 'Código do cupom') %>
+         <%= text_field_tag(:code) %> 
+         <%= label_tag(:registration_id, 'Número da matricula') %>
+         <%= text_field_tag(:registration_id) %>
+        <%= submit_tag('Aplicar') %>
+    </li>
   <%end%>
+
 </ul>
+
+<hr>
+<h3>Cupons</h3>
+<% @cupons.each do |cupon|%>
+  <%= cupon.code%>
+  <%= cupon.status%>
+<%end%>
+

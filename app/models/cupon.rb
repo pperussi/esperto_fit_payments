@@ -1,5 +1,6 @@
 class Cupon < ApplicationRecord
   belongs_to :promotion
+  has_one :registration
 
   def self.create_for(promotion)
 
@@ -11,4 +12,4 @@ class Cupon < ApplicationRecord
     end
   end
 
-end
+end 
