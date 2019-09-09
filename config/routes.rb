@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   resources :pay_methods, only: %i[new create]
   resources :registrations, only: %i[index new create show edit update]
 
+  get 'search', to: 'registrations#search'
+
 end
