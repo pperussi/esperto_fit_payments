@@ -9,13 +9,15 @@
     <th>Valor</th>
     <th>Data de vencimento</th>
     <th>Método de pagamento</th>
+    <th>Status</th>
   </thead>
   <% @registration.payments.each do |payment| %>
-    <tr>
+    <tr id="<%=payment.id%>">
       <td><%= "Pagamento #{payment.id}"%></td> 
       <td><%= payment.value %></td>
       <td><%= payment.dt_venc %></td>
       <td><%= payment.pay_method.name %></td>
+      <td><%= payment.status %></td>
     </tr>
   <%end%>
 </table
