@@ -2,6 +2,7 @@ class RegistrationsController < ApplicationController
   before_action :load_plan_unity, only: %i[new create edit update]
   before_action :authenticate_user!
   before_action :auth_redirect
+  #after_action :generate_payment, only: [:create]
 
   def index
     @registrations = Registration.all
@@ -45,12 +46,12 @@ class RegistrationsController < ApplicationController
   def search
     # @registration = Registration.find_by("cpf ?", params[:search])
     @registrations = Registration.where("cpf LIKE ?", "%#{params[:search]}%")
-    redirect_to @registration
+    #redirect_to @registrations
   end
 
   private
 
-  def generate_payment()
+  def generate_payment
     12.times do |i|
       @registration.payments.new(pay_method_id: @registration.pay_method_id, value: @registration.plan.value , dt_venc: Time.zone.now.to_date + i.month).save
     end

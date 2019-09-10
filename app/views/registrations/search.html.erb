@@ -1,6 +1,8 @@
-<h1> Resultado da busca por: <%= params[:busca] %>
-<h1> <%= @registrations.length %> receitas encontradas</h1>
-
 <% @registrations.each do |registration| %>
-  <%= render recipe %>
+  <%= registration.name %> - 
+  <%= registration.cpf %>
+
+  <% registration.payments.each do |payment| %>
+    <%= "Valor: #{payment.value} - Data de vencimento: #{payment.dt_venc}"%>
+  <% end %>
 <% end %>
