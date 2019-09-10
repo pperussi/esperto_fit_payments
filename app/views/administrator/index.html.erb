@@ -4,7 +4,6 @@
 <% @pay_methods.each do |pay_method| %>
   <%= pay_method.name %>
 <%end%>
-<%= link_to "Lancar aula avulsa para aluno", search_clients_path %>
 <%= link_to "Criar metodo de pagamento", new_pay_method_path%>
 <%= link_to 'Matrículas', registrations_path%>
 <%= link_to 'Nova Matrícula', new_registration_path%>

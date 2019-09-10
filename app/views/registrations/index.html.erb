@@ -3,7 +3,7 @@
     <th>Nome</th>
     <th>CPF</th>
   </thead>
-<%= @registrations.each do |registration| %>
+<% @registrations.each do |registration| %>
   <tr>
     <td><%=registration.name %></td>
     <td><%=registration.cpf%></td>
@@ -13,3 +13,13 @@
 <% end %>
 
 </table>
+
+<%= link_to "Lancar aula avulsa para aluno", registrations_path %>
+
+<%= form_tag(search_registrations_path, method: "get") do %>
+  <%= label_tag(:q, "Pesquisar aluno") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Buscar") %>
+<% end %>
+
+

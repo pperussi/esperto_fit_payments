@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_192240) do
+ActiveRecord::Schema.define(version: 2019_09_10_174059) do
 
   create_table "clients_classes", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 2019_09_09_192240) do
     t.string "unit"
     t.date "date"
     t.float "price"
-    t.integer "clients_id"
-    t.index ["clients_id"], name: "index_single_classes_on_clients_id"
+    t.integer "registration_id"
+    t.index ["registration_id"], name: "index_single_classes_on_registration_id"
   end
 
   create_table "unities", force: :cascade do |t|

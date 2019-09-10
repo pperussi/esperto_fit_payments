@@ -9,14 +9,9 @@ Rails.application.routes.draw do
   
   resources :administrator, only: %i[index] 
   resources :pay_methods, only: %i[new create]
-  resources :registrations, only: %i[index new create show edit update]
-  resources :single_classes
-  resources :clients  do
-      get 'singleclass', on: :collection
-      get 'search', on: :collection
+  
+  resources :registrations, only: %i[index new create show edit update] do
+    resources :single_classes,only: %i[new create show]
+    get 'search', on: :collection
   end
-
-  # get 'search', to: 'client#search'
-  
-  
 end

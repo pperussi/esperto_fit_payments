@@ -2,14 +2,8 @@ require 'rails_helper'
 
 describe 'Adm can search clients' do
   scenario 'successfully' do
-    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
-    unity = create(:unity, name:'Paulista')
-    plan = create(:plan, name:'Executivo')
-    create(:pay_method, name:'Boleto')
-    Registration.create!(:Registration,cpf:'999999')
-    Registration.create!(name:'Joaozinho')
-    Registration.create!(name:'other_teste')
-
+    user = create(:user, admin: true)
+    registration = create(:registration,name:'Joao')
 
     login_as(user, scope: :user)
     visit root_path
@@ -18,6 +12,5 @@ describe 'Adm can search clients' do
     expect(page).not_to have_content('Joao')
     expect(page).not_to have_content('Joaozinho')
     expect(page).not_to have_content('other_teste')
-
   end
 end

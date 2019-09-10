@@ -1,13 +1,3 @@
-<%= form_for @single_class do |f| %>
-  <%= f.label :name, 'Nome da aula' %>
-  <%= f.text_field :name %>
-  <%= f.label :unit, 'Unidade' %>
-  <%= f.text_field :unit %>
-  <%= f.label :price, 'Valor' %>
-  <%= f.text_field :price %>
-  <%= f.submit 'Lancar' %>
-<% end %>
-
 <% @client.clients.each do |client| %>
   Cliente:<%= client.name %>
 <%end%>

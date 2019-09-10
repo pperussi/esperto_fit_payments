@@ -1,15 +1,12 @@
 require 'rails_helper'
 describe 'adm launch single class for a user' do
   scenario 'successfuly' do
-#Testar search, models e alterar views.
-    user = create(:user, email:'teste@teste.com', password:'123456', adm: true)
-    client = Client.create!(name:'Joao')
-    sclass = SingleClass.create!(name:'Zumba', unit: 'Paulista', price:90.00, clients_id: client)
-    ClientsClass.create!(client: client, single_class: sclass)
+    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
+    registration = create(:registration,name:'Joao')
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Lancar aula avulsa para aluno'
+    click_on "Matrículas"
     fill_in 'Pesquisar aluno', with: 'Joao'
     click_on 'Buscar'
     click_on 'Joao'

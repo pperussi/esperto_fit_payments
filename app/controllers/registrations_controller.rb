@@ -2,6 +2,10 @@ class RegistrationsController < ApplicationController
   before_action :load_plan_unity, only: %i[new create edit update]
   before_action :authenticate_user!
   before_action :auth_redirect
+  
+  def search 
+    @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
+  end
 
   def index
     @registrations = Registration.all
