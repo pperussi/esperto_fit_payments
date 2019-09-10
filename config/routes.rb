@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   root to: "user#index"
 
   resources :promotions, only: %i[index show new create] do
-    resources :cupons, only: %i[create show ] do
-
-    end
+    post 'apply', to: "cupons#apply"
+    resources :cupons, only: %i[create] 
   end
+
   
   resources :administrator, only: %i[index] 
   resources :payments, only: %i[new create]

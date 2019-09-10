@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_193315) do
+ActiveRecord::Schema.define(version: 2019_09_10_174556) do
+
+  create_table "cupon_burns", force: :cascade do |t|
+    t.integer "cupon_id"
+    t.integer "registration_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cupon_id"], name: "index_cupon_burns_on_cupon_id"
+    t.index ["registration_id"], name: "index_cupon_burns_on_registration_id"
+  end
 
   create_table "cupons", force: :cascade do |t|
     t.integer "promotion_id"
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status", default: true
+    t.integer "status", default: 0
     t.index ["promotion_id"], name: "index_cupons_on_promotion_id"
   end
 

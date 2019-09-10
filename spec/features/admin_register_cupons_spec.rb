@@ -15,7 +15,7 @@ feature 'Admin register Cupons in promotion' do
     click_on carnaval.name
     click_on 'Gerar cupons'
     expect(current_path).to eq promotion_path(carnaval)
-    expect(page).to have_css('li',text:'CARNA0002')
+    expect(page).to have_content('CARNA0002')
   end 
   
   scenario 'User not admin not create cupons' do 

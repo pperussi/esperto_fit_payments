@@ -9,7 +9,6 @@ class PromotionsController < ApplicationController
   def show
     @promotion = Promotion.find(params[:id])
     @cupons = @promotion.cupons
-
   end
 
   def new

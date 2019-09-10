@@ -8,12 +8,19 @@ class CuponsController < ApplicationController
     redirect_to  @promotion
   end
 
-  def edit
-    @cupon = Cupon.find(params[:id])
-  end
+  def apply
+    @promotion = Promotion.find(params[:promotion_id])
+    @cupon = Cupon.find_by!(code: params[:code])
+    registration = Registration.find(params[:registration_id])
+    CuponBurn.create(cupon:@cupon, registration:registration)
+    @cupon.applied!
+    redirect_to @promotion
 
-  def update
-    @cupon = Cupon.update(params_cupon)
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert]= ''
+    flash[:alert] += 'Cupom nāo encontrado;' if @cupon.blank? 
+    flash[:alert] += 'Matrícula nāo encontrada;' if registration.blank?
+    redirect_to @promotion
   end  
 
   private

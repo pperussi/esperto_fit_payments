@@ -5,11 +5,9 @@ feature 'Admin register promo' do
     administrator = create(:user, admin: true)
     visit promotions_path
 
-    
       fill_in 'email', with: administrator.email 
       fill_in 'password', with: administrator.password
       click_on 'Log in'
-    
 
     click_on 'Criar Promoçāo'
 
@@ -32,7 +30,7 @@ feature 'Admin register promo' do
     expect(page).to have_content('30/03/2020')
   end
 
-  scenario 'successfully' do
+  scenario 'not register blank promotions' do
     administrator = create(:user, admin: true)
     
     visit promotions_path
@@ -55,7 +53,6 @@ feature 'Admin register promo' do
     fill_in 'Fim da Promoção', with: ''
     click_on 'Criar'
 
-    # expect(current_path).to eq new_promotion_path
     expect(page).to have_content('Nāo foi possível salvar a promoçāo')
   end
   scenario 'fail create promotions user' do 
@@ -70,8 +67,6 @@ feature 'Admin register promo' do
   scenario 'fail create promotions user access url' do 
     administrator = create(:user)
 
-
-    
     visit new_promotion_path
 
     expect(page).not_to have_link('Criar Promoçāo')

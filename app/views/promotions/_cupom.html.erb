@@ -1,6 +1,6 @@
 
 <ul>
-  <%= form_tag("apply",method: :post) do %>
+  <%= form_tag(promotion_apply_path(@promotion),method: :post) do %>
     <li >
          <%= label_tag(:code, 'Código do cupom') %>
          <%= text_field_tag(:code) %> 

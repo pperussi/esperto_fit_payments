@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :applied_cupon do
+  factory :cupon_burn do
     cupon { nil }
     registration { nil }
   end
