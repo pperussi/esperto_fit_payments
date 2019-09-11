@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   resources :registrations, only: %i[index new create show edit update] do
     resources :single_classes,only: %i[new create]
+    get 'search_single_class', on: :collection
     get 'search', on: :collection
   end
+  
 end

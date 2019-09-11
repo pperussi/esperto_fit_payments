@@ -1,3 +1,8 @@
-<% @registrations.each do |r| %>
-  <%= link_to r.name, new_registration_single_class_path(r) %>
-<%end%> 
+<% @registrations.each do |registration| %>
+  <%= registration.name %> - 
+  <%= registration.cpf %>
+
+  <% registration.payments.each do |payment| %>
+    <%= "Valor: #{payment.value} - Data de vencimento: #{payment.dt_venc}"%>
+  <% end %>
+<% end %>

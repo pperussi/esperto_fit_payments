@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :payment do
-    pay_method { 'Boleto' }
+    pay_method
   end
 end

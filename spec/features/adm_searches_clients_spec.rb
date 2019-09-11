@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-describe 'Adm can search clients' do
+feature 'Adm can search clients' do
   scenario 'successfully' do
     user = create(:user, admin: true)
-    registration = create(:registration,name:'Joao')
+    registration = create(:registration, name:'Joao')
 
     login_as(user, scope: :user)
     visit root_path
-    click_on 'Lancar aula avulsa para aluno'
+    click_on 'Matrículas'
+    fill_in 'Pesquisar aluno', with: 'Joao'
+    click_on 'Buscar'
 
-    expect(page).not_to have_content('Joao')
-    expect(page).not_to have_content('Joaozinho')
-    expect(page).not_to have_content('other_teste')
+    expect(page).to have_content('Joao')
   end
 end

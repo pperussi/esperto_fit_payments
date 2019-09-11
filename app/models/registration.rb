@@ -11,4 +11,11 @@ class Registration < ApplicationRecord
   #
   has_many :clients_classes
   has_many :single_classes, through: :clients_classes
+
+  def generate_anual_payments
+    12.times do |i|
+      payments.new(pay_method_id: pay_method_id, value: plan.value , dt_venc: Time.zone.now.to_date + i.month).save
+    end
+  end
+
 end
