@@ -5,5 +5,6 @@ FactoryBot.define do
     plan
     unity
     pay_method
+    
   end
 end

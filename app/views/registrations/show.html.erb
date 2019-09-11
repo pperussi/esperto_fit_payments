@@ -12,12 +12,13 @@
     <th>Status</th>
   </thead>
   <% @registration.payments.each do |payment| %>
-    <tr id="<%=payment.id%>">
+    <tr id="payment-<%=payment.id%>">
       <td><%= "Pagamento #{payment.id}"%></td> 
       <td><%= payment.value %></td>
       <td><%= payment.dt_venc %></td>
       <td><%= payment.pay_method.name %></td>
       <td><%= payment.status %></td>
+      <td><%= link_to 'Pagar', registration_payment_path(payment.id)%></td>
     </tr>
   <%end%>
 </table

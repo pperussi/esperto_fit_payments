@@ -9,8 +9,11 @@ Rails.application.routes.draw do
   
   resources :administrator, only: %i[index] 
   resources :pay_methods, only: %i[new create]
-  resources :registrations, only: %i[index new create show edit update]
+  resources :registrations, only: %i[index new create show edit update] do
+    get 'payment', to: 'registrations#paid'
+  end
 
   get 'search', to: 'registrations#search'
+  
 
 end
