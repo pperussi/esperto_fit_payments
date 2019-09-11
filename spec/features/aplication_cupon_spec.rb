@@ -43,7 +43,7 @@ feature 'administrator apply cupom' do
     fill_in 'Número da matricula', with: register.id
     click_on 'Aplicar'
     
-    expect(current_path).to eq promotions_path
+    expect(current_path).to eq promotion_path(carnaval)
     expect(page).to have_content('Cupom nāo encontrado')
   end
 
