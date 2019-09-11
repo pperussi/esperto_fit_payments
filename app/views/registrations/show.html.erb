@@ -1,0 +1,21 @@
+<h2><%= @registration.name %></h2>
+<p><%= @registration.cpf %></p>
+<p><%= @registration.unity.name %></p>
+<p><%= @registration.plan.name %></p>
+
+<table class="table">
+  <thead>
+    <th>Pagamento</th>
+    <th>Valor</th>
+    <th>Data de vencimento</th>
+    <th>Método de pagamento</th>
+  </thead>
+  <% @registration.payments.each do |payment| %>
+    <tr>
+      <td><%= "Pagamento #{payment.id}"%></td> 
+      <td><%= payment.value %></td>
+      <td><%= payment.dt_venc %></td>
+      <td><%= payment.pay_method.name %></td>
+    </tr>
+  <%end%>
+</table

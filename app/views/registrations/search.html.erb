@@ -1,0 +1,8 @@
+<% @registrations.each do |registration| %>
+  <%= registration.name %> - 
+  <%= registration.cpf %>
+
+  <% registration.payments.each do |payment| %>
+    <%= "Valor: #{payment.value} - Data de vencimento: #{payment.dt_venc}"%>
+  <% end %>
+<% end %>

@@ -12,15 +12,15 @@ describe 'admin can create payment method' do
     click_on 'Cadastrar'
 
     expect(page).to have_content('Cadastrado com sucesso')
-    expect(Payment.count).to eq 1
-    expect(Payment.first.pay_method).to eq 'Boleto'
+    expect(PayMethod.count).to eq 1
+    expect(PayMethod.first.name).to eq 'Boleto'
 
   end
   
   scenario 'and he can view all payment methods' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
-    create(:payment, pay_method: 'Boleto')
-    create(:payment, pay_method: 'Credito')
+    create(:pay_method, name: 'Boleto')
+    create(:pay_method, name: 'Credito')
 
     login_as(user, scope: :user)
     visit root_path
@@ -31,7 +31,7 @@ describe 'admin can create payment method' do
 
   scenario 'cant be duplicate' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
-    create(:payment, pay_method: 'Boleto')
+    create(:pay_method, name: 'Boleto')
     login_as(user, scope: :user)
 
     visit root_path
@@ -39,8 +39,8 @@ describe 'admin can create payment method' do
     fill_in 'Metodo de pagamento', with: 'Boleto'
     click_on 'Cadastrar'
 
-    expect(page).to have_content('Metodo de pagamento já está em uso')
-    expect(Payment.count).not_to eq 2
+    expect(page).to have_content('Name já está em uso')
+    expect(PayMethod.count).not_to eq 2
   end
   
   scenario 'cant be blank' do 
@@ -52,6 +52,6 @@ describe 'admin can create payment method' do
     fill_in 'Metodo de pagamento', with: ''
     click_on 'Cadastrar'
 
-    expect(page).to have_content("Metodo de pagamento não pode ficar em branco")
+    expect(page).to have_content("Name não pode ficar em branco")
   end
 end

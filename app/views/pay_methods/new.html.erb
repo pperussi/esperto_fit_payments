@@ -5,7 +5,7 @@
 <%end %> 
 
 <%=form_for @method_pay do |m| %>
-    <%= m.label :pay_method%>
-    <%= m.text_field :pay_method %>
+    <%= m.label :name, 'Metodo de pagamento' %>
+    <%= m.text_field :name %>
     <%= m.submit 'Cadastrar' %>
 <%end%>

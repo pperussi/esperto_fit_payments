@@ -3,7 +3,7 @@ class  AdministratorController < ApplicationController
   before_action :is_admin
 
   def index
-    @payments = Payment.all
+    @pay_methods = PayMethod.all
   end
   private
   def is_admin
