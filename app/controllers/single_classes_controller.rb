@@ -6,12 +6,12 @@ class SingleClassesController < ApplicationController
   end
 
   def show
-    @client = SingleClass.find(params[:id])
+    @registration = SingleClass.find(params[:id])
     @single_class = SingleClass.find(params[:id])  
   end
 
   def create
-    @registration = Registration.find(params[:id])
+    @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new(set_params) 
     ClientsClass.create!(registration:@registration, single_class: @single_class)
     #@single_class.client_id = @client.id ###
@@ -21,7 +21,7 @@ class SingleClassesController < ApplicationController
   end
 
   def update
-    @registration = Registration.find(params[:id])
+    @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new(set_params)
     ClientsClass.create!(registration:@registration, single_class: @single_class)
     if @single_class.save
