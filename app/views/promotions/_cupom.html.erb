@@ -15,7 +15,9 @@
 <hr>
 <h3>Cupons</h3>
 <% @cupons.each do |cupon|%>
-  <%= cupon.code%>
-  <%= cupon.status%>
+ <li id="<%=cupon.id%>"> 
+    <%= cupon.code%>
+    <span><%= cupon.status%></span>
+</li>
 <%end%>
 

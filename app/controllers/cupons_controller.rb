@@ -1,6 +1,6 @@
 class CuponsController < ApplicationController
   before_action :authenticate_user!
-  before_action :admin, only: %i[ create]
+  before_action :admin, only: %i[ create apply]
 
   def create
     @promotion = Promotion.find(params[:promotion_id])
@@ -12,16 +12,15 @@ class CuponsController < ApplicationController
     @promotion = Promotion.find(params[:promotion_id])
     @cupon = Cupon.find_by!(code: params[:code])
     @registration = Registration.find(params[:registration_id])
-    CuponBurn.create(cupon:@cupon, registration:registration)
-    @registration.value =  Cupon.off_value_registration(@registration, @cupon.promotion.value_percent_discount)
-  byebug
+    @registration.value =  CuponBurn.off_value_registration(@registration, @cupon.promotion.value_percent_discount)
     @cupon.applied!
+    CuponBurn.create(cupon: @cupon, registration: @registration)
+   
     redirect_to @promotion
 
   rescue ActiveRecord::RecordNotFound
-    flash[:alert]= ''
-    flash[:alert] += 'Cupom nāo encontrado;' if @cupon.blank? 
-    flash[:alert] += 'Matrícula nāo encontrada;' if registration.blank?
+    flash[:alert] = 'Cupom nāo encontrado;' if @cupon.blank? 
+    flash[:notice] = 'Matrícula nāo encontrada;' if @registration.blank?
     redirect_to @promotion
   end  
 
@@ -33,5 +32,6 @@ class CuponsController < ApplicationController
   def params_cupon
     params.require(:cupon).permit(:registration_id)
   end
+
 
 end

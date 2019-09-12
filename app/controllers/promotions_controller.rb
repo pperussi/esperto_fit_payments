@@ -31,6 +31,7 @@ class PromotionsController < ApplicationController
 
   private
     def promotion_params
-      params.require(:promotion).permit(:name, :description, :value_percent_discount, :discount_max, :cod_promotion, :cupom_number, :begin_promotion, :end_promotion) 
+      params.require(:promotion).permit(:name, :description, :value_percent_discount, :discount_max, :cod_promotion, :cupom_number, :begin_promotion, :end_promotion)
+   
     end  
 end

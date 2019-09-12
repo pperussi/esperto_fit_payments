@@ -5,6 +5,9 @@ feature 'administrator apply cupom' do
     register = create(:registration)
     carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', discount_max:20,value_percent_discount:10)
     cupon = create(:cupon, promotion_id: carnaval.id)
+    cupon_burned =  create(:cupon_burn,cupon:cupon, registration:register)
+    CuponBurn.off_value_registration(register,cupon.promotion.value_percent_discount)
+
     
     visit promotions_path
     
@@ -21,6 +24,7 @@ feature 'administrator apply cupom' do
     click_on 'Aplicar'
 
     expect(page).to have_content('applied')
+
   end
 
   scenario 'and can not find cupon' do 

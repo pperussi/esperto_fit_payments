@@ -6,6 +6,7 @@ class Cupon < ApplicationRecord
   def burned?
     cupon_burn.present? 
   end  
+  
   def self.create_for(promotion)
     promotion.cupom_number.times.map do |i|  
       value = i+1
