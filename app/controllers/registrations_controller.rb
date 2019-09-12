@@ -45,7 +45,8 @@ class RegistrationsController < ApplicationController
 
   def paid
     @payment = Payment.find(params[:id])
-    @payment.active_status!
+    @payment.paid!
+    redirect_to registration_path(@payment.registration.id)
   end
 
   def search

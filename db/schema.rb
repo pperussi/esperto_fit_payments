@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_193008) do
+ActiveRecord::Schema.define(version: 2019_09_12_171505) do
 
   create_table "cupons", force: :cascade do |t|
     t.integer "promotion_id"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2019_09_10_193008) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payment_transactions", force: :cascade do |t|
+    t.string "code"
+    t.float "value"
+    t.date "date_payment"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_payment_transactions_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|

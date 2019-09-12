@@ -18,7 +18,7 @@
       <td><%= payment.dt_venc %></td>
       <td><%= payment.pay_method.name %></td>
       <td><%= payment.status %></td>
-      <td><%= link_to 'Pagar', registration_payment_path(payment.id)%></td>
+      <td id="payment-<%=payment.id%>"><%= link_to 'Pagar', new_payment_payment_transaction_path(payment.id)%></td>
     </tr>
   <%end%>
 </table

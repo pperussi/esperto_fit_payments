@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :administrator, only: %i[index] 
   resources :pay_methods, only: %i[new create]
   resources :registrations, only: %i[index new create show edit update] do
-    get 'payment', to: 'registrations#paid'
+    post 'paid', on: :member
+  end
+
+  resources :payments, only: [:show] do
+    resources :payment_transactions, only: %i[new create]
   end
 
   get 'search', to: 'registrations#search'
