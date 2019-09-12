@@ -8,3 +8,4 @@
 Plan.create(name:'Executivo',value:40)
 Unity.create(name:'Barra Funda')
 User.create(email:'admin@espertofit.com',password:'123456',admin:true)
+PayMethod.create(name:'Bitcoin')

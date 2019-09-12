@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_184704) do
+ActiveRecord::Schema.define(version: 2019_09_12_162917) do
 
   create_table "clients_classes", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 2019_09_11_184704) do
     t.integer "status", default: 0
     t.index ["pay_method_id"], name: "index_payments_on_pay_method_id"
     t.index ["registration_id"], name: "index_payments_on_registration_id"
+  end
+
+  create_table "payments_releases", force: :cascade do |t|
+    t.string "name"
+    t.float "value"
+    t.integer "payment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_payments_releases_on_payment_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -98,6 +107,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_184704) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.boolean "adm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false

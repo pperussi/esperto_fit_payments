@@ -3,6 +3,7 @@ feature 'adm launch single class for a user' do
   scenario 'successfuly' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
     registration = create(:registration,name:'Joao')
+    registration.generate_anual_payments
 
     login_as(user, scope: :user)
     visit root_path
