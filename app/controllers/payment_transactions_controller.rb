@@ -1,4 +1,5 @@
 class PaymentTransactionsController < ApplicationController
+  before_action :authenticate_user!
   def new
     #byebug
     @payment = Payment.find(params[:payment_id])
@@ -7,10 +8,14 @@ class PaymentTransactionsController < ApplicationController
 
   def create
     @transaction = PaymentTransaction.new(set_params)
-    if @transaction.save
-      redirect_to rootpath
+    @payment = Payment.find(params[:payment_id])
+    @transaction.payment = @payment
+    @transaction.user = current_user
+    if @transaction.save!
+      @payment.paid!
+      redirect_to root_path
     else
-      :new
+      render :new
     end
   end
 
@@ -19,6 +24,6 @@ class PaymentTransactionsController < ApplicationController
 
   private
   def set_params
-    params.require(:payment_transaction).permit(:code, :value, :date_payment)
+    params.require(:payment_transaction).permit(:code, :value, :date_payment, :user, :payment_id)
   end
 end

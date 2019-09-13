@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_171505) do
+ActiveRecord::Schema.define(version: 2019_09_13_234504) do
 
   create_table "cupons", force: :cascade do |t|
     t.integer "promotion_id"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2019_09_12_171505) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payment_id"
+    t.index ["payment_id"], name: "index_payment_transactions_on_payment_id"
     t.index ["user_id"], name: "index_payment_transactions_on_user_id"
   end
 
