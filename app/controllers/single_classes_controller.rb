@@ -1,5 +1,5 @@
 class SingleClassesController < ApplicationController
-  
+
   def new
     @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new
@@ -7,16 +7,19 @@ class SingleClassesController < ApplicationController
 
   def show
     @registration = SingleClass.find(params[:id])
-    @single_class = SingleClass.find(params[:id])  
+    @single_class = SingleClass.find(params[:id])
   end
 
   def create
     @registration = Registration.find(params[:registration_id])
-    @single_class = SingleClass.new(set_params) 
+    @single_class = SingleClass.new(set_params)
     ClientsClass.create!(registration:@registration, single_class: @single_class)
     if @single_class.save
       @single_class.class_debit(@registration)
       redirect_to @single_class
+    else
+      flash.now[:alert] = 'Não foi possível salvar a nova Aula'
+      render :new
     end
   end
 
