@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :promotions, only: %i[index show new create] do
     resources :cupons, only: %i[create]
   end
-  
-  resources :administrator, only: %i[index] 
+
+  resources :administrator, only: %i[index]
   resources :pay_methods, only: %i[new create]
 
   resources :single_classes,only: %i[show]
@@ -17,5 +17,11 @@ Rails.application.routes.draw do
     get 'search_single_class', on: :collection
     get 'search', on: :collection
   end
-  
+
+  namespace 'api' do
+     namespace 'v1' do
+       resources :pay_methods, only: %i[index]
+     end
+   end
+
 end

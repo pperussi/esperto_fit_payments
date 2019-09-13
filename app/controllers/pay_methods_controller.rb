@@ -1,8 +1,9 @@
 class  PayMethodsController < AdministratorController
+  
   def new
     @method_pay = PayMethod.new
   end
-  
+
   def create
     @method_pay =  PayMethod.new(params_payment)
 
