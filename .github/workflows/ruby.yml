@@ -1,6 +1,6 @@
 name: Ruby
 
-on: [push]
+on: [pull_request]
 
 jobs:
   build:
@@ -9,12 +9,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Ruby 2.6
+    - name: Set up Ruby 2.6.4
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: 2.6.x
-    - name: Build and test with Rake
+        ruby-version: 2.6.4
+    - name: Build and install gems
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
-        bundle exec rake
+        gem install bundle-audit
+    - name: Run rspec
+      run: |
+        bundle exec rspec
+    - name: Run rspec
+      run: |
+        bundle exec rspec
+    - name: Run audit to verify security
+      run: |
+        bundle-audit check --update
