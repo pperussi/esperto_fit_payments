@@ -14,10 +14,17 @@ Rails.application.routes.draw do
   end
 
   resources :payments, only: [:show] do
-    resources :payment_transactions, only: %i[new create]
+    resources :payment_transactions, only: %i[new create show]
   end
 
   get 'search', to: 'registrations#search'
   
+  namespace :api do
+    namespace :v1 do
+      resources :registrations do
+        get "payments", on: :collection
+      end
+    end
+  end
 
 end

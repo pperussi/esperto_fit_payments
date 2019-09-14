@@ -1,7 +1,6 @@
 class PaymentTransactionsController < ApplicationController
   before_action :authenticate_user!
   def new
-    #byebug
     @payment = Payment.find(params[:payment_id])
     @transaction = PaymentTransaction.new
   end
@@ -13,13 +12,16 @@ class PaymentTransactionsController < ApplicationController
     @transaction.user = current_user
     if @transaction.save!
       @payment.paid!
-      redirect_to root_path
+      redirect_to payment_payment_transaction_path(@transaction.payment, params[:payment_id])
     else
       render :new
     end
   end
 
   def show
+    @payment = Payment.find(params[:payment_id])
+    @transaction = PaymentTransaction.find_by(payment_id: [params[:payment_id]])
+    #@transaction = @payment.payment_transactions.find(params[:id])
   end
 
   private

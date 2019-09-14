@@ -8,4 +8,8 @@ class Registration < ApplicationRecord
   validates :name, :cpf, presence: true
   validates :cpf, uniqueness:true
 
+  # def search_registration_payments(cpf)
+  #   @registration = Registration.
+  # end
+
 end

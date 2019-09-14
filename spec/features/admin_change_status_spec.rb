@@ -25,7 +25,7 @@ feature 'Change status' do
     fill_in 'Valor Pago', with: 70
     click_on 'Pagar' 
 
-    expect(page).to have_css('td', text:'paid')
+    expect(page).to have_css('p', text:'paid')
   end
 
 
