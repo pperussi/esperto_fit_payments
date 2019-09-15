@@ -1,3 +1,5 @@
+require 'api_version_constraints'
+
 Rails.application.routes.draw do
   devise_for :users
 
@@ -6,8 +8,8 @@ Rails.application.routes.draw do
   resources :promotions, only: %i[index show new create] do
     resources :cupons, only: %i[create]
   end
-  
-  resources :administrator, only: %i[index] 
+
+  resources :administrator, only: %i[index]
   resources :pay_methods, only: %i[new create]
 
   resources :single_classes,only: %i[show]
@@ -17,5 +19,10 @@ Rails.application.routes.draw do
     get 'search_single_class', on: :collection
     get 'search', on: :collection
   end
-  
+
+  scope module: 'api', default: { format: :json } do
+    scope module: 'v1', constraints: ApiVersionConstraints.new(version: 1, default: true) do
+      resources :notifications, only: %i[show]
+    end
+  end
 end
