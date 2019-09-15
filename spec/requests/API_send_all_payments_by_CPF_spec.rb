@@ -6,7 +6,7 @@ describe 'API show all payments' do
      
         get  "/api/v1/payments/#{registration.cpf}"
         json_payments = JSON.parse(response.body, symbolize_names: true)
-        byebug
+
         expect(response.status).to eq 200
         expect(json_payments[:cpf]).to include registration.cpf
         expect(json_payments[:payments][0][:dt_venc].to_date).to eq registration.payments[0].dt_venc
