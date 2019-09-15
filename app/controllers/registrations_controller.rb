@@ -52,12 +52,18 @@ class RegistrationsController < ApplicationController
     @registrations = Registration.where("cpf LIKE ?", "%#{params[:search]}%")
   end
 
+  def search
+    @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
+  end
+
+  def search_single_class
+    @registrations = Registration.where("name LIKE ?", "%#{params[:q]}%")
+  end
+
   private
 
   def generate_payment
-    12.times do |i|
-      @registration.payments.new(pay_method_id: @registration.pay_method_id, value: @registration.plan.value , dt_venc: Time.zone.now.to_date + i.month).save
-    end
+    @registration.generate_anual_payments
   end
 
   def load_plan_unity
@@ -74,3 +80,4 @@ class RegistrationsController < ApplicationController
     redirect_to new_user_session_path unless current_user.admin?
   end
 end
+

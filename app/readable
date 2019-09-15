@@ -1,0 +1,9 @@
+<%= form_for @single_class do |f| %>
+  <%= f.label :name, 'Nome da aula' %>
+  <%- f.text_field :name %>
+  <%= f.label :unit, 'Unidade' %>
+  <%- f.text_field :unit %>
+  <%= f.label :name, 'Valor' %>
+  <%- f.text_field :name %>
+  <% f.submit 'Lancar' %>
+<% end %>

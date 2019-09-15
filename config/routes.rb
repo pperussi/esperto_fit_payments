@@ -7,9 +7,14 @@ Rails.application.routes.draw do
     resources :cupons, only: %i[create]
   end
   
+  resources :single_classes,only: %i[show]
   resources :administrator, only: %i[index] 
   resources :pay_methods, only: %i[new create]
+
   resources :registrations, only: %i[index new create show edit update] do
+    resources :single_classes,only: %i[new create]
+    get 'search_single_class', on: :collection
+    get 'search', on: :collection
     post 'paid', on: :member
 
   end
@@ -32,3 +37,4 @@ Rails.application.routes.draw do
   end
 
 end
+  

@@ -1,13 +1,14 @@
 <h1>BEM VINDO AO SISTEMA ADMINISTRADOR</h1>
 
+<%= form_tag(search_registrations_path, method: "get") do %>
+  <%= label_tag(:search, "Search for:") %>
+  <%= text_field_tag(:search) %>
+  <%= submit_tag("Procurar") %>
+<% end %>
 
-    <%= form_tag("/search", method: "get") do %>
-      <%= label_tag(:search, "Search for:") %>
-      <%= text_field_tag(:search) %>
-      <%= submit_tag("Procurar") %>
-    <% end %>
-
-
+<% @pay_methods.each do |pay_method| %>
+  <%= pay_method.name %>
+<%end%>
 
 <div class="btn btn-dark"><%= link_to "Criar metodo de pagamento", new_pay_method_path%></div>
 <div class="btn btn-dark"><%= link_to 'Matrículas', registrations_path%></div>
