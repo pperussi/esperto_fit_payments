@@ -1,5 +1,3 @@
-require 'api_version_constraints'
-
 Rails.application.routes.draw do
   devise_for :users
 
@@ -20,9 +18,10 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  scope module: 'api', default: { format: :json } do
-    scope module: 'v1', constraints: ApiVersionConstraints.new(version: 1, default: true) do
+  namespace 'api' do
+    namespace 'v1' do
+      resources :pay_methods, only: %i[index]
       resources :notifications, only: %i[show]
-    end
+     end
   end
 end

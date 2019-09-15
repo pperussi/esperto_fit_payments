@@ -1,10 +1,10 @@
-<% if @method_pay.errors.any? %>
-  <%  @method_pay.errors.full_messages.each do |msg| %>
+<% if @pay_method.errors.any? %>
+  <%  @pay_method.errors.full_messages.each do |msg| %>
     <%= msg %>
-  <%end %> 
-<%end %> 
+  <%end %>
+<%end %>
 
-<%=form_for @method_pay do |m| %>
+<%=form_for @pay_method do |m| %>
     <%= m.label :name, 'Metodo de pagamento' %>
     <%= m.text_field :name %>
     <%= m.submit 'Cadastrar' %>
