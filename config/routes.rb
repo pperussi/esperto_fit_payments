@@ -18,10 +18,13 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  namespace 'api' do
-    namespace 'v1' do
+  namespace :api ,defaults: { format: 'json' } do
+    namespace :v1,defaults: { format: 'json' } do
+      resources :payments, only: %i[show]
       resources :pay_methods, only: %i[index]
       resources :notifications, only: %i[show]
-     end
+    end
   end
+
+
 end
