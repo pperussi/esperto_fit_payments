@@ -1,7 +1,6 @@
-class PromotionsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :admin, only: %i[ new create]
-
+class PromotionsController < AdministratorController
+  before_action :is_admin, only: %i[ new create]
+  
   def index
     @promotions = Promotion.all
   end
@@ -23,10 +22,6 @@ class PromotionsController < ApplicationController
       flash.now[:alert] = 'Nāo foi possível salvar a promoçāo'
       render :new
     end    
-  end
-
-  def admin
-    return promotions_path unless current_user.admin?
   end
 
   private

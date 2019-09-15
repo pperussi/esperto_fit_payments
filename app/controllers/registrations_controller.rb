@@ -1,11 +1,10 @@
-class RegistrationsController < ApplicationController
+class RegistrationsController < AdministratorController
   before_action :load_plan_unity, only: %i[new create edit update]
-  before_action :authenticate_user!
-  before_action :auth_redirect
 
   def search 
     @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
   end
+  
   #after_action :generate_payment, only: [:create]
   def index
     @registrations = Registration.all
@@ -67,13 +66,8 @@ class RegistrationsController < ApplicationController
     @unities = Unity.all
   end
 
+  private
   def require_params
     params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, :pay_method_id)
   end
-
-  def auth_redirect
-    redirect_to new_user_session_path unless current_user.admin?
-  end
-
-
 end

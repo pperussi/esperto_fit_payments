@@ -1,5 +1,5 @@
-class SingleClassesController < ApplicationController
-
+class SingleClassesController < AdministratorController
+  
   def new
     @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new
