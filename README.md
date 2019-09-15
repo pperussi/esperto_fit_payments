@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API
 
-Things you may want to cover:
+Consultar todos os pagamentos para um determinado cpf:
 
-* Ruby version
+get "/api/v1/registrations/payments"
 
-* System dependencies
+Exemplo:
 
-* Configuration
+http://localhost:3000/api/v1/registrations/payments?cpf=123456
 
-* Database creation
+get "/api/v1/registrations/payments", params: { registration: {cpf: '222'}}
 
-* Database initialization
+Exemplo de resultado:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[
+   {
+       "id": 1,
+       "created_at": "2019-09-13T18:03:03.378Z",
+       "updated_at": "2019-09-14T20:52:30.170Z",
+       "value": 40.0,
+       "dt_venc": "2019-09-13",
+       "registration_id": 1,
+       "pay_method_id": 1,
+       "status": "unpaid"
+   },
+   {
+       "id": 2,
+       "created_at": "2019-09-13T18:03:03.428Z",
+       "updated_at": "2019-09-14T20:53:59.633Z",
+       "value": 40.0,
+       "dt_venc": "2019-10-13",
+       "registration_id": 1,
+       "pay_method_id": 1,
+       "status": "unpaid"
+   },
+….
+]

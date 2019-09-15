@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :payments, only: [:show] do
+  resources :payments, only: %i[show] do
     resources :payment_transactions, only: %i[new create show edit update destroy] do
 
       post 'unpaid', on: :member

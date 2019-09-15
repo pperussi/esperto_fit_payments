@@ -22,9 +22,10 @@ describe 'admin can create payment method' do
 
     login_as(user, scope: :user)
     visit root_path
+    click_on 'Nova Matrícula'
+    select 'Boleto', from: 'Metodo de pagamento'
 
     expect(page).to have_content('Boleto')
-    expect(page).to have_content('Credito')
   end
 
   scenario 'cant be duplicate' do
