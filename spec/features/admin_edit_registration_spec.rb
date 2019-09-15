@@ -18,7 +18,6 @@ feature 'admin edit registration' do
 
     expect(page).to have_css('h2', text: 'Fulano de tal')
     expect(page).to have_css('p', text: '345678098')
-
   end
 
   scenario 'empty' do
@@ -37,6 +36,5 @@ feature 'admin edit registration' do
     click_on 'Enviar'
 
     expect(page).to have_content('Nao foi possivel salvar matricula')
-
   end
 end

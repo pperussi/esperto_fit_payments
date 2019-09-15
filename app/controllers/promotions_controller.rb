@@ -25,7 +25,8 @@ class PromotionsController < AdministratorController
   end
 
   private
-    def promotion_params
-      params.require(:promotion).permit(:name, :description, :value_percent_discount, :discount_max, :cod_promotion, :cupom_number, :begin_promotion, :end_promotion) 
-    end  
+
+  def promotion_params
+    params.require(:promotion).permit(:name, :description, :value_percent_discount, :discount_max, :cod_promotion, :cupom_number, :begin_promotion, :end_promotion) 
+  end
 end

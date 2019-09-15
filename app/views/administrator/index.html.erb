@@ -9,7 +9,8 @@
 <% @pay_methods.each do |pay_method| %>
   <%= pay_method.name %>
 <%end%>
-<%= link_to "Criar metodo de pagamento", new_pay_method_path%>
-<%= link_to 'Matrículas', registrations_path%>
-<%= link_to 'Nova Matrícula', new_registration_path%>
+
+<div class="btn btn-dark"><%= link_to "Criar metodo de pagamento", new_pay_method_path%></div>
+<div class="btn btn-dark"><%= link_to 'Matrículas', registrations_path%></div>
+<div class="btn btn-dark"><%= link_to 'Nova Matrícula', new_registration_path%></div>
 

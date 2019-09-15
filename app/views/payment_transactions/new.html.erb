@@ -1,0 +1,13 @@
+<%= form_for([@payment, @transaction]) do |f| %>
+  <%= f.label :code, 'Código de Transaçāo'%>
+  <%= f.text_field :code%>
+
+  <%= f.label :value, 'Valor Pago'%>
+  <%= f.text_field :value%>
+
+  Usuário: <%= current_user.email %>
+
+  Data:<%= select_date Date.today, prefix: :date %>
+
+  <%= f.submit 'Pagar' %>
+<% end %>
