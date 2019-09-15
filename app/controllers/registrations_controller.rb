@@ -1,4 +1,5 @@
 class RegistrationsController < ApplicationController
+
   before_action :load_plan_unity, only: %i[new create edit update]
   before_action :authenticate_user!
   before_action :auth_redirect
@@ -14,12 +15,11 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = Registration.new(require_params)
-
     if @registration.save
       generate_payment
       redirect_to @registration
     else
-      flash.now[:alert] = 'Nao foi possivel salvar matricula'
+      flash.now[:alert] = "Nao foi possivel salvar matricula"
       render :new
     end
   end
@@ -34,11 +34,10 @@ class RegistrationsController < ApplicationController
 
   def update
     @registration = Registration.find(params[:id])
-
     if @registration.update(require_params)
       redirect_to @registration
     else
-      flash.now[:alert] = 'Nao foi possivel salvar matricula'
+      flash.now[:alert] = "Nao foi possivel salvar matricula"
       render :edit
     end
   end
@@ -50,9 +49,7 @@ class RegistrationsController < ApplicationController
   end
 
   def search
-    # @registration = Registration.find_by("cpf ?", params[:search])
     @registrations = Registration.where("cpf LIKE ?", "%#{params[:search]}%")
-    #redirect_to @registrations
   end
 
   private
@@ -76,6 +73,4 @@ class RegistrationsController < ApplicationController
   def auth_redirect
     redirect_to new_user_session_path unless current_user.admin?
   end
-
-
 end

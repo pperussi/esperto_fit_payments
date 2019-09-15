@@ -2,10 +2,9 @@ require 'rails_helper'
 
 describe 'admin can create payment method' do
   scenario 'successfuly' do
-    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
+    user = create(:user, email: 'teste@teste.com', password:'123456', admin: true)
 
     login_as(user, scope: :user)
-
     visit root_path
     click_on 'Criar metodo de pagamento'
     fill_in 'Metodo de pagamento', with: 'Boleto'
@@ -14,11 +13,10 @@ describe 'admin can create payment method' do
     expect(page).to have_content('Cadastrado com sucesso')
     expect(PayMethod.count).to eq 1
     expect(PayMethod.first.name).to eq 'Boleto'
-
   end
   
   scenario 'and he can view all payment methods' do
-    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
+    user = create(:user, email: 'teste@teste.com', password:'123456', admin: true)
     create(:pay_method, name: 'Boleto')
     create(:pay_method, name: 'Credito')
 
@@ -30,7 +28,7 @@ describe 'admin can create payment method' do
   end
 
   scenario 'cant be duplicate' do
-    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
+    user = create(:user, email: 'teste@teste.com', password:'123456', admin: true)
     create(:pay_method, name: 'Boleto')
     login_as(user, scope: :user)
 
@@ -44,7 +42,7 @@ describe 'admin can create payment method' do
   end
   
   scenario 'cant be blank' do 
-    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
+    user = create(:user, email: 'teste@teste.com', password:'123456', admin: true)
     login_as(user, scope: :user)
 
     visit root_path

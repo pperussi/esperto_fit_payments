@@ -11,10 +11,14 @@ Rails.application.routes.draw do
   resources :pay_methods, only: %i[new create]
   resources :registrations, only: %i[index new create show edit update] do
     post 'paid', on: :member
+
   end
 
   resources :payments, only: [:show] do
-    resources :payment_transactions, only: %i[new create show]
+    resources :payment_transactions, only: %i[new create show edit update destroy] do
+
+      post 'unpaid', on: :member
+    end
   end
 
   get 'search', to: 'registrations#search'

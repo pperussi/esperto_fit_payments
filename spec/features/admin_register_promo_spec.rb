@@ -3,22 +3,18 @@ require 'rails_helper'
 feature 'Admin register promo' do
   scenario 'successfully' do
     administrator = create(:user, admin: true)
+
     visit promotions_path
-
-    
-      fill_in 'email', with: administrator.email 
-      fill_in 'password', with: administrator.password
-      click_on 'Log in'
-    
-
+    fill_in 'email', with: administrator.email 
+    fill_in 'password', with: administrator.password
+    click_on 'Log in'
     click_on 'Criar Promoçāo'
-
     fill_in 'Nome', with: 'Carnaval'
     fill_in 'Descriçāo', with: 'Entre no clima do Carnaval'
     fill_in 'Porcentagem de Desconto', with: 15
     fill_in 'Valor Máximo de Desconto', with: 20
     fill_in 'Número de Cupons', with: 70
-    fill_in 'Código da Promoçāo',with: 'CARNA'
+    fill_in 'Código da Promoçāo', with: 'CARNA'
     fill_in 'Início da Promoção', with: '15/01/2020'
     fill_in 'Fim da Promoção', with: '30/03/2020'
     click_on 'Criar'
@@ -42,15 +38,13 @@ feature 'Admin register promo' do
       fill_in 'password', with: administrator.password
       click_on 'Log in'
     end
-
     click_on 'Criar Promoçāo'
-
     fill_in 'Nome', with: ''
     fill_in 'Descriçāo', with: ''
     fill_in 'Porcentagem de Desconto', with: 15
     fill_in 'Valor Máximo de Desconto', with: 20
     fill_in 'Número de Cupons', with: 70
-    fill_in 'Código da Promoçāo',with: ''
+    fill_in 'Código da Promoçāo', with: ''
     fill_in 'Início da Promoção', with: ''
     fill_in 'Fim da Promoção', with: ''
     click_on 'Criar'
@@ -64,14 +58,12 @@ feature 'Admin register promo' do
     visit promotions_path
 
     expect(page).not_to have_link('Criar Promoçāo')
-    expect(current_path).to eq  new_user_session_path 
+    expect(current_path).to eq new_user_session_path 
   end
 
   scenario 'fail create promotions user access url' do 
     administrator = create(:user)
 
-
-    
     visit new_promotion_path
 
     expect(page).not_to have_link('Criar Promoçāo')
