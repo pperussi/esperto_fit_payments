@@ -23,10 +23,6 @@ class SingleClassesController < ApplicationController
     end
   end
 
-  def registration_find
-    @registration = @registration.payments.find_by(status: :pending)
-  end
-
   private
   def set_params
     params.require(:single_class).permit(:name, :unit,:price,date:Time.zone.now.to_date)
