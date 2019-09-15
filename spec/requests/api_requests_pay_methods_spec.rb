@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'View all pay methods' do
+describe 'Search all pay methods' do
   it 'succesfully' do
     pay_method = create(:pay_method)
     pay_method_two = create(:pay_method, name: 'Cartão de Crédito')
