@@ -15,7 +15,6 @@ describe 'API show all payments' do
     end
     it 'cpf doesnt exist' do
         get  '/api/v1/payments/0'
-
-        expect(response.status).to eq 404
+        expect(response).to have_http_status(:not_found)
     end
 end
