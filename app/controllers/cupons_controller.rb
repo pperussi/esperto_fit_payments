@@ -1,5 +1,5 @@
 class CuponsController < AdministratorController
-  # before_action :is_admin, only: %i[ create]
+  before_action :is_admin, only: %i[ create]
   before_action :authenticate_user!
   before_action :admin, only: %i[create]
 

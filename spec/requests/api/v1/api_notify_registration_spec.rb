@@ -12,7 +12,7 @@ describe 'API notify registration', type: :request do
 
   describe 'GET /notifications' do
     before do
-      get "/notifications/#{registration_id}", params: {}, headers: headers
+      get "/api/v1/notifications/#{registration_id}", params: {}, headers: headers
     end
 
     context 'when request are valid' do

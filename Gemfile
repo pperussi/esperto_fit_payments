@@ -28,7 +28,7 @@ gem 'jquery-rails'
 gem 'mini_racer', platforms: :ruby
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'devise', '>= 4.7.1'
+# gem 'devise', '>= 4.7.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # Reduces boot times through caching; required in config/boot.rb

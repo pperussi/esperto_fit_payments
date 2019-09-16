@@ -72,6 +72,7 @@ class RegistrationsController < ApplicationController
   end
 
   private
+
   def require_params
     params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, :pay_method_id)
   end

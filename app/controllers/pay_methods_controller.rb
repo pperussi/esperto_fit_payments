@@ -5,8 +5,8 @@ class  PayMethodsController < AdministratorController
   end
 
   def create
-    @method_pay = PayMethod.new(params_payment)
-    if @method_pay.save
+    @pay_method = PayMethod.new(params_payment)
+    if @pay_method.save
       flash[:alert] = 'Cadastrado com sucesso'
       redirect_to administrator_index_path
     else
