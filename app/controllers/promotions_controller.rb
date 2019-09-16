@@ -8,6 +8,7 @@ class PromotionsController < ApplicationController
 
   def show
     @promotion = Promotion.find(params[:id])
+    @registration = Registration.find(params[:id])
     @cupons = @promotion.cupons
   end
 
@@ -32,6 +33,5 @@ class PromotionsController < ApplicationController
   private
     def promotion_params
       params.require(:promotion).permit(:name, :description, :value_percent_discount, :discount_max, :cod_promotion, :cupom_number, :begin_promotion, :end_promotion)
-   
     end  
 end

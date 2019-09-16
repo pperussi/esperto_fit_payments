@@ -10,9 +10,9 @@ class CuponsController < ApplicationController
 
   def apply
     @promotion = Promotion.find(params[:promotion_id])
-    @cupon = Cupon.find_by!(code: params[:code])
+    @cupon = Cupon.find_by(code: params[:code])
     @registration = Registration.find(params[:registration_id])
-    @registration.value =  CuponBurn.off_value_registration(@registration, @cupon.promotion.value_percent_discount)
+    @registration.value = CuponBurn.off_value_registration(@registration, @cupon.promotion.value_percent_discount)
     @cupon.applied!
     CuponBurn.create(cupon: @cupon, registration: @registration)
    
