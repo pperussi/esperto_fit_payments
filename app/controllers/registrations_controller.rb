@@ -1,9 +1,5 @@
 class RegistrationsController < AdministratorController
   before_action :load_plan_unity, only: %i[new create edit update]
-
-  def search 
-    @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
-  end
   
   #after_action :generate_payment, only: [:create]
   def index

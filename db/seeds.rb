@@ -5,7 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Plan.create(name: 'Executivo', value: 40)
-Unity.create(name: 'Barra Funda')
+plano = Plan.create(name: 'Executivo', value: 40)
+unidade = Unity.create(name: 'Barra Funda')
 User.create(email: 'admin@espertofit.com', password:'123456', admin: true)
-PayMethod.create(name: 'Bitcoin')
+pagamento = PayMethod.create(name: 'Bitcoin', tax: 0, limit_days: 15)
+reg = Registration.create(name: 'Paula',cpf: '123456',unity: unidade, plan: plano, pay_method: pagamento)
+Payment.create(value: 15, dt_venc: Time.zone.now.to_date , registration: reg, pay_method: pagamento,status: :closed )

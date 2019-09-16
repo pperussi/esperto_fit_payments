@@ -3,18 +3,21 @@ require 'rails_helper'
 feature 'admin can create payment method' do
   scenario 'successfuly' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
-
     login_as(user, scope: :user)
 
     visit root_path
     click_on 'Criar metodo de pagamento'
     fill_in 'Metodo de pagamento', with: 'Boleto'
+    fill_in 'Taxa cobrada pela empresa', with: 0 #DE ACORDO COM O PROCON procon.pr.gov.br/modules/conteudo/conteudo.php?conteudo=297 BOLETO N PODE TER TAXA!
+    fill_in 'Limite de dias para a cobrança', with: 15
+
     click_on 'Cadastrar'
 
     expect(page).to have_content('Cadastrado com sucesso')
     expect(PayMethod.count).to eq 1
     expect(PayMethod.first.name).to eq 'Boleto'
-
+    expect(PayMethod.first.tax).to eq 0
+    expect(PayMethod.first.limit_days).to eq 15
   end
   
   scenario 'and he can view all payment methods' do
