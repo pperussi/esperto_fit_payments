@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_162917) do
+ActiveRecord::Schema.define(version: 2019_09_16_015819) do
 
   create_table "clients_classes", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(version: 2019_09_12_162917) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.integer "registration_id"
     t.index ["promotion_id"], name: "index_cupons_on_promotion_id"
+    t.index ["registration_id"], name: "index_cupons_on_registration_id"
   end
 
   create_table "pay_methods", force: :cascade do |t|

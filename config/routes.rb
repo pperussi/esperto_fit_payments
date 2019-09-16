@@ -17,5 +17,17 @@ Rails.application.routes.draw do
     get 'search_single_class', on: :collection
     get 'search', on: :collection
   end
+
+  namespace :api,  defaults: { format: 'json' } do
+    namespace :v1 do 
+      resources :promotions , only: %i[]do 
+        resources :cupons, only: %i[]do 
+          member do
+            get 'validate'
+          end
+        end
+      end
+    end
+  end
   
 end
