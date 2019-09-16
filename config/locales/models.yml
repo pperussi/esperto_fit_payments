@@ -4,9 +4,10 @@ pt-BR:
       payment: Pagamento
       promotion: Promoçāo
       cupon: Cupom
+      pay_method: Método de Pagamento
     attributes:
       payment:
-        pay_method: Metodo de pagamento
+        pay_method: Método de Pagamento
       promotion:
         name: Nome
         description: Descriçāo
@@ -16,4 +17,5 @@ pt-BR:
         cupom_number: Número de Cupons
         begin_promotion: Início da Promoção
         end_promotion: Fim da Promoção
-      
+      pay_method:
+        name: Nome

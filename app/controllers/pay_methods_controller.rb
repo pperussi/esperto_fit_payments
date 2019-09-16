@@ -1,4 +1,8 @@
 class  PayMethodsController < AdministratorController
+  def index
+    @pay_method = PayMethod.all
+  end
+
   def new
     @pay_method = PayMethod.new
   end
@@ -8,7 +12,7 @@ class  PayMethodsController < AdministratorController
 
     if @pay_method.save
       flash[:alert] = "Cadastrado com sucesso"
-      redirect_to administrator_index_path
+      redirect_to pay_methods_path
     else
       render :new
     end

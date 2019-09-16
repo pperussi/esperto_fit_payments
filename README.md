@@ -9,3 +9,9 @@
 
 Acessa métodos de pagamento:
 - **GET** /api/v1/pay_methods
+
+  returns:
+  ```JSON
+  [{"id":1,"name":"Cartão de Crédito","created_at":"2019-09-15T23:41:51.236Z","updated_at":"2019-09-15T23:41:51.236Z"},
+   {"id":2,"name":"Boleto","created_at":"2019-09-15T23:43:52.226Z","updated_at":"2019-09-15T23:43:52.226Z"}]
+  ```

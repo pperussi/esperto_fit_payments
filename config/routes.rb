@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :administrator, only: %i[index]
-  resources :pay_methods, only: %i[new create]
+  resources :pay_methods, only: %i[index new create]
 
   resources :single_classes,only: %i[show]
 
