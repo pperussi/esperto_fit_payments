@@ -1,0 +1,14 @@
+pt-BR:
+  payment_transactions:
+    new:
+      btn_payment: 'Pagar'
+    edit:
+      btn_payment: 'Editar'
+
+  date:
+    formats:
+      default: "%d-%m-%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+

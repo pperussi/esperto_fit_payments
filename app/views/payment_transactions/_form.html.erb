@@ -1,32 +1,27 @@
-<!--Valor: <%= @payment.value %>
-<p>Método de pagamento: <%= @payment.pay_method.name %></p>
-<p>Status: <%= @payment.status %>
-
-<p>Data do pagamento: <%= @transaction.date_payment %>
-<p>Valor pago: <%= @transaction.value%> 
-
-
-<p><%#= link_to 'Cancelar pagamento',  edit_payment_payment_transaction_path %>-->
-
 <%= form_for([@payment, @transaction]) do |f| %>
-  <p><%= f.label :code, 'Código de Transaçāo'%>
+  <p class="form-group"><%= f.label :code, 'Código de Transaçāo'%>
   <%= f.text_field :code%></p>
 
-  <p><%= f.label :value, 'Valor Pago'%>
+  <p class="form-group"><%= f.label :value, 'Valor Pago'%>
   <%= f.text_field :value%></p>
+  
+  <%= form_for @payment do |g| %> 
+    <p class="form-group"><%= g.label :pay_method_id, 'Método de pagamento'%>
+    <%= g.collection_select(:pay_method_id, @pay_methods, :id, :name) %></p>
 
-  <p><%#= f.label :pay_method, 'Método de pagamento'%>
-  <%#= f.text_field :pay_method %></p>
+    <p class="form-group"><%= g.label :dt_venc, 'Data de vencimento' %>
+    <%= g.text_field :dt_venc %>
+  <% end %>
 
-  <p><%#= f.label :dt_venc, 'Data de vencimento' %>
-  <p><%#= f.text_field :dt_venc %>
+  
 
-  <p><%= f.label :date_payment, 'Data de pagamento' %>
-  <p><%= f.text_field :date_payment %>
+
+  <p><%#= select_date Date.today, prefix: :date , scope: [:date, :formats]%></p>
+  <p>Data:<%= f.date_field(:date_payment, order: [:day, :month, :year])%></p>
 
   <p>Usuário: <%= current_user.email %></p>
 
-  <p>Data:<%= select_date Date.today, prefix: :date %></p>
-  <%= f.submit t :create%>
+  
+  <%= f.submit btn_payment %>
 
 <% end %>

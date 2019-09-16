@@ -1,15 +1,1 @@
-<!-- <%= form_for([@payment, @transaction]) do |f| %>
-  <p><%= f.label :code, 'Código de Transaçāo'%>
-  <%= f.text_field :code%></p>
-
-  <p><%= f.label :value, 'Valor Pago'%>
-  <%= f.text_field :value%></p>
-
-  <p>Usuário: <%= current_user.email %></p>
-
-  <p>Data:<%= select_date Date.today, prefix: :date %></p>
-    
-  <%= f.submit 'Cancelar pagamento' %>
-<% end %> -->
-
-<%= render "form"%>
+<%= render partial: "form", locals: {btn_payment: t('.btn_payment')}%>
