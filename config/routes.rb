@@ -17,5 +17,12 @@ Rails.application.routes.draw do
     get 'search_single_class', on: :collection
     get 'search', on: :collection
   end
+
+  namespace :api ,defaults: { format: 'json' } do
+    namespace :v1,defaults: { format: 'json' } do
+      resources :payments,only: %i[show]
+    end
+  end
+
   
 end
