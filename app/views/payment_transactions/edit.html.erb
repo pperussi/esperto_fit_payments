@@ -1,4 +1,4 @@
-<%= form_for([@payment, @transaction]) do |f| %>
+<!-- <%= form_for([@payment, @transaction]) do |f| %>
   <p><%= f.label :code, 'Código de Transaçāo'%>
   <%= f.text_field :code%></p>
 
@@ -10,4 +10,6 @@
   <p>Data:<%= select_date Date.today, prefix: :date %></p>
     
   <%= f.submit 'Cancelar pagamento' %>
-<% end %>
+<% end %> -->
+
+<%= render "form"%>

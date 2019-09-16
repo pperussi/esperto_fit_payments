@@ -11,9 +11,6 @@ class Registration < ApplicationRecord
   validates :name, :cpf, presence: true
   validates :cpf, uniqueness: true
 
-  # def search_registration_payments(cpf)
-  #   @registration = Registration.
-  # end
   def generate_anual_payments
     12.times do |i|
       payments.new(pay_method_id: pay_method_id, value: plan.value , dt_venc: Time.zone.now.to_date + i.month).save

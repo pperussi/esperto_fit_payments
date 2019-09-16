@@ -1,0 +1,32 @@
+<!--Valor: <%= @payment.value %>
+<p>Método de pagamento: <%= @payment.pay_method.name %></p>
+<p>Status: <%= @payment.status %>
+
+<p>Data do pagamento: <%= @transaction.date_payment %>
+<p>Valor pago: <%= @transaction.value%> 
+
+
+<p><%#= link_to 'Cancelar pagamento',  edit_payment_payment_transaction_path %>-->
+
+<%= form_for([@payment, @transaction]) do |f| %>
+  <p><%= f.label :code, 'Código de Transaçāo'%>
+  <%= f.text_field :code%></p>
+
+  <p><%= f.label :value, 'Valor Pago'%>
+  <%= f.text_field :value%></p>
+
+  <p><%#= f.label :pay_method, 'Método de pagamento'%>
+  <%#= f.text_field :pay_method %></p>
+
+  <p><%#= f.label :dt_venc, 'Data de vencimento' %>
+  <p><%#= f.text_field :dt_venc %>
+
+  <p><%= f.label :date_payment, 'Data de pagamento' %>
+  <p><%= f.text_field :date_payment %>
+
+  <p>Usuário: <%= current_user.email %></p>
+
+  <p>Data:<%= select_date Date.today, prefix: :date %></p>
+  <%= f.submit t :create%>
+
+<% end %>

@@ -1,19 +1,30 @@
 # README
 
-API
+## API
 
-Consultar todos os pagamentos para um determinado cpf:
+# Consultar todos os pagamentos para um determinado cpf:
 
-get "/api/v1/registrations/payments"
+# get "/api/v1/registrations/payments"
 
-Exemplo:
+### **Exemplo:**
 
+```
+{
 http://localhost:3000/api/v1/registrations/payments?cpf=123456
+}
+```
 
+### **Exemplo de parâmetros:**
+```
+{
 get "/api/v1/registrations/payments", params: { registration: {cpf: '222'}}
+}
+```
 
-Exemplo de resultado:
+### *Exemplo de resultado:*
 
+```
+{
 [
    {
        "id": 1,
@@ -37,3 +48,5 @@ Exemplo de resultado:
    },
 ….
 ]
+}
+```
