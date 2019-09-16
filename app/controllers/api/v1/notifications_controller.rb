@@ -16,5 +16,4 @@ class Api::V1::NotificationsController < Api::V1::ApiController
       Payment.create(registration_id: @registration.id, pay_method_id: @registration.pay_method_id, value: @registration.plan.value , dt_venc: Time.zone.now.to_date + i.month).save
     end
   end
-
 end

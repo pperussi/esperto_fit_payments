@@ -118,3 +118,79 @@ Exemplo de resultado:
 ….
 ]
 ```
+
+### API recebe notificação e gera mensalidades
+
+- **GET** /api/v1/notifications/```:id```
+
+```json
+// 20190915212325
+// http://localhost:3000/api/v1/notifications/1
+
+{
+  "name": "Fulano de tal",
+  "cpf": "345678",
+  "payments": [
+    {
+      "value": 40.0,
+      "dt_venc": "2019-09-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2019-10-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2019-11-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2019-12-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2020-01-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2020-02-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2020-03-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2020-04-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2020-05-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2020-06-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2020-07-16",
+      "status": "pending"
+    },
+    {
+      "value": 40.0,
+      "dt_venc": "2020-08-16",
+      "status": "pending"
+    }
+  ]
+}
+```
