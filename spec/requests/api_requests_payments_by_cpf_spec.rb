@@ -11,6 +11,7 @@ describe 'Api requests all payments details for one client' do
         payment = registration.payments.create!(value: 50, registration_id: 1,\
                                                pay_method_id: 1,\
                                                dt_venc: '2019-09-14 18:20:44')
+                                               
 
         get "/api/v1/registrations/payments", params: {cpf: '222'}
         json_response = JSON.parse(response.body, symbolize_names: true)
@@ -27,7 +28,6 @@ describe 'Api requests all payments details for one client' do
         json = JSON.parse(response.body, symbolize_names: true)
 
         expect(response.status).to eq 404
-        
     end
-
+    
 end
