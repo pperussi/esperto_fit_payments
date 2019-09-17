@@ -1,11 +1,10 @@
-<% @registrations.each do |registration| %>
-  <%= registration.name %> -
-  <%= registration.cpf %>
+<% @registration%>
+  <%= @registration.name %> -
+  <%= @registration.cpf %>
 
-  <% registration.payments.each do |payment| %>
+  <% @registration.payments.each do |payment| %>
     <%= "Valor: #{payment.value} - Data de vencimento: #{payment.dt_venc}"%>
-    <% registration.single_classes.each do |singleclass| %>
+    <% @registration.single_classes.each do |singleclass| %>
       <%= "Aula de #{singleclass.name} adicionada - Valor: #{singleclass.price}"%>
     <% end %>
   <% end %>
-<% end %>

@@ -1,30 +1,29 @@
-# README
+# EspertoFit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Sistema de Cobranças e Pagamentos
 
-Things you may want to cover:
+### Ruby version
+2.6.4
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-### API mostra o historico de mensalidades
+### API
+-Disponibiliza os metodos de pagamentos disponiveis:
+```JSON
+  {"id":1,
+  "name":"Cartão de Crédito",
+  "created_at":"2019-09-15T23:41:51.236Z",
+  "updated_at":"2019-09-15T23:41:51.236Z",
+  "tax":5,
+  "limit_days":4
+  },
+   {"id":2,
+   "name":"Boleto",
+   "created_at":"2019-09-15T23:43:52.226Z",
+   "updated_at":"2019-09-15T23:43:52.226Z",
+   "tax":0,
+   "limit_days":15
+   }
+```
+- Disponibiliza o histórico de mensalidades:
 
 get "/api/v1/payments/**cpf**"
 

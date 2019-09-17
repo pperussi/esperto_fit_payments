@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :promotions, only: %i[index show new create] do
     resources :cupons, only: %i[create]
   end
-  
-  resources :administrator, only: %i[index] 
-  resources :pay_methods, only: %i[new create]
+
+  resources :administrator, only: %i[index]
+  resources :pay_methods, only: %i[index new create]
 
   resources :single_classes,only: %i[show]
 
@@ -20,9 +20,9 @@ Rails.application.routes.draw do
 
   namespace :api ,defaults: { format: 'json' } do
     namespace :v1,defaults: { format: 'json' } do
-      resources :payments,only: %i[show]
+      resources :payments, only: %i[show]
+      resources :pay_methods, only: %i[index]
+      resources :single_class, only: %i[create]
     end
   end
-
-  
 end

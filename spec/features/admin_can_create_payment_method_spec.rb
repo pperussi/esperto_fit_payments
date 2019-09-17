@@ -7,11 +7,11 @@ feature 'admin can create payment method' do
 
     visit root_path
     click_on 'Criar metodo de pagamento'
-    fill_in 'Metodo de pagamento', with: 'Boleto'
-    fill_in 'Taxa cobrada pela empresa', with: 0 #DE ACORDO COM O PROCON procon.pr.gov.br/modules/conteudo/conteudo.php?conteudo=297 BOLETO N PODE TER TAXA!
-    fill_in 'Limite de dias para a cobrança', with: 15
+    fill_in 'Nome', with: 'Boleto'
+    fill_in 'Taxa de Cobrança', with: 0
+    fill_in 'Limite de Dias', with: 15
 
-    click_on 'Cadastrar'
+    click_on 'Criar'
 
     expect(page).to have_content('Cadastrado com sucesso')
     expect(PayMethod.count).to eq 1
@@ -19,14 +19,14 @@ feature 'admin can create payment method' do
     expect(PayMethod.first.tax).to eq 0
     expect(PayMethod.first.limit_days).to eq 15
   end
-  
+
   scenario 'and he can view all payment methods' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
-    create(:pay_method, name: 'Boleto')
-    create(:pay_method, name: 'Credito')
+    create(:pay_method, name: 'Boleto', tax: 0, limit_days: 15)
+    create(:pay_method, name: 'Credito', tax: 5, limit_days: 4)
 
     login_as(user, scope: :user)
-    visit root_path
+    visit pay_methods_path
 
     expect(page).to have_content('Boleto')
     expect(page).to have_content('Credito')
@@ -39,22 +39,25 @@ feature 'admin can create payment method' do
 
     visit root_path
     click_on 'Criar metodo de pagamento'
-    fill_in 'Metodo de pagamento', with: 'Boleto'
-    click_on 'Cadastrar'
+    fill_in 'Nome', with: 'Boleto'
+    fill_in 'Taxa de Cobrança', with: 0
+    fill_in 'Limite de Dias', with: 15
+    click_on 'Criar'
 
-    expect(page).to have_content('Name já está em uso')
+    expect(page).to have_content('Nome já está em uso')
     expect(PayMethod.count).not_to eq 2
   end
-  
-  scenario 'cant be blank' do 
+
+  scenario 'cant be blank' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
     login_as(user, scope: :user)
 
     visit root_path
     click_on 'Criar metodo de pagamento'
-    fill_in 'Metodo de pagamento', with: ''
-    click_on 'Cadastrar'
+    fill_in 'Nome', with: ''
+    fill_in 'Taxa de Cobrança', with: ''
+    click_on 'Criar'
 
-    expect(page).to have_content("Name não pode ficar em branco")
+    expect(page).to have_content("Nome não pode ficar em branco")
   end
 end

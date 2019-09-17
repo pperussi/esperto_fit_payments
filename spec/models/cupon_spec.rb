@@ -10,8 +10,6 @@ describe 'generate cupons' do
     expect(cupons[1].promotion_id).to eq(caranaval.id)
     expect(cupons[1].code).to eq("#{caranaval.cod_promotion}0002")
     expect(cupons[2].promotion_id).to eq(caranaval.id)
-    expect(cupons[2].code).to eq("#{caranaval.cod_promotion}0003")
-
-  
+    expect(cupons[2].code).to eq("#{caranaval.cod_promotion}0003")  
   end
 end

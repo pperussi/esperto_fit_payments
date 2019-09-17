@@ -2,8 +2,7 @@ class SingleClass < ApplicationRecord
   has_many :clients_classes
   has_many :registrations, through: :clients_classes
 
-  validates :name, uniqueness: true, presence: true
-  validates :unit, :price, presence: true
+  validates :name, :unit, :price, presence: true
 
   def class_debit(registration)
     price_tax = price + (price*registration.pay_method.tax)/100
