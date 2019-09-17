@@ -3,7 +3,6 @@ require 'rails_helper'
 feature 'admin can create payment method' do
   scenario 'successfuly' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
-
     login_as(user, scope: :user)
 
     visit root_path

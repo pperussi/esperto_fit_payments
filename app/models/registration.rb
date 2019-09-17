@@ -13,8 +13,9 @@ class Registration < ApplicationRecord
   has_many :single_classes, through: :clients_classes
 
   def generate_anual_payments
-    12.times do |i|
-      payments.new(pay_method_id: pay_method_id, value: plan.value , dt_venc: Time.zone.now.to_date + i.month).save
+    plan_tax_value = plan.value + (plan.value * pay_method.tax)/100
+    (1..12).each do |i|
+      payments.new(pay_method_id: pay_method_id, value: plan_tax_value, dt_venc: Time.zone.now.to_date + i.month).save
     end
   end
 
