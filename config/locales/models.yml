@@ -19,3 +19,5 @@ pt-BR:
         end_promotion: Fim da Promoção
       pay_method:
         name: Nome
+        tax: Taxa de Cobrança
+        limit_days: Limite de Dias

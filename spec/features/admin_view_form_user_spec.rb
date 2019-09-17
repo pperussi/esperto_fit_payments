@@ -9,18 +9,22 @@ feature 'admin can create payment method' do
     visit root_path
     click_on 'Criar metodo de pagamento'
     fill_in 'Nome', with: 'Boleto'
+    fill_in 'Taxa de Cobrança', with: 0
+    fill_in 'Limite de Dias', with: 15
+
     click_on 'Criar'
 
     expect(page).to have_content('Cadastrado com sucesso')
     expect(PayMethod.count).to eq 1
     expect(PayMethod.first.name).to eq 'Boleto'
-
+    expect(PayMethod.first.tax).to eq 0
+    expect(PayMethod.first.limit_days).to eq 15
   end
 
   scenario 'and he can view all payment methods' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
-    create(:pay_method, name: 'Boleto')
-    create(:pay_method, name: 'Credito')
+    create(:pay_method, name: 'Boleto', tax: 0, limit_days: 15)
+    create(:pay_method, name: 'Credito', tax: 5, limit_days: 4)
 
     login_as(user, scope: :user)
     visit pay_methods_path
@@ -37,6 +41,8 @@ feature 'admin can create payment method' do
     visit root_path
     click_on 'Criar metodo de pagamento'
     fill_in 'Nome', with: 'Boleto'
+    fill_in 'Taxa de Cobrança', with: 0
+    fill_in 'Limite de Dias', with: 15
     click_on 'Criar'
 
     expect(page).to have_content('Nome já está em uso')
@@ -50,6 +56,7 @@ feature 'admin can create payment method' do
     visit root_path
     click_on 'Criar metodo de pagamento'
     fill_in 'Nome', with: ''
+    fill_in 'Taxa de Cobrança', with: ''
     click_on 'Criar'
 
     expect(page).to have_content("Nome não pode ficar em branco")
