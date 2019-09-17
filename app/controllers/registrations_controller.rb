@@ -3,8 +3,11 @@ class RegistrationsController < ApplicationController
   before_action :load_plan_unity, only: %i[new create edit update]
   before_action :authenticate_user!
   before_action :auth_redirect
-  #after_action :generate_payment, only: [:create]
 
+  def search 
+    @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
+  end
+  
   def index
     @registrations = Registration.all
   end
@@ -72,6 +75,7 @@ class RegistrationsController < ApplicationController
     @unities = Unity.all
   end
 
+  private
   def require_params
     params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, :pay_method_id)
   end

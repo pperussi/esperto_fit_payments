@@ -1,5 +1,5 @@
-class SingleClassesController < ApplicationController
-
+class SingleClassesController < AdministratorController
+  
   def new
     @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new
@@ -21,10 +21,6 @@ class SingleClassesController < ApplicationController
       flash.now[:alert] = 'Não foi possível salvar a nova Aula'
       render :new
     end
-  end
-
-  def registration_find
-    @registration = @registration.payments.find_by(status: :pending)
   end
 
   private

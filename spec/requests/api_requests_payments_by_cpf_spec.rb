@@ -17,8 +17,7 @@ describe 'Api requests all payments details for one client' do
 
         expect(response.status).to eq 200
         expect(response.body).to include 'registration_id'
-        expect(response.body).to include registration.name
-        expect(response.body).to include registration.cpf
+        expect(response.body).to include payment.status
         expect(response.body).to include 'status'
         expect(response.body).to include 'value'
     end
