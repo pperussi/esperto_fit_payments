@@ -4,7 +4,6 @@ pt-BR:
       btn_payment: 'Pagar'
     edit:
       btn_payment: 'Editar'
-
   date:
     formats:
       default: "%d-%m-%Y"

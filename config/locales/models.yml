@@ -1,5 +1,4 @@
 pt-BR:
-
   activerecord:
     models:
       payment: Pagamento
@@ -17,7 +16,3 @@ pt-BR:
         cupom_number: Número de Cupons
         begin_promotion: Início da Promoção
         end_promotion: Fim da Promoção
-      helpers:
-        submit:
-          create: "Pagar"
-          update: "Cancelar pagamento"

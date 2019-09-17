@@ -4,7 +4,6 @@ class PaymentTransactionsController < ApplicationController
   def new
     @payment = Payment.find(params[:payment_id])
     @transaction = PaymentTransaction.new
-    @pay_methods = PayMethod.all
   end
 
   def edit
@@ -16,7 +15,6 @@ class PaymentTransactionsController < ApplicationController
   def update
     @transaction = PaymentTransaction.find_by(payment_id: [params[:payment_id]])
     @payment = Payment.find(params[:payment_id])
-
     if @transaction.update(set_params)
       @payment.unpaid!
       redirect_to payment_payment_transaction_path(@transaction.payment, params[:payment_id])
@@ -41,6 +39,7 @@ class PaymentTransactionsController < ApplicationController
   def show
     @payment = Payment.find(params[:payment_id])
     @transaction = PaymentTransaction.find_by(payment_id: [params[:payment_id]])
+    
   end
 
   private

@@ -1,27 +1,15 @@
 <%= form_for([@payment, @transaction]) do |f| %>
+
   <p class="form-group"><%= f.label :code, 'Código de Transaçāo'%>
-  <%= f.text_field :code%></p>
+  <%= f.text_field :code %></p>
 
   <p class="form-group"><%= f.label :value, 'Valor Pago'%>
-  <%= f.text_field :value%></p>
-  
-  <%= form_for @payment do |g| %> 
-    <p class="form-group"><%= g.label :pay_method_id, 'Método de pagamento'%>
-    <%= g.collection_select(:pay_method_id, @pay_methods, :id, :name) %></p>
+  <%= f.text_field :value %></p>
 
-    <p class="form-group"><%= g.label :dt_venc, 'Data de vencimento' %>
-    <%= g.text_field :dt_venc %>
-  <% end %>
-
-  
-
-
-  <p><%#= select_date Date.today, prefix: :date , scope: [:date, :formats]%></p>
-  <p>Data:<%= f.date_field(:date_payment, order: [:day, :month, :year])%></p>
+  <p>Data de pagamento:<%= f.date_field(:date_payment, order: [:day, :month, :year])%></p>
 
   <p>Usuário: <%= current_user.email %></p>
-
-  
   <%= f.submit btn_payment %>
 
+ 
 <% end %>
