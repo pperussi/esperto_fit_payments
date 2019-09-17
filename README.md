@@ -95,3 +95,16 @@ get "/api/v1/payments/**cpf**"
    ]
 }
   ```
+- Lançar aulas avulsa 
+  post '/api/v1/single_class'
+  
+  Exemplo
+  ```
+   post '/api/v1/single_class', params: {single_class: 
+    { name: 'Boxe',
+      unit: 'Paulista',
+      date: '2019-09-17',
+      price: 100,
+      cpf: '123456'
+       } }
+  ```
