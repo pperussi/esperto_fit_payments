@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_174556) do
+ActiveRecord::Schema.define(version: 2019_09_17_184620) do
 
   create_table "cupon_burns", force: :cascade do |t|
     t.integer "cupon_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_09_10_174556) do
     t.date "dt_venc"
     t.integer "registration_id"
     t.integer "pay_method_id"
+    t.integer "status", default: 0
     t.index ["pay_method_id"], name: "index_payments_on_pay_method_id"
     t.index ["registration_id"], name: "index_payments_on_registration_id"
   end

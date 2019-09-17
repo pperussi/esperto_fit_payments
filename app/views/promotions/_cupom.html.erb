@@ -17,7 +17,7 @@
 <% @cupons.each do |cupon|%>
   <% if cupon.applied? %>
       <li id="<%=cupon.id%>"> 
-        <%= link_to cupon.code, registration_path(@registration) %>
+        <%= link_to cupon.code, registration_path(cupon.cupon_burn.registration_id) %>
         <span><%= cupon.status%></span>
     </li>
   <% else %>

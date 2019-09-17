@@ -44,9 +44,7 @@ class RegistrationsController < ApplicationController
   end
 
   def search
-    # @registration = Registration.find_by("cpf ?", params[:search])
     @registrations = Registration.where("cpf LIKE ?", "%#{params[:search]}%")
-    #redirect_to @registrations
   end
 
   private

@@ -1,7 +1,7 @@
 class Promotion < ApplicationRecord
   has_many :cupons
   
-  validates :name, presence: true, length: { minimum: 8 }, uniqueness: true
+  validates :name, presence: true, length: { minimum: 5 }, uniqueness: true
   validates :description, presence: true, length: { minimum: 20 }
   validates :value_percent_discount, presence: true, numericality: { greater_than_or_equal_to: 5, less_than_or_equal_to: 80 }
   validates :discount_max, presence: true, numericality: { less_than_or_equal_to: 100 } 

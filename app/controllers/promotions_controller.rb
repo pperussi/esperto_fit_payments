@@ -8,7 +8,7 @@ class PromotionsController < ApplicationController
 
   def show
     @promotion = Promotion.find(params[:id])
-    @registration = Registration.find(params[:id])
+    @registration = Registration.find_by(params[:id])
     @cupons = @promotion.cupons
   end
 
