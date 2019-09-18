@@ -8,8 +8,9 @@
             <h2 class="section-heading mb-4">
               <span class="section-heading-upper">Promoções Cadastradas e Criaçāo</span>
             </h2>
+
             <% if current_user && current_user.admin? %>
-              <%= link_to 'Criar Promoçāo', new_promotion_path %>
+              <%= link_to 'Criar Promoçāo', new_promotion_path, class: "btn" %>
             <% end %>
 
             <ul>
@@ -22,5 +23,5 @@
         </div>
       </div>
     </div>
-  </div>
+
 </section>
