@@ -4,7 +4,7 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 #Co-authored-by: Paula <paulaperussi@gmail.com>
-#Co-authored-by: Patrick <patricknatan@hotmail.com>"
+#sCo-authored-by: Patrick <patricknatan@hotmail.com>"
 # Ignore bundler config.
 /.bundle
 
