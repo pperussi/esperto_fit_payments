@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_164408) do
+ActiveRecord::Schema.define(version: 2019_09_18_144250) do
 
   create_table "clients_classes", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_09_16_164408) do
     t.integer "unity_id"
     t.integer "plan_id"
     t.integer "pay_method_id"
+    t.string "email"
     t.index ["pay_method_id"], name: "index_registrations_on_pay_method_id"
     t.index ["plan_id"], name: "index_registrations_on_plan_id"
     t.index ["unity_id"], name: "index_registrations_on_unity_id"

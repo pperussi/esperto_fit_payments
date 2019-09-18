@@ -1,5 +1,5 @@
 class SingleClassesController < AdministratorController
-  
+
   def new
     @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new
@@ -17,6 +17,8 @@ class SingleClassesController < AdministratorController
     @single_class.update(date:Time.zone.now.to_date)#
     if @single_class.save
       @single_class.class_debit(@registration)
+      PaymentMailer.invoice_single_class(@registration)
+                   .deliver_now
       redirect_to @single_class
     else
       flash.now[:alert] = 'Não foi possível salvar a nova Aula'
