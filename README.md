@@ -25,16 +25,12 @@
 ```
 - Disponibiliza o histórico de mensalidades:
 
-```
+
+## Consultar todos os pagamentos para um determinado cpf:
 get "/api/v1/payments/**cpf**"
-```
-# Consultar todos os pagamentos para um determinado cpf:
-
-
 ### *Exemplo de resultado:*
 
 ```json
-
 {
    "cpf": "123456",
    "payments":[
@@ -48,17 +44,13 @@ get "/api/v1/payments/**cpf**"
          "dt_venc"    :"2019-10-15",
          "status"    :"pending"
       },
-
       ...
-
    ]
 }
   ```
 
 # Listar todos os planos:
-```
 get "/api/v1/plans"
-```
 ### **Exemplo:**
 
 ```
@@ -82,10 +74,8 @@ get "/api/v1/plans"
 ]
 ```
 
-# Listar todas as unidades:
-```
+## Listar todas as unidades:
 get "/api/v1/unity"
-```
 ### **Exemplo:**
 
 ```
@@ -93,9 +83,7 @@ get "/api/v1/unity"
 http://localhost:3000/api/v1/plans
 }
 ```
-
 ### Resultado:
-
 ```
 [
     {
@@ -103,16 +91,12 @@ http://localhost:3000/api/v1/plans
         "name": "Paulista",
         "value": null
     }
-
     ...
-
 ]
 ```
+## Listar todas os metodos de pagamento:
 
-# Listar todas os metodos de pagamento:
-```
 get "/api/v1/pay_methods"
-```
 ### **Exemplo:**
 
 ```
@@ -133,15 +117,20 @@ http://localhost:3000/api/v1/pay_methods
     ...
 ]
 
-
 ```
 
 # Informar matrícula para gerar os pagamentos da matrícula:
-```
- post 'http://localhost:3000/api/v1/registrations', params: { name: 'Godofredo', cpf: '123456', unity_id: unity.id, plan_id: plan.id, pay_method_id: pay_method.id}
-```
-### Resultado:
 
+ post 'http://localhost:3000/api/v1/registrations', 
+ params: { 
+ name: 'Godofredo', 
+ cpf: '123456', 
+ unity_id: unity.id, 
+ plan_id: plan.id, 
+ pay_method_id: pay_method.id
+ }
+
+### Resultado:
 ```
 [
     {
@@ -173,15 +162,10 @@ http://localhost:3000/api/v1/pay_methods
         ]
     }
 ]
+## Consultar metodo de pagamento pelo nome:
 
-
-
-
-
-# Consultar metodo de pagamento pelo nome:
-```
  get 'http://localhost:3000/api/v1/pay_methods', params: { name: 'Boleto'}
-```
+
 ### **Exemplo:**
 
 ```
@@ -200,7 +184,6 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
     }
 ]
 
-```
 #Lançar aulas avulsa 
   post '/api/v1/single_class'
   
