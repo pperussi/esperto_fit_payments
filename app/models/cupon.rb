@@ -2,7 +2,7 @@ class Cupon < ApplicationRecord
   belongs_to :promotion
   has_one :cupon_burn
   has_one :registration
-  enum status: {active: 0, applied:8}
+  enum status: { active: 0, applied: 8}
 
   def burned?
     cupon_burn.present? 

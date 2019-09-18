@@ -49,7 +49,7 @@ class RegistrationsController < ApplicationController
 
   private
 
-  def generate_payment
+  def generate_payment 
     12.times do |i|
       @registration.payments.new(pay_method_id: @registration.pay_method_id, value: @registration.plan.value , dt_venc: Time.zone.now.to_date + i.month).save
     end

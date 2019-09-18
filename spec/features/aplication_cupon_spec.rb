@@ -3,22 +3,15 @@ feature 'administrator apply cupom' do
   scenario 'successfully' do 
     user = create(:user,admin: true)
     register = create(:registration)
+    register.generate_payment
     carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', discount_max:20,value_percent_discount:10)
     cupon = create(:cupon, promotion_id: carnaval.id)
-    cupon_burned =  create(:cupon_burn, cupon: cupon, registration: register)
-    CuponBurn.off_value_registration(register, cupon.promotion.value_percent_discount)
 
-    
     visit promotions_path
     
-    within('form') do 
-      fill_in 'email', with: user.email 
-      fill_in 'password', with: user.password
-      click_on 'Log in'
-    end
+    login_as(user)
 
     visit promotion_path(carnaval)
-    click_on 'Gerar cupons'
     fill_in 'Código do cupom', with: cupon.code
     fill_in 'Número da matricula', with: register.id
     click_on 'Aplicar'
@@ -35,14 +28,9 @@ feature 'administrator apply cupom' do
     
     visit promotions_path
     
-    within('form') do 
-      fill_in 'email', with: user.email 
-      fill_in 'password', with: user.password
-      click_on 'Log in'
-    end
+    login_as(user)
 
     visit promotion_path(carnaval)
-    click_on 'Gerar cupons'
     fill_in 'Código do cupom', with: 'OLA0002'
     fill_in 'Número da matricula', with: register.id
     click_on 'Aplicar'
@@ -54,19 +42,14 @@ feature 'administrator apply cupom' do
   scenario 'and can not find registration' do 
     user = create(:user,admin: true)
     carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', discount_max:20,value_percent_discount:10)
-    cupon = create(:cupon, promotion_id: carnaval.id)
     
     visit promotions_path
     
-    within('form') do 
-      fill_in 'email', with: user.email 
-      fill_in 'password', with: user.password
-      click_on 'Log in'
-    end
+    login_as(user)
 
     visit promotion_path(carnaval)
     click_on 'Gerar cupons'
-    fill_in 'Código do cupom', with: cupon.code
+    fill_in 'Código do cupom', with: 'CARNA0001'
     fill_in 'Número da matricula', with: 42
     click_on 'Aplicar'
     
