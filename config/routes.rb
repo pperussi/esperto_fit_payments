@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     namespace :v1,defaults: { format: 'json' } do
       resources :payments, only: %i[show]
       resources :pay_methods, only: %i[index]
-      resources :notifications, only: %i[show]
+      resources :notifications, only: %i[create]
       resources :registrations do
         get "payments", on: :collection
       end

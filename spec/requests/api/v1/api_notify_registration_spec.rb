@@ -1,36 +1,49 @@
 require 'rails_helper'
 
-describe 'API notify registration', type: :request do
-  let(:registration) { create(:registration) }
-  let(:registration_id) { registration.id }
+describe 'API notify registration for generated payments', type: :request do
+  let(:plan) { create(:plan) }
+  let(:unity) { create(:unity) }
+  let(:pay_method) { create(:pay_method) }
   let(:headers) do
     {
-      'Content-Type': Mime[:json].to_s,
-      Accept: 'application/vnd.payment.v1'
+      'Content-Type': Mime[:json].to_s
     }
   end
 
-  describe 'GET /notifications' do
+  describe 'POST /api/v1/notifications' do
     before do
-      get "/api/v1/notifications/#{registration_id}", params: {}, headers: headers
+      post '/api/v1/notifications', params: { client: client_params }.to_json,
+                                    headers: headers
     end
 
     context 'when request are valid' do
-      it 'returns status code 201' do
-        expect(response).to have_http_status(201)
+      let(:client_params) do
+        attributes_for(:registration, plan_id: plan.id,
+                                      unity_id: unity.id,
+                                      pay_method_id: pay_method.id)
       end
 
-      it 'returns the json with the data' do
+      it 'returns status code 201' do
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'returns json data for created registration' do
         expect(json_body).to have_key(:payments)
-        expect(json_body[:payments][7][:value]).to eq registration.plan.value
-        expect(json_body[:payments][7][:dt_venc]).to eq registration.payments[7].dt_venc.to_s
+        expect(json_body[:payments][7][:value]).to eq plan.value
+        expect(json_body[:payments][7][:dt_venc]).to eq pay_method.payments[7]
+                                                                  .dt_venc.to_s
       end
     end
 
     context 'when request are invalid' do
-      let(:registration_id) { 1000 }
-      it 'returns status code 404' do
-        expect(response).to have_http_status(404)
+      let(:client_params) { attributes_for(:registration, plan_id: 'Executivo') }
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'returns json data for created user' do
+        expect(json_body).to have_key(:errors)
       end
     end
   end

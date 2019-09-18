@@ -15,7 +15,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(require_params)
     if @registration.save
-      generate_payment
+      @registration.generate_anual_payments
       redirect_to @registration
     else
       flash.now[:alert] = "Nao foi possivel salvar matricula"
@@ -61,17 +61,11 @@ class RegistrationsController < ApplicationController
 
   private
 
-  def generate_payment
-    @registration.generate_anual_payments
-  end
-
   def load_plan_unity
     @pay_methods = PayMethod.all
     @plans = Plan.all
     @unities = Unity.all
   end
-
-  private
 
   def require_params
     params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, :pay_method_id)
