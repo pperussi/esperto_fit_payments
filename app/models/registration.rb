@@ -11,9 +11,6 @@ class Registration < ApplicationRecord
   validates :name, :cpf, presence: true
   validates :cpf, uniqueness: true
 
-  # def search_registration_payments(cpf)
-  #   @registration = Registration.
-  # end
   def generate_anual_payments
     plan_tax_value = plan.value + (plan.value * pay_method.tax)/100
     (1..12).each do |i|

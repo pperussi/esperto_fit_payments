@@ -26,44 +26,18 @@ Rails.application.routes.draw do
 
   get 'search', to: 'registrations#search'
 
-  namespace :api, defaults: { format: 'json' } do
-    namespace :v1, defaults: { format: 'json' } do
-      resources :payments, only: %i[show]
-      resources :pay_methods, only: %i[index]
+  namespace :api,defaults: { format: 'json' } do
+    namespace :v1,defaults: { format: 'json' } do
+      resources :plans, only: %i[create show index]
+      resources :unity, only: %i[create show index]
       resources :notifications, only: %i[create]
+      resources :pay_methods, only: %i[index]
       resources :single_class, only: %i[create]
+      resources :payments,only: %i[show]
       resources :registrations do
         get 'payments', on: :collection
       end
-    end
   end
 end
 
 
-# Rails.application.routes.draw do
-#   devise_for :users
-
-#   root to: "user#index"
-
-#   resources :promotions, only: %i[index show new create] do
-#     resources :cupons, only: %i[create]
-#   end
-
-#   resources :administrator, only: %i[index]
-#   resources :pay_methods, only: %i[index new create]
-
-#   resources :single_classes,only: %i[show]
-
-#   resources :registrations, only: %i[index new create show edit update] do
-#     resources :single_classes,only: %i[new create]
-#     get 'search_single_class', on: :collection
-#     get 'search', on: :collection
-#   end
-
-#   namespace :api ,defaults: { format: 'json' } do
-#     namespace :v1,defaults: { format: 'json' } do
-#       resources :payments, only: %i[show]
-#       resources :pay_methods, only: %i[index]
-#     end
-#   end
-# end

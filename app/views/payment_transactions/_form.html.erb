@@ -1,0 +1,14 @@
+<%= form_for([@payment, @transaction]) do |f| %>
+
+  <p class="form-group"><%= f.label :code, 'Código de Transaçāo'%>
+  <%= f.text_field :code %></p>
+
+  <p class="form-group"><%= f.label :value, 'Valor Pago'%>
+  <%= f.text_field :value %></p>
+
+  <p>Data de pagamento:<%= f.date_field(:date_payment, order: [:day, :month, :year])%></p>
+
+  <p>Usuário: <%= current_user.email %></p>
+  <%= f.submit btn_payment %>
+
+<% end %>

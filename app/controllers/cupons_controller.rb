@@ -14,5 +14,4 @@ class CuponsController < AdministratorController
   def admin
     return promotions_path unless current_user.admin?
   end
-
 end

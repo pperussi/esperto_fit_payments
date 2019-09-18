@@ -9,6 +9,7 @@ class PaymentTransactionsController < ApplicationController
   def edit
     @payment = Payment.find(params[:payment_id])
     @transaction = PaymentTransaction.find_by(payment_id: [params[:payment_id]])
+    @pay_methods = PayMethod.all
   end
 
   def update
@@ -40,6 +41,7 @@ class PaymentTransactionsController < ApplicationController
   def show
     @payment = Payment.find(params[:payment_id])
     @transaction = PaymentTransaction.find_by(payment_id: [params[:payment_id]])
+    
   end
 
   private
