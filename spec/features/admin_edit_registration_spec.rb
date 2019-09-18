@@ -13,10 +13,10 @@ feature 'admin edit registration' do
 
     fill_in 'Nome', with: 'Fulano de tal'
     fill_in 'CPF', with: '345678098'
-    
+
     click_on 'Enviar'
 
-    expect(page).to have_css('h2', text: 'Fulano de tal')
+    expect(page).to have_css('h4', text: 'Fulano de tal')
     expect(page).to have_css('p', text: '345678098')
 
   end
@@ -33,7 +33,7 @@ feature 'admin edit registration' do
 
     fill_in 'Nome', with: ''
     fill_in 'CPF', with: ''
-    
+
     click_on 'Enviar'
 
     expect(page).to have_content('Nao foi possivel salvar matricula')

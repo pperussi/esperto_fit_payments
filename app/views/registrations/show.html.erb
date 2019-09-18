@@ -1,21 +1,32 @@
-<h2><%= @registration.name %></h2>
-<p><%= @registration.cpf %></p>
-<p><%= @registration.unity.name %></p>
-<p><%= @registration.plan.name %></p>
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
 
-<table class="table">
-  <thead>
-    <th>Pagamento</th>
-    <th>Valor</th>
-    <th>Data de vencimento</th>
-    <th>Método de pagamento</th>
-  </thead>
-  <% @registration.payments.each do |payment| %>
-    <tr>
-      <td><%= "Pagamento #{payment.id}"%></td> 
-      <td><%= payment.value %></td>
-      <td><%= payment.dt_venc %></td>
-      <td><%= payment.pay_method.name %></td>
-    </tr>
-  <%end%>
-</table
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper">Matrícula</span>
+          </h2>
+          <h4><%= @registration.name %></h4>
+          <p>Cpf: <%= @registration.cpf %> - Unidade: <%= @registration.unity.name %> - Plano: <%= @registration.plan.name %></p>
+          <table class="table">
+            <thead>
+              <th>Pagamento</th>
+              <th>Valor</th>
+              <th>Data de vencimento</th>
+              <th>Método de pagamento</th>
+            </thead>
+            <% @registration.payments.each do |payment| %>
+              <tr>
+                <td><%= "Pagamento #{payment.id}"%></td>
+                <td><%= payment.value %></td>
+                <td><%= payment.dt_venc %></td>
+                <td><%= payment.pay_method.name %></td>
+              </tr>
+            <%end%>
+          </table>
+          <p class="mb-0"></p>
+        </div>
+      </div>
+  
+  </div>
+</section>

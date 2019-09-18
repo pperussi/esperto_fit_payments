@@ -13,7 +13,7 @@ feature 'admin search registration for cpf' do
     login_as user
     visit root_path
 
-    fill_in 'search', with: registration.cpf
+    fill_in 'Pesquisar por CPF:', with: registration.cpf
     #select
 
     click_on 'Procurar'

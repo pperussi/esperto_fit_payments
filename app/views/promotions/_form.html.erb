@@ -1,25 +1,62 @@
-<%if @promotion.errors.any?%>
-  <% @promotion.errors.full_messages.each do |message|%>
-  byebug
-    <%=message%>
-  <%end%>
-<%end%>
-<%=form_for @promotion do |f|%>
-<%=f.label :name%>
-<%=f.text_field :name%>
-<%=f.label :description%>
-<%=f.text_area :description%>
-<%=f.label :value_percent_discount%>
-<%=f.number_field :value_percent_discount%>
-<%=f.label :discount_max %>
-<%=f.number_field :discount_max%>
-<%=f.label :cod_promotion%>
-<%=f.text_field :cod_promotion%>
-<%=f.label :cupom_number%>
-<%=f.number_field :cupom_number%>
-<%=f.label :begin_promotion%>
-<%=f.text_field :begin_promotion%>
-<%=f.label :end_promotion%>
-<%=f.text_field :end_promotion%>
-<%=f.submit%>
-<%end%>
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper ">Cadastrar Promoção</span>
+            </h2>
+            <form>
+              <%=form_for @promotion do |f|%>
+              <div class="form-group">
+                <%= f.label :name%>
+                <%= f.text_field :name %>
+
+                <%=f.label :cupom_number%>
+                <%=f.number_field :cupom_number%>
+              </div>
+
+              <div class="form-group">
+                <%=f.label :value_percent_discount%>
+                <%=f.number_field :value_percent_discount%>
+
+                <%=f.label :discount_max %>
+                <%=f.number_field :discount_max%>
+              </div>
+
+              <div class="form-group">
+                <%=f.label :cod_promotion%>
+                <%=f.text_field :cod_promotion%>
+
+                <%=f.label :discount_max %>
+                <%=f.number_field :discount_max%>
+              </div>
+
+              <div class="form-group">
+                <%=f.label :begin_promotion%>
+                <%=f.text_field :begin_promotion%>
+
+                <%=f.label :end_promotion%>
+                <%=f.text_field :end_promotion%>
+              </div>
+
+              <div class="form-group">
+                <%=f.label :description%>
+                <%=f.text_area :description%>
+
+                 <%= f.submit 'Enviar',  class: "btn btn-primary btn-xl2" %>
+              </div>
+              <% end %>
+
+              <%if @promotion.errors.any?%>
+                <% @promotion.errors.full_messages.each do |message|%>
+                  <%=message%>
+                <%end%>
+              <%end%>
+            </form>
+          </div>
+          <p class="mb-0"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

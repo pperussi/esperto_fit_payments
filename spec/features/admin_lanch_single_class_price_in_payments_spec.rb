@@ -11,7 +11,7 @@ feature 'admin launch single class price in a payment' do
     visit root_path
 
     click_on "Matrículas"
-    fill_in 'Pesquisar aluno', with: 'Joao'
+    fill_in 'Pesquisar por CPF', with: 'Joao'
 
     click_on 'Buscar'
     click_on 'Joao'
