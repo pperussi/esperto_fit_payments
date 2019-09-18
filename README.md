@@ -182,8 +182,13 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
 
 ```
 - Lançar aulas avulsa 
-  post '/api/v1/single_class'
-  
+
+```
+    post '/api/v1/single_class'
+
+    http://localhost:3000/api/v1/single_class
+
+``` 
   Exemplo
   ```
    post '/api/v1/single_class', params: {single_class: 
@@ -192,5 +197,8 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
       date: '2019-09-17',
       price: 100,
       cpf: '123456'
-       } }
+    }
+    }
   ```
+
+### Resultado:
