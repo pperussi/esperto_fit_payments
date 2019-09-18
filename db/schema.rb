@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_17_184620) do
+ActiveRecord::Schema.define(version: 2019_09_16_164408) do
+
+  create_table "clients_classes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "single_class_id"
+    t.integer "registration_id"
+    t.index ["registration_id"], name: "index_clients_classes_on_registration_id"
+    t.index ["single_class_id"], name: "index_clients_classes_on_single_class_id"
+  end
 
   create_table "cupon_burns", force: :cascade do |t|
     t.integer "cupon_id"
@@ -34,6 +43,20 @@ ActiveRecord::Schema.define(version: 2019_09_17_184620) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "tax"
+    t.integer "limit_days"
+  end
+
+  create_table "payment_transactions", force: :cascade do |t|
+    t.string "code"
+    t.float "value"
+    t.date "date_payment"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "payment_id"
+    t.index ["payment_id"], name: "index_payment_transactions_on_payment_id"
+    t.index ["user_id"], name: "index_payment_transactions_on_user_id"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -46,6 +69,15 @@ ActiveRecord::Schema.define(version: 2019_09_17_184620) do
     t.integer "status", default: 0
     t.index ["pay_method_id"], name: "index_payments_on_pay_method_id"
     t.index ["registration_id"], name: "index_payments_on_registration_id"
+  end
+
+  create_table "payments_releases", force: :cascade do |t|
+    t.string "name"
+    t.float "value"
+    t.integer "payment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_payments_releases_on_payment_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -80,6 +112,17 @@ ActiveRecord::Schema.define(version: 2019_09_17_184620) do
     t.index ["pay_method_id"], name: "index_registrations_on_pay_method_id"
     t.index ["plan_id"], name: "index_registrations_on_plan_id"
     t.index ["unity_id"], name: "index_registrations_on_unity_id"
+  end
+
+  create_table "single_classes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "unit"
+    t.date "date"
+    t.float "price"
+    t.integer "registration_id"
+    t.index ["registration_id"], name: "index_single_classes_on_registration_id"
   end
 
   create_table "unities", force: :cascade do |t|

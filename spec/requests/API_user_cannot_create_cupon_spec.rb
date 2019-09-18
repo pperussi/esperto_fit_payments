@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'user cannot create cupon'do 
   it 'successfully' do 
-    carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', cupom_number: 10)
+    carnaval = create(:promotion, name: 'Carnaval', cod_promotion: 'CARNA', cupom_number: 10)
     post "/promotions/#{carnaval.id}/cupons"
 
     expect(response.status).to eq 302
@@ -20,13 +20,12 @@ describe 'user cannot create cupon'do
   end
   it 'successfully in access denied' do 
     carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', cupom_number: 5)
-    5.times do |cupon|
-      cupon = create(:cupon,promotion_id:carnaval.id)
-    end
+    Cupon.create_for(carnaval)
 
     user = create(:user, admin: true)
-    login_as(user, scope: :user)
-    post "/promotions/#{carnaval.id}/apply"
+    login_as(user)
+
+    post "/promotions/#{carnaval.id}/cupons"
 
     expect(response.status).to eq 302
     expect(response.body).to redirect_to(promotion_path(carnaval))
