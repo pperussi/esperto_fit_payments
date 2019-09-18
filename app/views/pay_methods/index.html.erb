@@ -2,6 +2,8 @@
 <ul>
 <% @pay_method.each do |paymethod| %>
   <li><%= paymethod.name %></li>
+  <li><%= paymethod.tax %></li>
+  <li><%= paymethod.limit_days %></li>
 <%end%>
 </ul>
 

@@ -12,7 +12,8 @@ class SingleClassesController < AdministratorController
   def create
     @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new(set_params)
-    ClientsClass.create!(registration: @registration, single_class: @single_class)
+    ClientsClass.create!(registration:@registration, single_class: @single_class)
+    @single_class.update(date:Time.zone.now.to_date)#
     if @single_class.save
       @single_class.class_debit(@registration)
       redirect_to @single_class

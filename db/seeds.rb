@@ -12,14 +12,10 @@ I18n.reload!
 User.create(email: 'admin@espertofit.com', password:'123456', admin: true)
 Plan.create(name: 'Mestre', value: Faker::Number.decimal(l_digits: 3, r_digits: 2))
 Unity.create(name: 'Barra Funda')
-PayMethod.create(name: 'Bitcoin')
-10.times do
-  Registration.create(name: Faker::Name.name, cpf: Faker::IDNumber.brazilian_citizen_number, unity_id: 1, plan_id: 1, pay_method_id: 1)
+PayMethod.create(name: 'Bitcoin', tax: 0, limit_days: 15)
+5.times do
+  Registration.create(name: Faker::Name.name, unity_id: 1, plan_id: 1,
+    cpf: Faker::IDNumber.brazilian_citizen_number, pay_method_id: 1)
 end
 
-# Plan.create(name: 'Master', value: 150.44)
-# Unity.create(name: 'Barra Funda')
-# User.create(email: 'admin@espertofit.com', password:'123456', admin: true)
-# PayMethod.create(name: 'Bitcoin')
-# Registration.create(name: 'Fulano de Tal', cpf: '123345567', unity_id: 1,
-#         plan_id: 1, pay_method_id: 1)
+# Payment.create(value: 15, dt_venc: Time.zone.now.to_date , registration: reg, pay_method: pagamento,status: :closed )

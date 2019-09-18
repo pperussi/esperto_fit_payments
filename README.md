@@ -5,11 +5,25 @@
 ### Ruby version
 2.6.4
 
-### API Acessa métodos de pagamento
-
-- **GET** /api/v1/pay_methods
-
-### API mostra o historico de mensalidades
+### API
+-Disponibiliza os metodos de pagamentos disponiveis:
+```JSON
+  {"id":1,
+  "name":"Cartão de Crédito",
+  "created_at":"2019-09-15T23:41:51.236Z",
+  "updated_at":"2019-09-15T23:41:51.236Z",
+  "tax":5,
+  "limit_days":4
+  },
+   {"id":2,
+   "name":"Boleto",
+   "created_at":"2019-09-15T23:43:52.226Z",
+   "updated_at":"2019-09-15T23:43:52.226Z",
+   "tax":0,
+   "limit_days":15
+   }
+```
+- Disponibiliza o histórico de mensalidades:
 
 get "/api/v1/payments/**cpf**"
 
@@ -119,78 +133,103 @@ Exemplo de resultado:
 ]
 ```
 
-### API recebe notificação e gera mensalidades
+### API recebe como notificação dados de uma nova matricula e gera mensalidades
 
-- **GET** /api/v1/notifications/```:id```
+ **POST** /api/v1/notifications/
 
-```json
-// 20190915212325
-// http://localhost:3000/api/v1/notifications/1
-
-{
-  "name": "Fulano de tal",
-  "cpf": "345678",
-  "payments": [
+ - Parametros para gerar os pagamentos
+    ```json
     {
-      "value": 40.0,
-      "dt_venc": "2019-09-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2019-10-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2019-11-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2019-12-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2020-01-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2020-02-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2020-03-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2020-04-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2020-05-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2020-06-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2020-07-16",
-      "status": "pending"
-    },
-    {
-      "value": 40.0,
-      "dt_venc": "2020-08-16",
-      "status": "pending"
+      "client": {
+        "name": "Matilda chata",
+        "cpf": "666666",
+        "plan_id": 1,
+        "unity_id": 1,
+        "pay_method_id": 1
+      }
     }
-  ]
-}
-```
+    ```
+
+- Resultado
+  ```json
+  {
+    "name": "Matilda chata",
+    "cpf": "666666",
+    "payments": [
+      {
+        "value": 167.38,
+        "dt_venc": "2019-09-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2019-10-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2019-11-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2019-12-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-01-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-02-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-03-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-04-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-05-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-06-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-07-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-08-18",
+        "status": "pending"
+      }
+    ]
+  }
+  ```
+
+- Lançar aulas avulsa
+  post '/api/v1/single_class'
+
+  Exemplo
+  ```
+   post '/api/v1/single_class', params: {single_class:
+    { name: 'Boxe',
+      unit: 'Paulista',
+      date: '2019-09-17',
+      price: 100,
+      cpf: '123456'
+       } }
+  ```

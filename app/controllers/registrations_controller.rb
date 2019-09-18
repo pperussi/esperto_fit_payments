@@ -48,11 +48,11 @@ class RegistrationsController < ApplicationController
   end
 
   def search
-    @registrations = Registration.where("cpf LIKE ?", "%#{params[:search]}%")
-  end
-
-  def search
-    @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
+    @registration = Registration.find_by(cpf: params[:search])
+    if @registration.nil?
+      flash[:alert] = 'Não foi possível encontrar o CPF'
+      redirect_to root_path
+    end
   end
 
   def search_single_class

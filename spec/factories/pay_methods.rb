@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :pay_method do
-    name {'Boleto'}
+    name { "Boleto" }
+    tax { 0 }
+    limit_days { 15 }
   end
 end
