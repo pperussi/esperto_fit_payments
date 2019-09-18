@@ -21,11 +21,21 @@ ActiveRecord::Schema.define(version: 2019_09_16_164408) do
     t.index ["single_class_id"], name: "index_clients_classes_on_single_class_id"
   end
 
+  create_table "cupon_burns", force: :cascade do |t|
+    t.integer "cupon_id"
+    t.integer "registration_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cupon_id"], name: "index_cupon_burns_on_cupon_id"
+    t.index ["registration_id"], name: "index_cupon_burns_on_registration_id"
+  end
+
   create_table "cupons", force: :cascade do |t|
     t.integer "promotion_id"
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["promotion_id"], name: "index_cupons_on_promotion_id"
   end
 
@@ -98,6 +108,7 @@ ActiveRecord::Schema.define(version: 2019_09_16_164408) do
     t.integer "unity_id"
     t.integer "plan_id"
     t.integer "pay_method_id"
+    t.float "value"
     t.index ["pay_method_id"], name: "index_registrations_on_pay_method_id"
     t.index ["plan_id"], name: "index_registrations_on_plan_id"
     t.index ["unity_id"], name: "index_registrations_on_unity_id"

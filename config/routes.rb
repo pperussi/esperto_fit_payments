@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "user#index"
 
   resources :promotions, only: %i[index show new create] do
+    post 'apply', to: "cupons#apply"
     resources :cupons, only: %i[create]
   end
   
