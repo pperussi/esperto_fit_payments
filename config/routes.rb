@@ -33,7 +33,9 @@ Rails.application.routes.draw do
       resources :notifications, only: %i[create]
       resources :pay_methods, only: %i[index create]
       resources :single_class, only: %i[create]
-      resources :payments,only: %i[show]
+      resources :payments,only: %i[show] do
+        get 'ban' , on: :member
+      end
       resources :registrations do
         get 'payments', on: :collection
       end

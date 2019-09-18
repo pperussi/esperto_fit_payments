@@ -10,11 +10,14 @@ I18n.reload!
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(email: 'admin@espertofit.com', password:'123456', admin: true)
-Plan.create(name: 'Mestre', value: Faker::Number.decimal(l_digits: 2, r_digits: 2))
-Unity.create(name: 'Barra Funda')
-PayMethod.create(name: 'Bitcoin', tax: 0, limit_days: 15)
-5.times do
-  Registration.create(name: Faker::Name.name, unity_id: 1, plan_id: 1,
-    cpf: Faker::IDNumber.brazilian_citizen_number, pay_method_id: 1)
+pagamento = PayMethod.create(name: 'Bitcoin', tax: 0, limit_days: 15)
+reg = Registration.create(name: 'Paula',cpf: '123456',unity: unidade, plan: plano, pay_method: pagamento)
+reg_unpaid = Registration.create(name: 'Patrick',cpf: '4444444444',unity: unidade, plan: plano, pay_method: pagamento)
+Payment.create(value: 15, dt_venc: Time.zone.now.to_date , registration: reg, pay_method: pagamento,status: :closed )
+(2..12).each do |i|
+  Payment.create!(value: 15, dt_venc: Time.zone.now.to_date + i.month , registration: reg, pay_method: pagamento,status: :pending )
 end
-#Payment.create(value: 15, dt_venc: Time.zone.now.to_date , registration: reg, pay_method: pagamento,status: :closed )
+Payment.create(value: 15, dt_venc: Time.zone.now.to_date , registration: reg_unpaid, pay_method: pagamento,status: :closed )
+(2..12).each do |i|
+  Payment.create!(value: 15, dt_venc: Time.zone.now.to_date + i.month , registration: reg_unpaid, pay_method: pagamento,status: :pending )
+end
