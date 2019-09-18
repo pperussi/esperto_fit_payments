@@ -32,7 +32,9 @@ Rails.application.routes.draw do
       resources :unity, only: %i[create show index]
       resources :pay_methods
       resources :single_class, only: %i[create]
-      resources :payments,only: %i[show]
+      resources :payments,only: %i[show] do
+        get 'ban' , on: :member
+      end
       resources :registrations do
         get "payments", on: :collection
       end
