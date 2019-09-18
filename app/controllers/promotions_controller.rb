@@ -1,14 +1,14 @@
-class PromotionsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :admin, only: %i[ new create]
-
+class PromotionsController < AdministratorController
+  before_action :is_admin, only: %i[ new create]
+  
   def index
     @promotions = Promotion.all
   end
 
   def show
     @promotion = Promotion.find(params[:id])
-    @cupons = Cupon.where('promotion_id  =  ?', @promotion)
+    @registration = Registration.find_by(params[:id])
+    @cupons = @promotion.cupons
   end
 
   def new
@@ -25,12 +25,9 @@ class PromotionsController < ApplicationController
     end    
   end
 
-  def admin
-    return promotions_path unless current_user.admin?
-  end
-
   private
-    def promotion_params
-      params.require(:promotion).permit(:name, :description, :value_percent_discount, :discount_max, :cod_promotion, :cupom_number, :begin_promotion, :end_promotion) 
-    end  
+  
+  def promotion_params
+    params.require(:promotion).permit(:name, :description, :value_percent_discount, :discount_max, :cod_promotion, :cupom_number, :begin_promotion, :end_promotion)
+  end  
 end

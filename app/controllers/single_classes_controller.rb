@@ -1,5 +1,5 @@
-class SingleClassesController < ApplicationController
-
+class SingleClassesController < AdministratorController
+  
   def new
     @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new
@@ -14,6 +14,7 @@ class SingleClassesController < ApplicationController
     @registration = Registration.find(params[:registration_id])
     @single_class = SingleClass.new(set_params)
     ClientsClass.create!(registration:@registration, single_class: @single_class)
+    @single_class.update(date:Time.zone.now.to_date)#
     if @single_class.save
       @single_class.class_debit(@registration)
       redirect_to @single_class
@@ -23,12 +24,8 @@ class SingleClassesController < ApplicationController
     end
   end
 
-  def registration_find
-    @registration = @registration.payments.find_by(status: :pending)
-  end
-
   private
   def set_params
-    params.require(:single_class).permit(:name, :unit,:price,date:Time.zone.now.to_date)
+    params.require(:single_class).permit(:name, :unit, :price, date: Time.zone.now.to_date)
   end
 end
