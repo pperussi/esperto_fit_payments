@@ -17,4 +17,4 @@ class Cupon < ApplicationRecord
       create(promotion_id: promotion.id, code: cupon_code)
     end
   end
-end 
+end
