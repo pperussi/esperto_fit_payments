@@ -18,7 +18,7 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = Registration.new(require_params)
-    if @registration.save
+    if @registration.save!
       generate_payment
       redirect_to @registration
     else

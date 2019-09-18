@@ -5,7 +5,7 @@ class SingleClass < ApplicationRecord
   validates :name, :unit, :price, presence: true
 
   def class_debit(registration)
-    price_tax = price + (price*registration.pay_method.tax)/100
+    price_tax = price + (price * registration.pay_method.tax)/100
     
     first_pending = registration.payments.find_by(status: :pending)
     if first_pending.dt_venc - date < registration.pay_method.limit_days
