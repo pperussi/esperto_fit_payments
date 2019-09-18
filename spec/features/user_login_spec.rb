@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User have a page to login' do
+feature 'User have a page to login' do
   scenario 'successfuly' do
     user = create(:user, email:'teste@teste.com', password:'123456')
 

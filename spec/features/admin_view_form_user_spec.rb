@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'admin can create payment method' do
+feature 'admin can create payment method' do
   scenario 'successfuly' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
 

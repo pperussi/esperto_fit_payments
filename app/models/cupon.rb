@@ -3,11 +3,12 @@ class Cupon < ApplicationRecord
   has_one :cupon_burn
   has_one :registration
   enum status: {active: 0, applied:8}
+  has_one :registration
 
   def burned?
     cupon_burn.present? 
   end  
-  
+
   def self.create_for(promotion)
     promotion.cupom_number.times.map do |i|  
       value = i+1
@@ -16,5 +17,5 @@ class Cupon < ApplicationRecord
       create(promotion_id: promotion.id, code: cupon_code)
     end
   end
+end
 
-end 

@@ -1,12 +1,14 @@
 FactoryBot.define do
   factory :promotion do
     name { "MyString" }
-    description { "MyText na na na na na na na na Batman " }
-    value_percent_discount { 10 }
-    discount_max { 10 }
+    description { "Nã, nã-nã-nã-nã ,Nã, nã, nã, nã, Nã-nã, nã, nã, nã, nã Batman" }
+    value_percent_discount { 20 }
+    discount_max { 20 }
     cod_promotion { "MyString" }
     cupom_number { 5 }
-    begin_promotion { "MyString" }
-    end_promotion { "MyString" }
+    begin_promotion { "15/09/2019" }
+    end_promotion { "15/01/2020" }
   end
 end
+
+

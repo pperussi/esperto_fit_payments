@@ -11,8 +11,25 @@ Rails.application.routes.draw do
   
   resources :administrator, only: %i[index] 
   resources :pay_methods, only: %i[new create]
-  resources :registrations, only: %i[index new create show edit update]
 
-  get 'search', to: 'registrations#search'
+  resources :single_classes,only: %i[show]
 
+  resources :registrations, only: %i[index new create show edit update] do
+    resources :single_classes,only: %i[new create]
+    get 'search_single_class', on: :collection
+    get 'search', on: :collection
+  end
+
+  namespace :api,  defaults: { format: 'json' } do
+    namespace :v1 do 
+      resources :promotions , only: %i[]do 
+        resources :cupons, only: %i[apply]do 
+          member do
+            get 'validate'
+          end
+        end
+      end
+    end
+  end
+  
 end

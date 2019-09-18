@@ -2,8 +2,11 @@ class RegistrationsController < ApplicationController
   before_action :load_plan_unity, only: %i[new create edit update]
   before_action :authenticate_user!
   before_action :auth_redirect
-  #after_action :generate_payment, only: [:create]
 
+  def search 
+    @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
+  end
+  #after_action :generate_payment, only: [:create]
   def index
     @registrations = Registration.all
   end
@@ -14,7 +17,6 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = Registration.new(require_params)
-
     if @registration.save
       generate_payment
       redirect_to @registration
@@ -47,12 +49,14 @@ class RegistrationsController < ApplicationController
     @registrations = Registration.where("cpf LIKE ?", "%#{params[:search]}%")
   end
 
+  def search_single_class
+    @registrations = Registration.where("name LIKE ?", "%#{params[:q]}%")
+  end
+
   private
 
   def generate_payment
-    12.times do |i|
-      @registration.payments.new(pay_method_id: @registration.pay_method_id, value: @registration.plan.value , dt_venc: Time.zone.now.to_date + i.month).save
-    end
+    @registration.generate_anual_payments
   end
 
   def load_plan_unity
