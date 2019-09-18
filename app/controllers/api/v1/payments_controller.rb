@@ -6,11 +6,11 @@ class Api::V1::PaymentsController < Api::V1::ApiController
 
   def ban
     @payments = Registration.find_by!(cpf: params[:id])
-    @payments.payments.each{|payment|
-    if payment.status == 'pending' 
-      payment.update(status: :canceled)
+    @payments.payments.each do |payment|
+      if payment.status == 'pending' 
+        payment.update(status: :canceled)
+      end
     end
-    }
     render json: { msg: "CPF #{@payments.cpf} com todas as suas faturas canceladas" }, status: :ok
   end
 end
