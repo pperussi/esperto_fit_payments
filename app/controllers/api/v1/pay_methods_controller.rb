@@ -15,7 +15,7 @@ module Api::V1
     private
 
     def set_params
-      params.require(:pay_method).permit(:name)
+      params.require(:pay_method).permit(:name, :tax, :limit_days)
     end
   end
 end

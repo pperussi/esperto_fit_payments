@@ -4,10 +4,10 @@ feature 'Change status' do
   scenario 'successfully' do
     user = create(:user, admin: true)
     unity = Unity.create!(name: 'Paulista')
-    pay_method = PayMethod.create!(name: 'Boleto')
+    pay_method = create(:pay_method)
     plan = Plan.create!(name: 'Executivo', value: 70)
     registration = create(:registration, name: 'Diogo', cpf: '123456',\
-                   unity_id: 1, plan_id: 1, pay_method_id: 1)
+                          unity_id: 1, plan_id: 1, pay_method_id: 1)
     payment = registration.payments.create!(value: 50, registration_id: 1,\
                                           pay_method_id: 1,\
                                           dt_venc: '2019-09-10 18:20:44')

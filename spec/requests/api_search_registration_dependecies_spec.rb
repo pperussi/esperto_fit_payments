@@ -33,7 +33,8 @@ describe 'api search registration dependencies' do
   end
 
   it 'api search one pay_method' do
-    PayMethod.create!(name: 'Boleto')
+    pay_method = create(:pay_method, name: 'Boleto')
+
 
     get 'http://localhost:3000/api/v1/pay_methods', params: { name: 'Boleto'}
 
@@ -44,8 +45,9 @@ describe 'api search registration dependencies' do
   end
 
   it 'api searches all pay methods' do
-    PayMethod.create!(name: 'Boleto')
-    PayMethod.create!(name: 'Cartão')
+    pay_method = create(:pay_method, name: 'Boleto')
+    pay_method = create(:pay_method, name: 'Cartão')
+
 
     get 'http://localhost:3000/api/v1/pay_methods'
 

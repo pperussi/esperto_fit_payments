@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Api requests all payments details for one client' do
     it 'successfully' do
         unity = Unity.create!(name: 'Paulista')
-        pay_method = PayMethod.create!(name: 'Boleto')
+        pay_method = create(:pay_method, name: 'Boleto')
         plan = Plan.create!(name: 'Executivo', value: 70)
         registration = Registration.create!(name: 'teste', cpf: "222", \
                                             unity_id: 1, plan_id: 1, \

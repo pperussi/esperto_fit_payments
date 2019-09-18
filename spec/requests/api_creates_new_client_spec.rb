@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'api creates new client' do
   it 'successfully' do
     unity = Unity.create!(name: 'Paulista')
-    pay_method = PayMethod.create!(name: 'Boleto')
+    pay_method = create(:pay_method, name: 'Cheque')
     plan = Plan.create!(name: 'Executivo', value: 70)
     registration = Registration.create!(name: 'teste', cpf: '123', \
                                         unity_id: 1, plan_id: 1, \
@@ -48,7 +48,7 @@ describe 'api creates new client' do
   end
 
   it 'api creates new pay_method' do
-    post 'http://localhost:3000/api/v1/pay_methods', params: { pay_method: { name: 'Boleto'}}
+    post 'http://localhost:3000/api/v1/pay_methods', params: { pay_method: { name: 'Boleto', tax: 1, limit_days: 15}}
 
     json = JSON.parse(response.body, symbolize_names: true)
 
