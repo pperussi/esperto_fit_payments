@@ -13,10 +13,9 @@ Promotion.create(name:'Natal',description:'Venha para nossa ceia Venha para noss
 reg = Registration.create(name: 'Paula',cpf: '123456',unity: unidade, plan: plano, pay_method: pagamento)
 reg_unpaid = Registration.create(name: 'Patrick',cpf: '4444444444',unity: unidade, plan: plano, pay_method: pagamento)
 Payment.create(value: 15, dt_venc: Time.zone.now.to_date , registration: reg, pay_method: pagamento,status: :closed )
+Payment.create(value: 15, dt_venc: Time.zone.now.to_date , registration: reg_unpaid, pay_method: pagamento,status: :unpaid )
+
 (2..12).each do |i|
-  Payment.create!(value: 15, dt_venc: Time.zone.now.to_date + i.month , registration: reg, pay_method: pagamento,status: :pending )
-end
-Payment.create(value: 15, dt_venc: Time.zone.now.to_date , registration: reg_unpaid, pay_method: pagamento,status: :closed )
-(2..12).each do |i|
-  Payment.create!(value: 15, dt_venc: Time.zone.now.to_date + i.month , registration: reg_unpaid, pay_method: pagamento,status: :pending )
+  Payment.create!(value: 15, dt_venc: Time.zone.now.to_date + i.month , registration: reg,        pay_method: pagamento, status: :pending )
+  Payment.create!(value: 15, dt_venc: Time.zone.now.to_date + i.month , registration: reg_unpaid, pay_method: pagamento, status: :pending )
 end

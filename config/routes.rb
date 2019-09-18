@@ -34,7 +34,7 @@ Rails.application.routes.draw do
       resources :pay_methods
       resources :single_class, only: %i[create]
       resources :payments,only: %i[show] do
-        get 'ban' , on: :member
+        post 'ban' , on: :collection
       end
       resources :registrations do
         get "payments", on: :collection
