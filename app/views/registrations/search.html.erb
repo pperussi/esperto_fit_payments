@@ -1,11 +1,27 @@
-<% @registrations.each do |registration| %>
-  <%= registration.name %> -
-  <%= registration.cpf %>
 
-  <% registration.payments.each do |payment| %>
-    <%= "Valor: #{payment.value} - Data de vencimento: #{payment.dt_venc}"%>
-    <% registration.single_classes.each do |singleclass| %>
-      <%= "Aula de #{singleclass.name} adicionada - Valor: #{singleclass.price}"%>
-    <% end %>
-  <% end %>
-<% end %>
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <div class="cta-inner text-center rounded">
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper">Matrículas</span>
+          </h2>
+            <% @registrations.each do |registration| %>
+              <%= registration.name %> -
+              <%= registration.cpf %>
+
+              <% registration.payments.each do |payment| %>
+                <%= "Valor: #{payment.value} - Data de vencimento: #{payment.dt_venc}"%>
+                <% registration.single_classes.each do |singleclass| %>
+                  <%= "Aula de #{singleclass.name} adicionada - Valor: #{singleclass.price}"%>
+                <% end %>
+              <% end %>
+            <% end %>
+
+          <p class="mb-0"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

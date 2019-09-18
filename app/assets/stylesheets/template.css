@@ -151,14 +151,14 @@ p {
 .cta {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  background-color: rgba(230, 167, 86, 0.9);
+  background-color: rgba(213, 210, 217, 0.9);
 }
 
 .cta .cta-inner {
   position: relative;
   padding: 3rem;
   margin: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(230, 167, 86, 0.65);
 }
 
 .cta .cta-inner:before {
@@ -169,7 +169,7 @@ p {
   bottom: -0.5rem;
   left: -0.5rem;
   right: -0.5rem;
-  border: 0.25rem solid rgba(255, 255, 255, 0.85);
+  border: 0.25rem solid rgba(230, 167, 86, 0.65);
 }
 
 @media (min-width: 992px) {
