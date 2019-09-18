@@ -44,11 +44,7 @@ RSpec.describe SingleClass, type: :model do
     pay_method = create(:pay_method, name: 'Cartāo', tax: 5, limit_days: 1)
     registration = create(:registration, name: 'Henrique', pay_method: pay_method)
     registration.generate_anual_payments
-<<<<<<< HEAD
     single_class = create(:single_class, name: 'BOXE', date:Time.zone.now.to_date + 1.month)
-=======
-    single_class = create(:single_class, name: 'BOXE', date:Time.zone.now.to_date + 30 )
->>>>>>> f0545134ace3f58c5efe4401bdc095e63c49de34
     ClientsClass.create!(registration: registration, single_class: single_class)
 
     single_class.class_debit(registration)
