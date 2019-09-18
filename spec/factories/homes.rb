@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :home do
-    index { "MyString" }
+    index {'MyString'}
   end
 end

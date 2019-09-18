@@ -1,11 +1,9 @@
 require 'rails_helper'
 
-feature 'admin can create payment method' do
+describe 'admin can create payment method' do
   scenario 'successfuly' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
-
     login_as(user, scope: :user)
-
     visit root_path
     click_on 'Criar metodo de pagamento'
     fill_in 'Nome', with: 'Boleto'
@@ -30,11 +28,10 @@ feature 'admin can create payment method' do
     visit pay_methods_path
 
     expect(page).to have_content('Boleto')
-    expect(page).to have_content('Credito')
   end
 
   scenario 'cant be duplicate' do
-    user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
+    user = create(:user, email: 'teste@teste.com', password:'123456', admin: true)
     create(:pay_method, name: 'Boleto')
     login_as(user, scope: :user)
 

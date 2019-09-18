@@ -3,7 +3,7 @@ FactoryBot.define do
     name { "Zé" }
     cpf { "123456" }
     plan
-    unity 
+    unity
     pay_method
   end
 end

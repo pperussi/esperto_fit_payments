@@ -2,13 +2,13 @@ require 'rails_helper'
 feature 'Admin register Cupons in promotion' do
   scenario 'successfully' do
     administrator = create(:user,admin: true)
-    carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', cupom_number: 10)
+    carnaval = create(:promotion, name: 'Carnaval', cod_promotion: 'CARNA', cupom_number: 10)
 
     visit promotions_path
 
 
-      fill_in 'email', with: administrator.email
-      fill_in 'password', with: administrator.password
+      fill_in 'Email', with: administrator.email
+      fill_in 'Senha', with: administrator.password
       click_on 'Log in'
 
 
@@ -20,13 +20,13 @@ feature 'Admin register Cupons in promotion' do
 
   scenario 'User not admin not create cupons' do
     user = create(:user)
-    carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', cupom_number: 10)
+    carnaval = create(:promotion, name: 'Carnaval', cod_promotion: 'CARNA', cupom_number: 10)
 
     visit promotions_path
 
 
-      fill_in 'email', with: user.email
-      fill_in 'password', with: user.password
+      fill_in 'Email', with: user.email
+      fill_in 'Senha', with: user.password
       click_on 'Log in'
     
 

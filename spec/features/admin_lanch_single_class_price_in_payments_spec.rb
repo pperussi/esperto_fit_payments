@@ -23,7 +23,7 @@ feature 'admin launch single class price in a payment' do
 
     click_on 'Voltar'
 
-    fill_in 'Search for:', with: registration.cpf
+    fill_in 'Procurar CPF:', with: registration.cpf
     click_on 'Procurar'
 
     expect(page).to have_content('Joao')

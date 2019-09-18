@@ -8,8 +8,8 @@ feature 'Adm can search clients' do
     login_as(user, scope: :user)
     visit root_path
     click_on 'Matrículas'
-    fill_in 'Pesquisar por CPF:', with: 'Joao'
-    click_on 'Buscar'
+    fill_in 'Pesquisar Aluno', with: 'Joao'
+    click_on 'Procurar'
 
     expect(page).to have_content('Joao')
   end
