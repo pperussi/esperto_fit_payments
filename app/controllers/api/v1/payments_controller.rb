@@ -5,7 +5,7 @@ class Api::V1::PaymentsController < Api::V1::ApiController
   end
 
   def ban
-    @payments = Registration.find_by!(cpf: params[:id])
+    @payments = Registration.find_by!(cpf: params[:cpf])
     @payments.payments.each do |payment|
       if payment.status == 'pending' 
         payment.update(status: :canceled)

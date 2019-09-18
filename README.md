@@ -175,7 +175,7 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
 
 - Banir usuario transformando suas faturas pendentes em canceladas
 
-get "/api/v1/payments/**cpf**/ban"
+post "/api/v1/payments/ban" params: { cpf: '123456' }
 ```json
    {"msg": "CPF 123456 com todas as suas faturas canceladas"}
 ```

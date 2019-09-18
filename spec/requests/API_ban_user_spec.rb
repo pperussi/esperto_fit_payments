@@ -5,7 +5,8 @@ describe 'API ban user' do
         registration = create(:registration, name: 'JOAO')
         registration.generate_anual_payments
      
-        get  "/api/v1/payments/#{registration.cpf}/ban"
+        post  "/api/v1/payments/ban", params: { cpf: '123456'}
+        
         json_payments = JSON.parse(response.body, symbolize_names: true)
         
         expect(response.status).to eq 200
@@ -15,7 +16,7 @@ describe 'API ban user' do
     end
 
     it 'cpf doesnt exist' do
-        get  '/api/v1/payments/0'
+        post  '/api/v1/payments/ban', params: { cpf: '0'}
         expect(response).to have_http_status(:not_found)
     end
 
