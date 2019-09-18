@@ -1,11 +1,26 @@
-<h1>Promoções Cadastradas e Criaçāo </h1>
 
-<% if current_user && current_user.admin? %>
-  <%= link_to 'Criar Promoçāo', new_promotion_path %>
-<% end %>
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <div class="cta-inner text-center rounded">
+          <h2 class="section-heading mb-4">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper">Promoções Cadastradas e Criaçāo</span>
+            </h2>
+            <% if current_user && current_user.admin? %>
+              <%= link_to 'Criar Promoçāo', new_promotion_path %>
+            <% end %>
 
-<ul>
-  <% @promotions.each do |promotion| %>
-    <li><%= link_to promotion.name, promotion %></li>
-  <% end %>
-</ul>
+            <ul>
+              <% @promotions.each do |promotion| %>
+                <li><%= link_to promotion.name, promotion %></li>
+              <% end %>
+            </ul>
+          </h2>
+          <p class="mb-0"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

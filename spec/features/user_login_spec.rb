@@ -5,7 +5,7 @@ feature 'User have a page to login' do
     user = create(:user, email:'teste@teste.com', password:'123456')
 
     visit root_path
-    click_on 'Log in'
+    click_on 'Entrar'
     fill_in 'email', with: user.email
     fill_in 'password', with: user.password
     click_on 'Log in'
@@ -16,7 +16,7 @@ feature 'User have a page to login' do
     user = create(:user, email:'teste@teste.com', password:'123456', admin: true)
 
     visit root_path
-    click_on 'Log in'
+    click_on 'Entrar'
     fill_in 'email', with: user.email
     fill_in 'password', with: user.password
     click_on 'Log in'

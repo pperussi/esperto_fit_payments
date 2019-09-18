@@ -1,11 +1,25 @@
 <h1>BEM VINDO AO SISTEMA ADMINISTRADOR</h1>
 
 <%= form_tag(search_registrations_path, method: "get") do %>
-  <%= label_tag(:search, "Search for:") %>
-  <%= text_field_tag(:search) %>
-  <%= submit_tag("Procurar") %>
+<section class="page-section clearfix">
+  <div class="container">
+    <div class="intro">
+      <%= image_tag ('account.jpg'), class: "intro-img img-fluid mb-3 mb-lg-0 rounded"%>
+      <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+        <h6 class="section-heading mb-4">
+          <span class="section-heading-upper">Busca</span>
+        </h6 >
+        <div class="field">
+          <h5 class="section-label mb-4 text-left">
+            <%= label_tag(:search, "Procurar por CPF:")%>
+            <%= text_field_tag(:search)%>
+          </h5>
+        </div>
+        <div class="intro-button mx-auto">
+          <%= submit_tag("Procurar") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <% end %>
-
-<%= link_to "Criar metodo de pagamento", new_pay_method_path%>
-<%= link_to 'Matrículas', registrations_path%>
-<%= link_to 'Nova Matrícula', new_registration_path%>
