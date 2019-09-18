@@ -11,9 +11,9 @@ feature 'admin launch single class price in a payment' do
     visit root_path
 
     click_on "Matrículas"
-    fill_in 'Pesquisar por CPF', with: 'Joao'
+    fill_in 'Pesquisar Aluno', with: 'Joao'
 
-    click_on 'Buscar'
+    click_on 'Procurar'
     click_on 'Joao'
 
     fill_in 'Nome da aula', with: 'Zumba'
@@ -23,7 +23,7 @@ feature 'admin launch single class price in a payment' do
 
     click_on 'Voltar'
 
-    fill_in 'Procurar CPF:', with: registration.cpf
+    fill_in 'Pesquisar por CPF:', with: registration.cpf
     click_on 'Procurar'
 
     expect(page).to have_content('Joao')
