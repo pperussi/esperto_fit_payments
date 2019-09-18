@@ -26,14 +26,15 @@ describe 'system validate cupon for use' do
 	it 'cupon invalid for use 'do
 		carnaval = create(:promotion,name:'Carnaval',cod_promotion:'CARNA')
 		registration = create(:registration)
-		cupon = create(:cupon,promotion_id:carnaval.id,registration_id:registration.id)
+    cupon = create(:cupon,promotion_id:carnaval.id,registration_id:registration.id)
+    cupon.applied!
 		
 		get "/api/v1/promotions/#{carnaval.id}/cupons/#{cupon.code}/validate"
 
 		json_validate = JSON.parse(response.body,symbolize_names: true)
 
-		expect(response.status).to eq 200
-		expect(json_validate[:message]).to eq('Cupom não encontrado para esta promoção')
+		expect(response.status).to eq 400
+		expect(json_validate[:message]).to eq('Cupom já foi utilizado')
 	end
 
 end	

@@ -29,11 +29,14 @@ Rails.application.routes.draw do
   
   namespace :api,defaults: { format: 'json' } do
     namespace :v1,defaults: { format: 'json' } do
-      resources :promotions , only: %i[]do
-        resources :cupons, , only: %i[]do 
+
+      resources :promotions do
+        resources :cupons, only: %i[]do 
           get 'validate', on: :member
+          post 'apply', on: :member
         end
       end    
+
       resources :plans, only: %i[create show index]
       resources :unity, only: %i[create show index]
       resources :pay_methods

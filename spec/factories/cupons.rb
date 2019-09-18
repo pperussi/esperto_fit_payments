@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :cupon do
-    promotion_id { nil }
+    promotion
     code { "CARNA0001" }
     status {0}
   end
