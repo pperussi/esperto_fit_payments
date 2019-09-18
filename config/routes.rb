@@ -31,12 +31,13 @@ Rails.application.routes.draw do
       resources :plans, only: %i[create show index]
       resources :unity, only: %i[create show index]
       resources :notifications, only: %i[create]
-      resources :pay_methods, only: %i[index]
+      resources :pay_methods, only: %i[index create]
       resources :single_class, only: %i[create]
       resources :payments,only: %i[show]
       resources :registrations do
         get 'payments', on: :collection
       end
+    end
   end
 end
 
