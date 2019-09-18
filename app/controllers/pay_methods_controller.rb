@@ -23,4 +23,5 @@ class  PayMethodsController < AdministratorController
   def params_payment
     params.require(:pay_method).permit(:name, :tax, :limit_days)
   end
+  
 end

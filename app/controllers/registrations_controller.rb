@@ -1,7 +1,13 @@
-class RegistrationsController < AdministratorController
+class RegistrationsController < ApplicationController
+
   before_action :load_plan_unity, only: %i[new create edit update]
+  before_action :authenticate_user!
+  before_action :auth_redirect
+
+  # def search 
+  #   @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
+  # end
   
-  #after_action :generate_payment, only: [:create]
   def index
     @registrations = Registration.all
   end
@@ -16,7 +22,7 @@ class RegistrationsController < AdministratorController
       generate_payment
       redirect_to @registration
     else
-      flash.now[:alert] = 'Nao foi possivel salvar matricula'
+      flash.now[:alert] = "Nao foi possivel salvar matricula"
       render :new
     end
   end
@@ -31,13 +37,18 @@ class RegistrationsController < AdministratorController
 
   def update
     @registration = Registration.find(params[:id])
-
     if @registration.update(require_params)
       redirect_to @registration
     else
-      flash.now[:alert] = 'Nao foi possivel salvar matricula'
+      flash.now[:alert] = "Nao foi possivel salvar matricula"
       render :edit
     end
+  end
+
+  def paid
+    @payment = Payment.find(params[:id])
+    @payment.paid!
+    redirect_to registration_path(@payment.registration.id)
   end
 
   def search
@@ -69,4 +80,9 @@ class RegistrationsController < AdministratorController
   def require_params
     params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, :pay_method_id)
   end
+
+  def auth_redirect
+    redirect_to new_user_session_path unless current_user.admin?
+  end
 end
+

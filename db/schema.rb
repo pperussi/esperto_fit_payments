@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2019_09_16_164408) do
     t.integer "limit_days"
   end
 
+  create_table "payment_transactions", force: :cascade do |t|
+    t.string "code"
+    t.float "value"
+    t.date "date_payment"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "payment_id"
+    t.index ["payment_id"], name: "index_payment_transactions_on_payment_id"
+    t.index ["user_id"], name: "index_payment_transactions_on_user_id"
+  end
+
   create_table "payments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -109,7 +121,6 @@ ActiveRecord::Schema.define(version: 2019_09_16_164408) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.boolean "adm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false

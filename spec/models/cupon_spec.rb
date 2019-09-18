@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'generate cupons' do 
   it 'successfully' do 
-    caranaval  = create(:promotion,cod_promotion: 'CARNA',cupom_number: 3)
+    caranaval = create(:promotion, cod_promotion: 'CARNA', cupom_number: 3)
     cupons = Cupon.create_for(caranaval)
 
     expect(cupons[0].promotion_id).to eq(caranaval.id)

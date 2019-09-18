@@ -1,3 +1,5 @@
+# README
+
 # EspertoFit
 
 ## Sistema de Cobranças e Pagamentos
@@ -25,7 +27,13 @@
 ```
 - Disponibiliza o histórico de mensalidades:
 
+```
 get "/api/v1/payments/**cpf**"
+```
+# Consultar todos os pagamentos para um determinado cpf:
+
+
+### *Exemplo de resultado:*
 
 ```json
 
@@ -42,59 +50,115 @@ get "/api/v1/payments/**cpf**"
          "dt_venc"    :"2019-10-15",
          "status"    :"pending"
       },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2019-11-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2019-12-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2020-01-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2020-02-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2020-03-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2020-04-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2020-05-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2020-06-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2020-07-15",
-         "status"    :"pending"
-      },
-      {
-         "value"    :40.0,
-         "dt_venc"    :"2020-08-15",
-         "status"    :"pending"
-      }
+
+      ...
+
    ]
 }
   ```
+
+# Listar todos os planos:
+```
+get "/api/v1/plans"
+```
+### **Exemplo:**
+
+```
+{
+http://localhost:3000/api/v1/plans
+}
+```
+
+### Resultado:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Paulista",
+        "value": null
+    }
+
+    ...
+
+]
+```
+
+# Listar todas as unidades:
+```
+get "/api/v1/unity"
+```
+### **Exemplo:**
+
+```
+{
+http://localhost:3000/api/v1/plans
+}
+```
+
+### Resultado:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Paulista",
+        "value": null
+    }
+
+    ...
+
+]
+```
+
+# Listar todas os metodos de pagamento:
+```
+get "/api/v1/pay_methods"
+```
+### **Exemplo:**
+
+```
+{
+http://localhost:3000/api/v1/pay_methods
+}
+```
+
+### Resultado:
+
+```
+[
+    {
+        "id": 1,
+        "name": "boleto"
+    },
+
+    ...
+
+
+```
+
+# Consultar metodo de pagamento pelo nome:
+```
+ get 'http://localhost:3000/api/v1/pay_methods', params: { name: 'Boleto'}
+```
+### **Exemplo:**
+
+```
+{
+http://localhost:3000/api/v1/pay_methods?name=boleto
+}
+```
+
+### Resultado:
+
+```
+[
+    {
+        "id": 1,
+        "name": "boleto"
+    }
+
+```
 - Lançar aulas avulsa 
   post '/api/v1/single_class'
   
