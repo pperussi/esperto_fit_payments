@@ -39,7 +39,7 @@ describe 'api creates new client' do
   end
 
   it 'api creates new unity' do
-    post 'http://localhost:3000/api/v1/unity', params: { unity:{ name: 'Paulista'}}
+    post 'http://localhost:3000/api/v1/unity', params: { unity: { name: 'Paulista' }}
 
     json = JSON.parse(response.body, symbolize_names: true)
 
@@ -48,7 +48,7 @@ describe 'api creates new client' do
   end
 
   it 'api creates new pay_method' do
-    post 'http://localhost:3000/api/v1/pay_method', params: { pay_method:{ name: 'Boleto'}}
+    post 'http://localhost:3000/api/v1/pay_methods', params: { pay_method: { name: 'Boleto'}}
 
     json = JSON.parse(response.body, symbolize_names: true)
 

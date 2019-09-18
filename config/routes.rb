@@ -28,8 +28,9 @@ Rails.application.routes.draw do
   
   namespace :api,defaults: { format: 'json' } do
     namespace :v1,defaults: { format: 'json' } do
-      resources :plans, only: %i[create]
-      resources :unity, only: %i[create]
+      resources :plans, only: %i[create show index]
+      resources :unity, only: %i[create show index]
+      resources :pay_methods
       resources :payments,only: %i[show]
       resources :registrations do
         get "payments", on: :collection

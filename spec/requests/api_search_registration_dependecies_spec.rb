@@ -2,50 +2,58 @@ require 'rails_helper'
 
 describe 'api search registration dependencies' do
 
-  it 'api search plan' do
+  it 'api lists all plans' do
     plan = Plan.create!(name: 'Executivo', value: 70)
 
-    get 'http://localhost:3000/api/v1/plans', params: { plan:{ name: 'Executivo', value: 40}}
+    get 'http://localhost:3000/api/v1/plans/'
 
     json = JSON.parse(response.body, symbolize_names: true)
 
     expect(response.body).to include plan.name
-    expect(response.body).to include plan.value
-    expect(response.status).to eq 201
+    expect(response.status).to eq 200
   end
 
-  it 'api search unity' do
+  it 'api lists one plans' do
+#, params: { plan: { name: 'Executivo'}}
+  end
+
+  it 'api search all unities' do
     unity = Unity.create!(name: 'Paulista')
 
-    get 'http://localhost:3000/api/v1/unity', params: { unity:{ name: 'Paulista'}}
+    get 'http://localhost:3000/api/v1/unity'
 
     json = JSON.parse(response.body, symbolize_names: true)
 
     expect(response.body).to include unity.name
-    expect(response.status).to eq 201
+    expect(response.status).to eq 200
   end
 
-  it 'api search pay_method' do
+  it 'api searches one unity' do
+    #, params: { unity:{ name: 'Paulista'}}
+  end
+
+  it 'api search one pay_method' do
     PayMethod.create!(name: 'Boleto')
 
-    get 'http://localhost:3000/api/v1/pay_method', params: { pay_method:{ name: 'Boleto'}}
+    get 'http://localhost:3000/api/v1/pay_methods', params: { name: 'Boleto'}
 
     json = JSON.parse(response.body, symbolize_names: true)
 
     expect(response.body).to include 'Boleto'
-    expect(response.status).to eq 201
+    expect(response.status).to eq 200
   end
 
-  it 'api search all pay_methods' do
-    pay_method = PayMethod.create!(name: 'Boleto')
-    other_pay_method = PayMethod.create!(name: 'Cartāo')
+  it 'api searches all pay methods' do
+    PayMethod.create!(name: 'Boleto')
+    PayMethod.create!(name: 'Cartão')
 
     get 'http://localhost:3000/api/v1/pay_methods'
 
     json = JSON.parse(response.body, symbolize_names: true)
 
-    expect(response.body).to include pay_method.name
-    expect(response.body).to include other_pay_method.name
-    expect(response.status).to eq 201
+    expect(response.body).to include 'Boleto'
+    expect(response.body).to include 'Cartão'
+    expect(response.status).to eq 200
   end
+
 end
