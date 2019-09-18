@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-# README
-
->>>>>>> 9902ff26c0d8773f5dd5615dc9fb5969563b406e
 # EspertoFit
 
 ## Sistema de Cobranças e Pagamentos
