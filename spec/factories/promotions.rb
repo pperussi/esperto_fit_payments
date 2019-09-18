@@ -6,7 +6,7 @@ FactoryBot.define do
     discount_max { 10 }
     cod_promotion { "MyString" }
     cupom_number { 5 }
-    begin_promotion { "MyString" }
+    begin_promotion { Date.current }
     end_promotion { "MyString" }
   end
 end

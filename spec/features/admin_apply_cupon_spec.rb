@@ -30,6 +30,8 @@ feature 'Admin apply cupon' do
     carnaval = create(:promotion, name: 'Carnaval', cod_promotion: 'CARNA', discount_max: 20, value_percent_discount: 10)
     cupon = create(:cupon,promotion_id:carnaval.id)
     CuponBurn.create(cupon:cupon,registration:registration)
+    CuponBurn.apply_cupon(registration,carnaval.value_percent_discount,carnaval.discount_max)
+    cupon.applied!
 
     login_as(user)
     visit promotions_path
@@ -39,8 +41,7 @@ feature 'Admin apply cupon' do
     fill_in 'Número da matricula', with: registration.id
     click_on 'Aplicar'
 
-
-    expect(page).to have_content('Cupom já utilizado;')
+    expect(page).to have_content('Cupom já foi utilizado;')
   end
 
 end

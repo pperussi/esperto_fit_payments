@@ -16,25 +16,22 @@ class CuponsController < ApplicationController
 
   def apply
     @promotion = Promotion.find(params[:promotion_id])
-    @cupon = Cupon.find_by(code: params[:code])
+
+    @cupon = Cupon.find_by!(code: params[:code])
     @registration = Registration.find(params[:registration_id])
-    if @cupon.blank?
-      flash[:alert] = 'Cupom nāo encontrado;'
-      redirect_to_promotion
-    else
-      if @cupon.burned?
-        flash[:alert] = 'Cupom já utilizado;'
-        redirect_to_promotion
-      else   
+      if @cupon.active?
         @cupon.applied!
         CuponBurn.create(cupon: @cupon, registration: @registration)
         new_value
         redirect_to_promotion
+      else  
+        flash[:alert] = 'Cupom já foi utilizado;'
+        redirect_to_promotion 
       end
-    end
-  rescue ActiveRecord::RecordNotFound 
-    flash[:notice] = 'Matrícula nāo encontrada;' if @registration.blank?
-    redirect_to_promotion
+    rescue ActiveRecord::RecordNotFound 
+      flash[:alert] = 'Cupom nāo encontrado;' if @cupon.blank?
+      flash[:notice] = 'Matrícula nāo encontrada;' if @registration.blank?
+      redirect_to_promotion
   end  
 
   private
@@ -47,6 +44,12 @@ class CuponsController < ApplicationController
     CuponBurn.apply_cupon(@registration, @cupon.promotion.value_percent_discount, @cupon.promotion.discount_max)
   end
 
+  def end_promotion
+    @promotion = Promotion.find(params[:promotion_id])
+    if @promotion.end_promotion.to_date < Date.current
+      flash[:notice] = 'Esta promoçāo já foi encerrada'
+    end
+  end  
   def redirect_to_promotion
     redirect_to @promotion
   end

@@ -32,14 +32,29 @@ feature 'Admin register promo' do
 
   scenario 'not register blank promotions' do
     administrator = create(:user, admin: true)
-    
+    login_as(administrator)
     visit promotions_path
 
-    within('form') do
-      fill_in 'email', with: administrator.email 
-      fill_in 'password', with: administrator.password
-      click_on 'Log in'
-    end
+    click_on 'Criar Promoçāo'
+
+    fill_in 'Nome', with: 'Carnaval'
+    fill_in 'Descriçāo', with: 'Entre no clima do Carnaval'
+    fill_in 'Porcentagem de Desconto', with: 15
+    fill_in 'Valor Máximo de Desconto', with: 20
+    fill_in 'Número de Cupons', with: 70
+    fill_in 'Código da Promoçāo',with: 'CARNA'
+    fill_in 'Início da Promoção', with: '15/01/2000'
+    fill_in 'Fim da Promoção', with: '30/03/2020'
+    click_on 'Criar'
+
+    expect(page).to have_content('Nāo foi possível salvar a promoçāo ')
+  end
+
+  scenario 'not register promotions in the past' do
+    administrator = create(:user, admin: true)
+    
+    login_as(administrator)
+    visit promotions_path
 
     click_on 'Criar Promoçāo'
 
