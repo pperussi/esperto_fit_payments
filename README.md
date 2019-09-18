@@ -173,7 +173,7 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
        } }
   ```
 
-- Banir usuario transformando cancelando suas faturas pendentes em canceladas
+- Banir usuario transformando suas faturas pendentes em canceladas
 
 get "/api/v1/payments/**cpf**/ban"
 ```json
