@@ -15,7 +15,6 @@ module Api::V1
 
     def show
       @plan = Plan.where('name LIKE ?', params.dig(:plan, :name))
-      byebug
       return render json: @plan, status: 200 if @plan =! nil
     end
 

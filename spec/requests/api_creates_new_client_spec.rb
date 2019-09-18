@@ -18,6 +18,8 @@ describe 'api creates new client' do
 
     expect(response.body).to include '1323'
     expect(response.status).to eq 201
+    expect(response.body).to include 'pending'
+    expect(response.body).to include '70'
   end
 
   it 'failed' do
