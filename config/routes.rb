@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   
   resources :single_classes,only: %i[show]
   resources :administrator, only: %i[index] 
-  resources :pay_methods, only: %i[new create]
+  resources :pay_methods, only: %i[index new create]
 
   resources :registrations, only: %i[index new create show edit update] do
     resources :single_classes,only: %i[new create]
@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resources :plans, only: %i[create show index]
       resources :unity, only: %i[create show index]
       resources :pay_methods
+      resources :single_class, only: %i[create]
       resources :payments,only: %i[show]
       resources :registrations do
         get "payments", on: :collection
@@ -38,3 +39,5 @@ Rails.application.routes.draw do
     end
   end
 end
+
+

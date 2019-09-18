@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2019_09_13_234504) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "tax"
+    t.integer "limit_days"
   end
 
   create_table "payment_transactions", force: :cascade do |t|

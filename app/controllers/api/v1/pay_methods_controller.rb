@@ -9,7 +9,7 @@ module Api::V1
     def index
       @pay_method = PayMethod.all
       @pay_method = @pay_method.where('name LIKE ?', params[:name]) if params[:name] != nil
-      return render json: @pay_method, only: [:id, :name], status: 200 if @pay_method !=nil
+      return render json: @pay_method, only: [:id, :name], status: :ok if @pay_method !=nil
     end
 
     private

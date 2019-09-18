@@ -1,12 +1,37 @@
 # README
 
-## API
+# EspertoFit
 
-# Consultar todos os pagamentos para um determinado cpf:
+## Sistema de Cobranças e Pagamentos
+
+### Ruby version
+2.6.4
+
+### API
+-Disponibiliza os metodos de pagamentos disponiveis:
+```JSON
+  {"id":1,
+  "name":"Cartão de Crédito",
+  "created_at":"2019-09-15T23:41:51.236Z",
+  "updated_at":"2019-09-15T23:41:51.236Z",
+  "tax":5,
+  "limit_days":4
+  },
+   {"id":2,
+   "name":"Boleto",
+   "created_at":"2019-09-15T23:43:52.226Z",
+   "updated_at":"2019-09-15T23:43:52.226Z",
+   "tax":0,
+   "limit_days":15
+   }
+```
+- Disponibiliza o histórico de mensalidades:
 
 ```
 get "/api/v1/payments/**cpf**"
 ```
+# Consultar todos os pagamentos para um determinado cpf:
+
 
 ### *Exemplo de resultado:*
 
@@ -134,3 +159,16 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
     }
 
 ```
+- Lançar aulas avulsa 
+  post '/api/v1/single_class'
+  
+  Exemplo
+  ```
+   post '/api/v1/single_class', params: {single_class: 
+    { name: 'Boxe',
+      unit: 'Paulista',
+      date: '2019-09-17',
+      price: 100,
+      cpf: '123456'
+       } }
+  ```

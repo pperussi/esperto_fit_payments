@@ -1,12 +1,12 @@
 class RegistrationsController < ApplicationController
 
   before_action :load_plan_unity, only: %i[new create edit update]
-  before_action :authenticate_user!
-  before_action :auth_redirect
+  # before_action :authenticate_user!
+  # before_action :auth_redirect
 
-  def search 
-    @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
-  end
+  # def search 
+  #   @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
+  # end
   
   def index
     @registrations = Registration.all
@@ -52,11 +52,20 @@ class RegistrationsController < ApplicationController
   end
 
   def search
+<<<<<<< HEAD
     @registrations = Registration.where("cpf LIKE ?", "%#{params[:search]}%")
   end
 
   def search
     @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
+=======
+    @registration = Registration.find_by(cpf: params[:search])
+    if @registration.nil?
+      flash[:alert] = 'Não foi possível encontrar o CPF'
+      redirect_to root_path
+    end
+
+>>>>>>> 1be33665c2d246f223b620b9a5e80febfe88b171
   end
 
   def search_single_class

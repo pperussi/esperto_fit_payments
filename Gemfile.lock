@@ -217,7 +217,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    simplecov (0.17.0)
+    simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
@@ -267,7 +267,7 @@ DEPENDENCIES
   byebug
   capybara
   coffee-rails (~> 4.2)
-  devise
+  devise (>= 4.7.1)
   factory_bot_rails
   jbuilder (~> 2.5)
   jquery-rails
