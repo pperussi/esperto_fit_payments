@@ -108,3 +108,9 @@ get "/api/v1/payments/**cpf**"
       cpf: '123456'
        } }
   ```
+- Banir usuario transformando cancelando suas faturas pendentes em canceladas
+
+get "/api/v1/payments/**cpf**/ban"
+```json
+   {"msg": "CPF 123456 com todas as suas faturas canceladas"}
+```

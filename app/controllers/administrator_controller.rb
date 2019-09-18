@@ -6,6 +6,7 @@ class  AdministratorController < ApplicationController
     @pay_methods = PayMethod.all
   end
   private
+  
   def is_admin
     redirect_to root_path unless current_user.admin?
   end

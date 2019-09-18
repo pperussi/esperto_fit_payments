@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   namespace :api ,defaults: { format: 'json' } do
     namespace :v1,defaults: { format: 'json' } do
-      resources :payments, only: %i[show]
+      resources :payments, only: %i[show] do
+        get 'ban', on: :member
+      end
       resources :pay_methods, only: %i[index]
       resources :single_class, only: %i[create]
     end
