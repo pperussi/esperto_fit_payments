@@ -4,11 +4,20 @@
 
 ## Sistema de Cobranças e Pagamentos
 
-### Ruby version
+## Ruby version
 2.6.4
 
-### API
--Disponibiliza os metodos de pagamentos disponiveis:
+## API
+### Disponibiliza os metodos de pagamentos disponiveis:
+
+get '/api/v1/pay_methods'
+
+```
+{
+    http://localhost:3000/api/v1/pay_methods
+}
+```
+
 ```JSON
 {
     "id":1,
@@ -23,17 +32,19 @@
     "limit_days":15
 }
 ```
-- Disponibiliza o histórico de mensalidades:
 
-```
+
+### Consultar todos os pagamentos para um determinado cpf:
+
 get "/api/v1/payments/**cpf**"
+
 ```
-# Consultar todos os pagamentos para um determinado cpf:
+{
+    http://localhost:3000/api/v1/payments/123456
+}
+```
 
-
-### *Exemplo de resultado:*
-
-```json
+```JSON
 
 {
    "cpf": "123456",
@@ -55,11 +66,9 @@ get "/api/v1/payments/**cpf**"
 }
   ```
 
-# Listar todos os planos:
-```
+### Listar todos os planos:
+
 get "/api/v1/plans"
-```
-### **Exemplo:**
 
 ```
 {
@@ -67,8 +76,6 @@ get "/api/v1/plans"
 }
 ```
 
-### Resultado:
-
 ```
 [
     {
@@ -82,11 +89,9 @@ get "/api/v1/plans"
 ]
 ```
 
-# Listar todas as unidades:
-```
+### Listar todas as unidades:
+
 get "/api/v1/unity"
-```
-### **Exemplo:**
 
 ```
 {
@@ -94,8 +99,6 @@ http://localhost:3000/api/v1/plans
 }
 ```
 
-### Resultado:
-
 ```
 [
     {
@@ -109,38 +112,16 @@ http://localhost:3000/api/v1/plans
 ]
 ```
 
-# Listar todas os metodos de pagamento:
-```
-get "/api/v1/pay_methods"
-```
-### **Exemplo:**
+### Informar matrícula para gerar os pagamentos da matrícula:
 
 ```
-{
-http://localhost:3000/api/v1/pay_methods
-}
+ post 'http://localhost:3000/api/v1/registrations', params: { name: 'Godofredo', 
+ cpf: '123456', 
+ unity_id: unity.id, 
+ plan_id: plan.id, 
+ pay_method_id: pay_method.id
+ }
 ```
-
-### Resultado:
-
-```
-[
-    {
-        "id": 1,
-        "name": "boleto"
-    },
-
-    ...
-]
-
-
-```
-
-# Informar matrícula para gerar os pagamentos da matrícula:
-```
- post 'http://localhost:3000/api/v1/registrations', params: { name: 'Godofredo', cpf: '123456', unity_id: unity.id, plan_id: plan.id, pay_method_id: pay_method.id}
-```
-### Resultado:
 
 ```
 [
@@ -173,24 +154,22 @@ http://localhost:3000/api/v1/pay_methods
         ]
     }
 ]
+```
 
 
 
 
+### Consultar metodo de pagamento pelo nome:
 
-# Consultar metodo de pagamento pelo nome:
 ```
  get 'http://localhost:3000/api/v1/pay_methods', params: { name: 'Boleto'}
 ```
-### **Exemplo:**
 
 ```
 {
 http://localhost:3000/api/v1/pay_methods?name=boleto
 }
 ```
-
-### Resultado:
 
 ```
 [
@@ -201,7 +180,7 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
 ]
 
 ```
-#Lançar aulas avulsa 
+### Lançar aula avulsa 
   post '/api/v1/single_class'
   
   Exemplo
@@ -215,9 +194,10 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
        } }
   ```
 
-- Banir usuario transformando suas faturas pendentes em canceladas
+### Banir usuario transformando suas faturas pendentes em canceladas
 
 post "/api/v1/payments/ban" params: { cpf: '123456' }
+
 ```json
    {"msg": "CPF 123456 com todas as suas faturas canceladas"}
 ```

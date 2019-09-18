@@ -42,7 +42,7 @@ feature 'Admin register promo' do
     fill_in 'Fim da Promoção', with: '30/03/2020'
     click_on 'Criar'
 
-    expect(page).to have_content('Nāo foi possível salvar a promoçāo ')
+    expect(page).to have_content('Nāo foi possível salvar a promoçāo')
   end
 
   scenario 'not register promotions in the past' do
