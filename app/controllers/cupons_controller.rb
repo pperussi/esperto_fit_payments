@@ -42,10 +42,6 @@ class CuponsController < ApplicationController
     redirect_to root_path unless current_user.admin?
   end
 
-  def params_cupon
-    params.require(:cupon).permit(:registration_id)
-  end
-
   def new_value
     @registration = Registration.find(params[:registration_id])
     CuponBurn.apply_cupon(@registration, @cupon.promotion.value_percent_discount, @cupon.promotion.discount_max)

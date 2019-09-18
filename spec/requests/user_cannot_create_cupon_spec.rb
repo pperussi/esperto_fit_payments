@@ -18,4 +18,17 @@ describe 'user cannot create cupon'do
     expect(response.status).to eq 302
     expect(response.body).to redirect_to(root_path)
   end
+  it 'successfully in access denied' do 
+    carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', cupom_number: 5)
+    5.times do |cupon|
+      cupon = create(:cupon,promotion_id:carnaval.id)
+    end
+
+    user = create(:user, admin: true)
+    login_as(user, scope: :user)
+    post "/promotions/#{carnaval.id}/apply"
+
+    expect(response.status).to eq 302
+    expect(response.body).to redirect_to(promotion_path(carnaval))
+  end
 end
