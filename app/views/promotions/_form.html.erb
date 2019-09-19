@@ -5,11 +5,10 @@
             <h2 class="section-heading mb-4">
               <span class="section-heading-upper ">Cadastrar Promoção</span>
             </h2>
-            <form>
               <%=form_for @promotion do |f|%>
               <div class="form-group">
-                <%= f.label :name%>
-                <%= f.text_field :name %>
+                <%=f.label :name%>
+                <%=f.text_field :name%>
 
                 <%=f.label :cupom_number%>
                 <%=f.number_field :cupom_number%>
@@ -40,16 +39,15 @@
                 <%=f.label :description%>
                 <%=f.text_area :description%>
 
-                 <%= f.submit 'Criar',  class: "btn btn-primary btn-xl2" %>
+                 <%= f.submit 'Enviar',  class: "btn btn-primary btn-xl2" %>
               </div>
               <% end %>
 
               <%if @promotion.errors.any?%>
                 <% @promotion.errors.full_messages.each do |message|%>
-                  <%=message%>
+                  <br><%=message%></br>
                 <%end%>
               <%end%>
-            </form>
           </div>
           <p class="mb-0"></p>
         </div>
