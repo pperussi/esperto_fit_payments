@@ -10,11 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_09_17_130139) do
-=======
+
 ActiveRecord::Schema.define(version: 2019_09_19_021506) do
->>>>>>> ae25781f485ed599014901c81e93600d27236ccf
+
 
   create_table "clients_classes", force: :cascade do |t|
     t.datetime "created_at", null: false
