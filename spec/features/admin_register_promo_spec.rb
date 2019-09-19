@@ -43,6 +43,7 @@ feature 'Admin register promo' do
     click_on 'Criar'
 
     expect(page).to have_content('Nāo foi possível salvar a promoçāo')
+    
   end
 
   scenario 'not register promotions in the past' do
