@@ -3,7 +3,7 @@ class CuponsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_promotion , only: %i[ apply] 
   before_action :finish_promotion , only: %i[ apply] 
-  before_action :admin, only: %i[ create apply] 
+  before_action :admin, only: %i[create] 
    
 
   def create

@@ -221,3 +221,41 @@ post "/api/v1/payments/ban" params: { cpf: '123456' }
 ```json
    {"msg": "CPF 123456 com todas as suas faturas canceladas"}
 ```
+
+### API
+-Aplica cupom em mensalidade em aberto 
+```JSON
+{
+    "message":"Sucesso ao aplicar cupom"
+},
+{
+    "message":"Este cupom já foi utilizado"
+},
+{
+    "message":"Esta promoçāo já foi encerrada"
+},
+{
+    "message":"Cupom nāo encontrado"
+}
+```
+- Disponibiliza a mensagem sobre a solicitação feita
+```
+post "/api/v1/promotions/promotion_id/apply" params: {code:'CODIGO0001', registration:'ID'}
+```
+
+### API
+-Valida status de cupom 
+```JSON
+{
+    "message":"ativo"
+},
+{
+    "message":"aplicado"
+},
+{
+    "message":"não encontrado"
+}
+```
+- Disponibiliza a mensagem sobre a solicitação feita
+```
+get "/api/v1/promotions/:promotion_id/cupons/:id/validate" 

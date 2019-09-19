@@ -3,7 +3,7 @@ feature 'administrator apply cupom' do
   scenario 'successfully' do 
     user = create(:user,admin: true)
     register = create(:registration)
-    register.generate_payment
+    register.generate_anual_payments
     carnaval = create(:promotion, name:'Carnaval', cod_promotion: 'CARNA', discount_max:20,value_percent_discount:10)
     cupon = create(:cupon, promotion_id: carnaval.id)
 

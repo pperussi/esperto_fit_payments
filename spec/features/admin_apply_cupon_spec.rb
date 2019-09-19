@@ -4,7 +4,7 @@ feature 'Admin apply cupon' do
   scenario 'and alter alter value' do
     user = create(:user, admin: true)
     registration = create(:registration, name: 'Outro nome')
-    registration.generate_payment
+    registration.generate_anual_payments
     carnaval = create(:promotion, name: 'Carnaval', cod_promotion: 'CARNA', discount_max: 20, value_percent_discount: 10)
     cupon = create(:cupon,promotion_id:carnaval.id)
 
@@ -26,7 +26,7 @@ feature 'Admin apply cupon' do
   scenario 'usage  in two registration cupon' do
     user = create(:user, admin: true)
     registration = create(:registration, name: 'Outro nome')
-    registration.generate_payment
+    registration.generate_anual_payments
     carnaval = create(:promotion, name: 'Carnaval', cod_promotion: 'CARNA', discount_max: 20, value_percent_discount: 10)
     cupon = create(:cupon,promotion_id:carnaval.id)
     CuponBurn.create(cupon:cupon,registration:registration)
@@ -46,7 +46,7 @@ feature 'Admin apply cupon' do
   scenario 'usage  in two registration cupon' do
     user = create(:user, admin: true)
     registration = create(:registration, name: 'Outro nome')
-    registration.generate_payment
+    registration.generate_anual_payments
     carnaval = create(:promotion, name: 'Carnaval', cod_promotion: 'CARNA', discount_max: 20, value_percent_discount: 10,end_promotion:'10-09-2019')
     cupon = create(:cupon,promotion_id:carnaval.id)
 

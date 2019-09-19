@@ -31,9 +31,10 @@ Rails.application.routes.draw do
     namespace :v1,defaults: { format: 'json' } do
 
       resources :promotions do
+        post 'apply', to: "cupons#apply"
         resources :cupons, only: %i[]do 
           get 'validate', on: :member
-          post 'apply', on: :member
+          
         end
       end    
 
