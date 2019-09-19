@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :promotion do
-    name { "MyString" }
+    name { "Natal" }
     description { "MyText na na na na na na na na Batman " }
     value_percent_discount { 10 }
     discount_max { 10 }

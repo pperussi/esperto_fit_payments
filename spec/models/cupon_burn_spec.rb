@@ -24,6 +24,6 @@ describe 'registration off value' do
     CuponBurn.create(cupon: cupon, registration: registration)
     CuponBurn.apply_cupon(registration, carnaval.value_percent_discount, carnaval.discount_max)
 
-    expect(registration.payments[0].value).to eq(1800)
+    expect(registration.payments[0].value).to eq(1980)
   end
 end
