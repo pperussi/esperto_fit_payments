@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'Admin apply cupon' do 
+feature 'Admin apply cupon' do
 
   scenario 'and alter alter value' do
     user = create(:user, admin: true)
@@ -20,7 +20,7 @@ feature 'Admin apply cupon' do
       click_on cupon.code
     end
 
-    expect(page).to have_css('h2', text: registration.name)
+    expect(page).to have_css('h4', text: registration.name)
   end
 
   scenario 'usage  in two registration cupon' do

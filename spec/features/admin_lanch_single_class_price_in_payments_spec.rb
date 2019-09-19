@@ -13,7 +13,7 @@ feature 'admin launch single class price in a payment' do
     click_on "Matrículas"
     fill_in 'Pesquisar Aluno', with: 'Joao'
 
-    click_on 'Procurar'
+    click_on 'Buscar'
     click_on 'Joao'
 
     fill_in 'Nome da aula', with: 'Zumba'

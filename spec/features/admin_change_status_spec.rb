@@ -11,7 +11,7 @@ feature 'Change status' do
     payment = registration.payments.create!(value: 50, registration_id: 1,\
                                           pay_method_id: 1,\
                                           dt_venc: '2019-09-10 18:20:44')
-    
+
     login_as user
     visit root_path
     click_on 'Matrículas'
@@ -21,8 +21,8 @@ feature 'Change status' do
     end
     fill_in 'Código de Transaçāo', with: 'TR001'
     fill_in 'Valor Pago', with: 70
-    click_on 'Pagar' 
+    click_on 'Pagar'
 
-    expect(page).to have_css('p', text: 'paid')
+    expect(page).to have_content('paid')
   end
 end

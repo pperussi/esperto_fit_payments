@@ -1,49 +1,43 @@
-<section class="page-section cta">
-  <div class="container">
-    <div class="row">
+  <div class="row">
       <div class="col-xl-9 mx-auto">
             <h2 class="section-heading mb-4">
               <span class="section-heading-upper ">Cadastrar Promoção</span>
             </h2>
             <form>
               <%=form_for @promotion do |f|%>
-              <div class="form-group">
+            <div class="form-row">
+              <div class="form-group col-md-6">
                 <%= f.label :name%>
-                <%= f.text_field :name %>
+                <%= f.text_field :name, class: "form-control"%>
 
                 <%=f.label :cupom_number%>
-                <%=f.number_field :cupom_number%>
-              </div>
+                <%=f.number_field :cupom_number, class: "form-control"%>
 
-              <div class="form-group">
+
                 <%=f.label :value_percent_discount%>
-                <%=f.number_field :value_percent_discount%>
+                <%=f.number_field :value_percent_discount, class: "form-control"%>
 
                 <%=f.label :discount_max %>
-                <%=f.number_field :discount_max%>
+                <%=f.number_field :discount_max, class: "form-control"%>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <%=f.label :cod_promotion%>
-                <%=f.text_field :cod_promotion%>
-              </div>
+                <%=f.text_field :cod_promotion, class: "form-control"%>
 
-              <div class="form-group">
                 <%=f.label :begin_promotion%>
-                <%=f.text_field :begin_promotion%>
+                <%=f.text_field :begin_promotion, class: "form-control"%>
 
                 <%=f.label :end_promotion%>
-                <%=f.text_field :end_promotion%>
-              </div>
+                <%=f.text_field :end_promotion, class: "form-control"%>
 
-              <div class="form-group">
                 <%=f.label :description%>
-                <%=f.text_area :description%>
-
-                 <%= f.submit 'Enviar',  class: "btn btn-primary btn-xl2" %>
+                <%=f.text_area :description, class: "form-control"%>
               </div>
-              <% end %>
+                 <%= f.submit 'Criar',  class: "btn btn-primary btn-xl2" %>
 
+              <% end %>
+            </div>
               <%if @promotion.errors.any?%>
                 <% @promotion.errors.full_messages.each do |message|%>
                   <%=message%>
@@ -55,5 +49,3 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
