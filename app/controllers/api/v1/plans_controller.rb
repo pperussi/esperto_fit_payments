@@ -2,10 +2,9 @@ module Api::V1
   class PlansController < ApiController
     def create
       @plan = Plan.new(set_params)
-      
       if @plan.save!
-        render json: @plan, status:201
-      end 
+        render json: @plan, only: [:id, :name, :value], status:201
+      end
     end
 
     def index
@@ -14,8 +13,8 @@ module Api::V1
     end
 
     def show
-      @plan = Plan.where('name LIKE ?', params.dig(:plan, :name))
-      return render json: @plan, status: 200 if @plan =! nil
+      @plan = Plan.find(params[:id])
+      return render json: @plan, only: [:id, :name, :value], status: 200 if @plan != nil
     end
 
     private
