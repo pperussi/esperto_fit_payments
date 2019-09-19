@@ -158,23 +158,20 @@ p {
   }
 }
 
-.cta {
+.cont {
   padding-top: 5rem;
   padding-bottom: 5rem;
   background-color: rgba(213, 210, 217, 0.9);
 }
 
-.cta .cta-inner {
-  position: relative;
+.cont .cont-inner {
   padding: 3rem;
   margin: 0.5rem;
   background-color: rgba(230, 167, 86, 0.65);
 }
 
-.cta .cta-inner:before {
+.cont .cont-inner:before {
   border-radius: 0.5rem;
-  content: '';
-  position: absolute;
   top: -0.5rem;
   bottom: -0.5rem;
   left: -0.5rem;

@@ -2,12 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-9 mx-auto">
-
+        <div class="cont-inner text-center rounded">
           <h2 class="section-heading mb-4">
             <span class="section-heading-upper">Matrícula</span>
           </h2>
-          <h4><%= @registration.name %></h4>
-          <p>Cpf: <%= @registration.cpf %> - Unidade: <%= @registration.unity.name %> - Plano: <%= @registration.plan.name %></p>
+          <h4 class="section-heading-upper"><%= @registration.name %></h4>
+          <p class="section-heading-lower">Cpf: <%= @registration.cpf %> - Unidade: <%= @registration.unity.name %> - Plano: <%= @registration.plan.name %></p>
           <table class="table">
             <thead>
               <th>Pagamento</th>
@@ -27,6 +27,6 @@
           <p class="mb-0"></p>
         </div>
       </div>
-  
+    </div>
   </div>
 </section>

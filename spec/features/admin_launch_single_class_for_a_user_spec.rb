@@ -11,7 +11,7 @@ feature 'admin launch single class for a user' do
     visit root_path
 
     click_on "Matrículas"
-    fill_in 'Pesquisar por CPF:', with: 'Joao'
+    fill_in 'Pesquisar Aluno', with: 'Joao'
 
     click_on 'Buscar'
     click_on 'Joao'
@@ -37,7 +37,7 @@ feature 'admin launch single class for a user' do
     visit root_path
 
     click_on "Matrículas"
-    fill_in 'Pesquisar por CPF:', with: 'Joao'
+    fill_in 'Pesquisar Aluno', with: 'Joao'
 
     click_on 'Buscar'
     click_on 'Joao'

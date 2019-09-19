@@ -1,3 +1,18 @@
-<% @registrations.each do |r| %>
-  <%= link_to r.name, new_registration_single_class_path(r) %>
-<%end%> 
+
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <div class="cont-inner text-center rounded">
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper">Matrículas</span>
+          </h2>
+          <% @registrations.each do |r| %>
+            <%= link_to r.name, new_registration_single_class_path(r) %>
+          <%end%>
+          <p class="mb-0"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
