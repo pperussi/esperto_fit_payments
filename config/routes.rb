@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'user#index'
 
   resources :promotions, only: %i[index show new create] do
+    post 'apply', to: "cupons#apply"
     resources :cupons, only: %i[create]
   end
 
@@ -34,7 +35,7 @@ Rails.application.routes.draw do
       resources :pay_methods, only: %i[index create]
       resources :single_class, only: %i[create]
       resources :payments,only: %i[show] do
-        get 'ban' , on: :member
+        post 'ban' , on: :collection
       end
       resources :registrations do
         get 'payments', on: :collection

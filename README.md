@@ -8,20 +8,18 @@
 ### API
 -Disponibiliza os metodos de pagamentos disponiveis:
 ```JSON
-  {"id":1,
-  "name":"Cartão de Crédito",
-  "created_at":"2019-09-15T23:41:51.236Z",
-  "updated_at":"2019-09-15T23:41:51.236Z",
-  "tax":5,
-  "limit_days":4
-  },
-   {"id":2,
-   "name":"Boleto",
-   "created_at":"2019-09-15T23:43:52.226Z",
-   "updated_at":"2019-09-15T23:43:52.226Z",
-   "tax":0,
-   "limit_days":15
-   }
+{
+    "id":1,
+    "name":"Cartão de Crédito",
+    "tax":5,
+    "limit_days":4
+},
+{   
+    "id":2,
+    "name":"Boleto",
+    "tax":0,
+    "limit_days":15
+}
 ```
 - Disponibiliza o histórico de mensalidades:
 
@@ -188,7 +186,7 @@ get "/api/v1/plans"
 
 ```
 {
-http://localhost:3000/api/v1/plans
+    http://localhost:3000/api/v1/plans
 }
 ```
 
@@ -256,9 +254,52 @@ http://localhost:3000/api/v1/pay_methods
     },
 
     ...
+]
 
 
 ```
+
+# Informar matrícula para gerar os pagamentos da matrícula:
+```
+ post 'http://localhost:3000/api/v1/registrations', params: { name: 'Godofredo', cpf: '123456', unity_id: unity.id, plan_id: plan.id, pay_method_id: pay_method.id}
+```
+### Resultado:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Godofredo",
+        "cpf": "123456",
+        "unity": "Paulista",
+        "plan": "Executivo",
+        pagamentos: [
+            {
+                "cpf": "123456",
+                "status": "pending",
+                "value": 40.0
+                "dt_venc": "2019-10-19"
+            }
+            {
+                "cpf": "123456",
+                "status": "pending",
+                "value": 40.0
+                "dt_venc": "2019-11-19"
+            }
+            {
+                "cpf": "123456",
+                "status": "pending",
+                "value": 40.0
+                "dt_venc": "2019-12-19"
+            }
+            ...
+        ]
+    }
+]
+
+
+
+
 
 # Consultar metodo de pagamento pelo nome:
 ```
@@ -280,9 +321,14 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
         "id": 1,
         "name": "boleto"
     }
+]
 
 ```
+<<<<<<< HEAD
 - Lançar aulas avulsa
+=======
+#Lançar aulas avulsa 
+>>>>>>> d3dd84988d23eea30e3d8fe9cc95a015230d3833
   post '/api/v1/single_class'
 
   Exemplo
@@ -298,7 +344,7 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
 
 - Banir usuario transformando suas faturas pendentes em canceladas
 
-get "/api/v1/payments/**cpf**/ban"
+post "/api/v1/payments/ban" params: { cpf: '123456' }
 ```json
    {"msg": "CPF 123456 com todas as suas faturas canceladas"}
 ```
