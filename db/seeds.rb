@@ -21,6 +21,7 @@ reg.generate_anual_payments
 reg_unpaid.generate_anual_payments
 reg_single_class.generate_anual_payments
 
+reg_unpaid.payments[0].update(status: :unpaid)
 single_class = SingleClass.create!(name: 'Boxe Quantico',
                                    unit: 'Paulista',
                                    price: 300,
