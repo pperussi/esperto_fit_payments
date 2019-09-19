@@ -324,11 +324,7 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
 ]
 
 ```
-<<<<<<< HEAD
-- Lançar aulas avulsa
-=======
-#Lançar aulas avulsa 
->>>>>>> d3dd84988d23eea30e3d8fe9cc95a015230d3833
+###Lançar aulas avulsa
   post '/api/v1/single_class'
 
   Exemplo
