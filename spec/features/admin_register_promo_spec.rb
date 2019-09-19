@@ -43,11 +43,12 @@ feature 'Admin register promo' do
     click_on 'Criar'
 
     expect(page).to have_content("can't be in the past")
+
   end
 
   scenario 'not register blank promotions' do
     administrator = create(:user, admin: true)
-    
+
     login_as(administrator)
     visit promotions_path
 
@@ -64,21 +65,21 @@ feature 'Admin register promo' do
 
     expect(page).to have_content('Nāo foi possível salvar a promoçāo')
   end
-  scenario 'fail create promotions user' do 
+  scenario 'fail create promotions user' do
     administrator = create(:user)
 
     visit promotions_path
 
     expect(page).not_to have_link('Criar Promoçāo')
-    expect(current_path).to eq new_user_session_path 
+    expect(current_path).to eq new_user_session_path
   end
 
-  scenario 'fail create promotions user access url' do 
+  scenario 'fail create promotions user access url' do
     administrator = create(:user)
 
     visit new_promotion_path
 
     expect(page).not_to have_link('Criar Promoçāo')
-    expect(current_path).to eq new_user_session_path 
+    expect(current_path).to eq new_user_session_path
   end
 end

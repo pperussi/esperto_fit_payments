@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: "user#index"
+  root to: 'user#index'
 
   resources :promotions, only: %i[index show new create] do
     post 'apply', to: "cupons#apply"
     resources :cupons, only: %i[create]
   end
-  
-  resources :single_classes,only: %i[show]
-  resources :administrator, only: %i[index] 
+
+  resources :administrator, only: %i[index]
   resources :pay_methods, only: %i[index new create]
+  resources :single_classes, only: %i[show]
 
   resources :registrations, only: %i[index new create show edit update] do
-    resources :single_classes,only: %i[new create]
+    resources :single_classes, only: %i[new create]
     get 'search_single_class', on: :collection
     get 'search', on: :collection
     post 'paid', on: :member
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   end
 
   get 'search', to: 'registrations#search'
-  
+
   namespace :api,defaults: { format: 'json' } do
     namespace :v1,defaults: { format: 'json' } do
 
@@ -40,13 +40,14 @@ Rails.application.routes.draw do
 
       resources :plans, only: %i[create show index]
       resources :unity, only: %i[create show index]
-      resources :pay_methods
+      resources :notifications, only: %i[create]
+      resources :pay_methods, only: %i[index create]
       resources :single_class, only: %i[create]
       resources :payments,only: %i[show] do
         post 'ban' , on: :collection
       end
       resources :registrations do
-        get "payments", on: :collection
+        get 'payments', on: :collection
       end
     end
   end

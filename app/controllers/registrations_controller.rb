@@ -4,22 +4,18 @@ class RegistrationsController < ApplicationController
   before_action :authenticate_user!
   before_action :auth_redirect
 
-  # def search 
-  #   @registrations = Registration.where('name LIKE ?', "%#{params[:q]}%")
-  # end
-  
   def index
     @registrations = Registration.all
   end
 
-  def new   
+  def new
     @registration = Registration.new
   end
 
   def create
     @registration = Registration.new(require_params)
     if @registration.save
-      generate_payment
+      @registration.generate_anual_payments
       redirect_to @registration
     else
       flash.now[:alert] = "Nao foi possivel salvar matricula"
@@ -57,7 +53,6 @@ class RegistrationsController < ApplicationController
       flash[:alert] = 'Não foi possível encontrar o CPF'
       redirect_to root_path
     end
-
   end
 
   def search_single_class
@@ -66,17 +61,12 @@ class RegistrationsController < ApplicationController
 
   private
 
-  def generate_payment
-    @registration.generate_anual_payments
-  end
-
   def load_plan_unity
     @pay_methods = PayMethod.all
     @plans = Plan.all
     @unities = Unity.all
   end
 
-  private
   def require_params
     params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, :pay_method_id)
   end

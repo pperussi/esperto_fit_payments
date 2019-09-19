@@ -1,5 +1,5 @@
 require 'rails_helper'
-feature 'Admin apply cupon' do 
+feature 'Admin apply cupon' do
 
   scenario 'and alter alter value' do
     user = create(:user, admin: true)

@@ -1,5 +1,5 @@
-class CuponsController < ApplicationController
-
+class CuponsController < AdministratorController
+  before_action :is_admin, only: %i[ create]
   before_action :authenticate_user!
   before_action :set_promotion , only: %i[ apply] 
   before_action :finish_promotion , only: %i[ apply] 
