@@ -25,7 +25,7 @@ feature 'Admin register promo' do
     expect(page).to have_content('30/03/2020')
   end
 
-  scenario 'not register blank promotions' do
+  scenario ' not register promotions in the past ' do
     administrator = create(:user, admin: true)
     login_as(administrator)
     visit promotions_path
@@ -45,7 +45,7 @@ feature 'Admin register promo' do
     expect(page).to have_content('Nāo foi possível salvar a promoçāo')
   end
 
-  scenario 'not register promotions in the past' do
+  scenario 'not register blank promotions' do
     administrator = create(:user, admin: true)
 
     login_as(administrator)

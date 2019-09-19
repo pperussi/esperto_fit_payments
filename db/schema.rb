@@ -36,7 +36,9 @@ ActiveRecord::Schema.define(version: 2019_09_19_021506) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+    t.integer "registration_id"
     t.index ["promotion_id"], name: "index_cupons_on_promotion_id"
+    t.index ["registration_id"], name: "index_cupons_on_registration_id"
   end
 
   create_table "pay_methods", force: :cascade do |t|
