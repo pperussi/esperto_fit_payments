@@ -1,11 +1,21 @@
-<h1>Promoções Cadastradas e Criaçāo </h1>
+<div class="row">
+      <div class="col-xl-9 mx-auto">
+          <h2 class="section-heading mb-4">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper ">Promoções Cadastradas</span>
+            </h2>
+            <ul>
+              <% @promotions.each do |promotion| %>
+                <li><%= link_to promotion.name, promotion %></li>
+              <% end %>
+            </ul>
 
-<% if current_user && current_user.admin? %>
-  <%= link_to 'Criar Promoçāo', new_promotion_path %>
-<% end %>
+            <% if current_user && current_user.admin? %>
+              <%= link_to 'Criar Promoçāo', new_promotion_path, class: "btn btn-primary btn-xl2" %>
+            <% end %>
 
-<ul>
-  <% @promotions.each do |promotion| %>
-    <li><%= link_to promotion.name, promotion %></li>
-  <% end %>
-</ul>
+          </h2>
+          <p class="mb-0"></p>
+        </div>
+    </div>
+</div>

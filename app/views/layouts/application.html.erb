@@ -4,8 +4,13 @@
     <title>EspertoFitPayments</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <%= stylesheet_link_tag 'template.css' %>
   </head>
 
   <body>
@@ -14,11 +19,81 @@
       <%= flash[:alert] %>
     </div>
 
+
+<div class="row">
+  <div class="col-md-2 h-100 text-center my-auto">
+
+  </div>
+
+    <div class="col-md-3 h-100 my-auto">
+      <h4 class="site-heading text-white d-none d-lg-block">
+        <%= image_tag ('logo_espertofit_color.png'), class: "intro-img img-fluid mb-2 mb-lg-0 rounded", width: "70%"%>
+      </h4>
+
+    </div>
+
+    <div class="col-md-5 h-100 text-right my-auto">
+      <h4 class="site-heading text-white d-none d-lg-block">
+      <span class="site-heading-upper text-primary mb-3">Pagamentos e Cobranças</span>
+    </h4>
+    </div>
+</div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav" >
+      <div class="container">
+        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">EspertoFit Pagamentos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="/">Home</a>
+            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item px-lg-4">
+                <%= link_to 'Matrículas', registrations_path, class: "nav-link text-uppercase text-expanded"%>
+              </li>
+              <li class="nav-item px-lg-4">
+                <%= link_to 'Promoções', promotions_path, class: "nav-link text-uppercase text-expanded" %>
+              </li>
+              <li class="nav-item px-lg-4">
+                <%= link_to 'Nova Matrícula', new_registration_path, class: "nav-link text-uppercase text-expanded"%>
+              </li>
+              <li class="nav-item px-lg-4">
+                <%= link_to "Criar metodo de pagamento", new_pay_method_path, class: "nav-link text-uppercase text-expanded"%>
+              <li class="nav-item px-lg-4">
+                <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "nav-link text-uppercase text-expanded" %>
+              </li>
+            <% else %>
+              <li class="nav-item px-lg-4">
+                <%= link_to 'Entrar', new_user_session_path, class: "nav-link text-uppercase text-expanded" %>
+              </li>
+            <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <section class="page-section cta">
+
+          <div class="container">
     <%= yield %>
+      </div>
+  </section>
+  </div>
+
+
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <p class="m-0 ">Copyright &copy; Espertofit 2019</p>
+      </div>
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    </div>
   </body>
 </html>

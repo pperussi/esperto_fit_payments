@@ -5,9 +5,9 @@ describe 'User have a page to login' do
     user = create(:user, email: 'teste@teste.com', password: '123456')
 
     visit root_path
-    click_on 'Log in'
-    fill_in 'email', with: user.email
-    fill_in 'password', with: user.password
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
     click_on 'Log in'
 
     expect(page).to have_content('Login efetuado com sucesso')
@@ -18,12 +18,13 @@ describe 'User have a page to login' do
                  admin: true)
 
     visit root_path
-    click_on 'Log in'
-    fill_in 'email', with: user.email
-    fill_in 'password', with: user.password
+    click_on 'Entrar'
+    fill_in 'Email', with: user.email
+    fill_in 'Senha', with: user.password
     click_on 'Log in'
 
     expect(page).to have_content('Login efetuado com sucesso')
-    expect(page).to have_content('BEM VINDO AO SISTEMA ADMINISTRADOR')
+    expect(current_path).to eq administrator_index_path
   end
+
 end

@@ -1,8 +1,21 @@
-<% @registration.registrations.each do |client| %>
-  Cliente:<%= client.name %>
-<%end%>
-<p><%= @single_class.name %>
-<%= @single_class.unit %>
-<%= @single_class.price %>
-
-<%= link_to "Voltar", root_path %>
+<section class="page-section cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <div class="cont-inner text-center rounded">
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper">Matrícula</span>
+          </h2>
+          <% @registration.registrations.each do |client| %>
+            Cliente:<%= client.name %>
+          <%end%>
+          <p><%= @single_class.name %>
+          <%= @single_class.unit %>
+          <%= @single_class.price %>
+          <p class="mb-0"></p>
+        </div>
+        <%= link_to "Voltar", root_path %>
+      </div>
+    </div>
+  </div>
+</section>

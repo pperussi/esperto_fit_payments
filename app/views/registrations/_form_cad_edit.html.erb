@@ -1,18 +1,60 @@
-<%= form_for @registration do |f| %>
-  <%= f.label :name, 'Nome' %>
-  <%= f.text_field :name %>
+<div class="row">
+  <div class="col-xl-9 mx-auto">
+    <h2 class="section-heading mb-4">
+      <span class="section-heading-upper ">Matrícula</span>
+    </h2>
+    <%= form_for @registration do |f| %>
+    <div class="form-row">
+      <div class="form-group col-md-7">
+        <div  style="padding-top: 10px">
+          <%= f.label :name, 'Nome', class: "section-heading-upper" %>
+        </div>
+        <div>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div  style="padding-top: 10px">
+          <%= f.label :cpf, 'CPF', class: "section-heading-upper" %>
+        </div>
+        <div>
+          <%= f.text_field :cpf, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group col-md-2"></div>
+      <div class="form-group col-md-3">
+        <div  style="padding-top: 10px">
+          <%= f.label :unity_id, 'Unidade' %>
+        </div>
+        <div>
+          <%= f.collection_select(:unity_id, @unities, :id, :name) %>
+        </div>
+        <div  style="padding-top: 10px">
+          <%= f.label :plan_id, 'Plano' %>
+        </div>
+        <div>
+          <%= f.collection_select(:plan_id, @plans, :id, :name) %>
+        </div>
+        <div  style="padding-top: 10px">
+          <%= f.label :pay_method_id, 'Metodo de pagamento' %>
+        </div>
+        <div>
+          <%= f.collection_select(:pay_method_id, @pay_methods, :id, :name) %>
+        </div>
+      </div>
+      <div style="padding-top: 20px">
+        <%= f.submit "Enviar", class: "btn btn-primary btn-xl2"  %>
+      </div>
+    </div>
+    <%end%>
 
-  <%= f.label :cpf, 'CPF' %>
-  <%= f.number_field :cpf %>
-
-  <%= f.label :unity_id, 'Unidade' %>
-  <%= f.collection_select(:unity_id, @unities, :id, :name) %>
-
-  <%= f.label :plan_id, 'Plano' %>
-  <%= f.collection_select(:plan_id, @plans, :id, :name) %>
-
-   <%= f.label :pay_method_id, 'Metodo de pagamento' %>
-  <%= f.collection_select(:pay_method_id, @pay_methods, :id, :name) %>
-
-  <%= f.submit 'Enviar' %>
-<%end%>
+    <% if @registration.errors.any? %>
+    <%  @registration.errors.full_messages.each do |msg| %>
+    <div style="padding-top: 20px">
+      <%= msg %>
+    </div>
+    <%end %>
+    <%end %>
+  </div>
+  <p class="mb-0"></p>
+</div>
+</div>
+</div>

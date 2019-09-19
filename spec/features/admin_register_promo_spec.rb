@@ -43,7 +43,6 @@ feature 'Admin register promo' do
     click_on 'Criar'
 
     expect(page).to have_content("can't be in the past")
-
   end
 
   scenario 'not register blank promotions' do

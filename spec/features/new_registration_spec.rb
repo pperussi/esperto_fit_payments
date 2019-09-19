@@ -8,7 +8,7 @@ feature 'new registration'do
     create(:pay_method, name: 'Boleto')
 
     login_as user
-    visit root_path 
+    visit root_path
     click_on 'Nova Matrícula'
     fill_in 'Nome', with: 'Fulano de tal'
     fill_in 'CPF', with: '345678098'
@@ -17,15 +17,15 @@ feature 'new registration'do
     select 'Boleto', from: 'Metodo de pagamento'
     click_on 'Enviar'
 
-    expect(page).to have_css('h2', text: 'Fulano de tal')
+    expect(page).to have_css('h4', text: 'Fulano de tal')
     expect(page).to have_css('p', text: '345678098')
     expect(page).to have_css('p', text: 'Paulista')
     expect(page).to have_css('p', text: 'Executivo')
   end
-  
+
   scenario 'empty fields' do
     user = create(:user, admin: true)
-    
+
     login_as user
     visit root_path
     click_on 'Nova Matrícula'
@@ -52,7 +52,7 @@ feature 'new registration'do
     select 'Boleto', from: 'Metodo de pagamento'
     click_on 'Enviar'
 
-    expect(page).to have_css('h2', text: 'Fulano de tal')
+    expect(page).to have_css('h4', text: 'Fulano de tal')
     expect(page).to have_css('p', text: '345678098')
     expect(page).to have_css('p', text: 'Paulista')
     expect(page).to have_css('p', text: 'Executivo')

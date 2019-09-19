@@ -1,24 +1,49 @@
-<%if @promotion.errors.any?%>
-  <% @promotion.errors.full_messages.each do |message|%>
-    <%=message%>
-  <%end%>
-<%end%>
-<%=form_for @promotion do |f|%>
-<%=f.label :name%>
-<%=f.text_field :name%>
-<%=f.label :description%>
-<%=f.text_area :description%>
-<%=f.label :value_percent_discount%>
-<%=f.number_field :value_percent_discount%>
-<%=f.label :discount_max %>
-<%=f.number_field :discount_max%>
-<%=f.label :cod_promotion%>
-<%=f.text_field :cod_promotion%>
-<%=f.label :cupom_number%>
-<%=f.number_field :cupom_number%>
-<%=f.label :begin_promotion%>
-<%=f.text_field :begin_promotion%>
-<%=f.label :end_promotion%>
-<%=f.text_field :end_promotion%>
-<%=f.submit%>
-<%end%>
+  <div class="row">
+      <div class="col-xl-9 mx-auto">
+            <h2 class="section-heading mb-4">
+              <span class="section-heading-upper ">Cadastrar Promoção</span>
+            </h2>
+              <%=form_for @promotion do |f|%>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <%= f.label :name%>
+                <%= f.text_field :name, class: "form-control"%>
+
+                <%=f.label :cupom_number%>
+                <%=f.number_field :cupom_number, class: "form-control"%>
+
+
+                <%=f.label :value_percent_discount%>
+                <%=f.number_field :value_percent_discount, class: "form-control"%>
+
+                <%=f.label :discount_max %>
+                <%=f.number_field :discount_max, class: "form-control"%>
+              </div>
+
+              <div class="form-group col-md-6">
+                <%=f.label :cod_promotion%>
+                <%=f.text_field :cod_promotion, class: "form-control"%>
+
+                <%=f.label :begin_promotion%>
+                <%=f.text_field :begin_promotion, class: "form-control"%>
+
+                <%=f.label :end_promotion%>
+                <%=f.text_field :end_promotion, class: "form-control"%>
+
+                <%=f.label :description%>
+                <%=f.text_area :description, class: "form-control"%>
+              </div>
+                 <%= f.submit 'Criar',  class: "btn btn-primary btn-xl2" %>
+
+              <% end %>
+            </div>
+              <%if @promotion.errors.any?%>
+                <% @promotion.errors.full_messages.each do |message|%>
+                  <br><%=message%></br>
+                <%end%>
+              <%end%>
+          </div>
+          <p class="mb-0"></p>
+        </div>
+      </div>
+    </div>

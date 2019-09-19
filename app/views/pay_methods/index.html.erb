@@ -1,10 +1,15 @@
-<h3>Métodos de Pagamento:</h3>
-<ul>
-<% @pay_method.each do |paymethod| %>
-  <li><%= paymethod.name %></li>
-  <li><%= paymethod.tax %></li>
-  <li><%= paymethod.limit_days %></li>
-<%end%>
-</ul>
+<div class="row">
+      <div class="col-xl-9 mx-auto">
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper">Métodos de Pagamento:</span>
+          </h2>
+          <ul>
+          <% @pay_method.each do |paymethod| %>
+            <li><%= paymethod.name %> - <%= paymethod.tax %> - <%= paymethod.limit_days %></li>
+          <%end%>
+          </ul>
+          <p class="mb-0"></p>
+        </div>
+      </div>
 
 <%= link_to 'Voltar', root_path %>

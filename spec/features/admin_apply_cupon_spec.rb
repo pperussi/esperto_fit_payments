@@ -16,11 +16,9 @@ feature 'Admin apply cupon' do
     fill_in 'Número da matricula', with: registration.id
     click_on 'Aplicar'
 
-    within("##{cupon.id}") do
-      click_on cupon.code
-    end
+    click_on cupon.code
 
-    expect(page).to have_css('h2', text: registration.name)
+    expect(page).to have_css('h4', text: registration.name)
   end
 
   scenario 'usage  in two registration cupon' do
