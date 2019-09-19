@@ -56,6 +56,6 @@ describe 'admin can create payment method' do
     fill_in 'Taxa de Cobrança', with: ''
     click_on 'Enviar'
 
-    expect(page).to have_content("Nome não pode ficar em branco")
+    expect(page).to have_content('Nome não pode ficar em branco')
   end
 end

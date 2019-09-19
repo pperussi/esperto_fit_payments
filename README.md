@@ -1,5 +1,3 @@
-# README
-
 # EspertoFit
 
 ## Sistema de Cobranças e Pagamentos
@@ -65,9 +63,96 @@ get "/api/v1/payments/**cpf**"
    ]
 }
   ```
+### API recebe como notificação dados de uma nova matricula e gera mensalidades
 
-### Listar todos os planos:
+ **POST** /api/v1/notifications/
 
+ - Parametros para gerar os pagamentos
+    ```json
+    {
+      "client": {
+        "name": "Matilda chata",
+        "cpf": "666666",
+        "plan_id": 1,
+        "unity_id": 1,
+        "pay_method_id": 1
+      }
+    }
+    ```
+
+- Resultado
+  ```json
+  {
+    "name": "Matilda chata",
+    "cpf": "666666",
+    "payments": [
+      {
+        "value": 167.38,
+        "dt_venc": "2019-09-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2019-10-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2019-11-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2019-12-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-01-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-02-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-03-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-04-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-05-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-06-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-07-18",
+        "status": "pending"
+      },
+      {
+        "value": 167.38,
+        "dt_venc": "2020-08-18",
+        "status": "pending"
+      }
+    ]
+  }
+  ```
+
+- Lançar aulas avulsa
+# Listar todos os planos:
+```
 get "/api/v1/plans"
 
 ```
@@ -180,12 +265,13 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
 ]
 
 ```
+
 ### Lançar aula avulsa 
   post '/api/v1/single_class'
-  
+
   Exemplo
   ```
-   post '/api/v1/single_class', params: {single_class: 
+   post '/api/v1/single_class', params: {single_class:
     { name: 'Boxe',
       unit: 'Paulista',
       date: '2019-09-17',

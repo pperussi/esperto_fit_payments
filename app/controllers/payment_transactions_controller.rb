@@ -17,7 +17,8 @@ class PaymentTransactionsController < ApplicationController
     @payment = Payment.find(params[:payment_id])
     if @transaction.update(set_params)
       @payment.unpaid!
-      redirect_to payment_payment_transaction_path(@transaction.payment, params[:payment_id])
+      redirect_to payment_payment_transaction_path(@transaction.payment,
+                                                   params[:payment_id])
     else
       render :edit
     end
@@ -30,7 +31,8 @@ class PaymentTransactionsController < ApplicationController
     @transaction.user = current_user
     if @transaction.save!
       @payment.paid!
-      redirect_to payment_payment_transaction_path(@transaction.payment, params[:payment_id])
+      redirect_to payment_payment_transaction_path(@transaction.payment,
+                                                   params[:payment_id])
     else
       render :new
     end
@@ -45,6 +47,7 @@ class PaymentTransactionsController < ApplicationController
   private
 
   def set_params
-    params.require(:payment_transaction).permit(:code, :value, :date_payment, :user, :payment_id)
+    params.require(:payment_transaction).permit(:code, :value, :date_payment,
+                                                :user, :payment_id)
   end
 end

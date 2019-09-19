@@ -3,7 +3,6 @@
             <h2 class="section-heading mb-4">
               <span class="section-heading-upper ">Cadastrar Promoção</span>
             </h2>
-            <form>
               <%=form_for @promotion do |f|%>
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -40,10 +39,9 @@
             </div>
               <%if @promotion.errors.any?%>
                 <% @promotion.errors.full_messages.each do |message|%>
-                  <%=message%>
+                  <br><%=message%></br>
                 <%end%>
               <%end%>
-            </form>
           </div>
           <p class="mb-0"></p>
         </div>

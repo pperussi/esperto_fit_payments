@@ -1,6 +1,6 @@
 class PromotionsController < AdministratorController
   before_action :is_admin, only: %i[ new create]
-  
+
   def index
     @promotions = Promotion.all
   end
@@ -12,7 +12,7 @@ class PromotionsController < AdministratorController
   end
 
   def new
-    @promotion = Promotion.new 
+    @promotion = Promotion.new
   end
 
   def create
@@ -22,12 +22,15 @@ class PromotionsController < AdministratorController
     else
       flash.now[:alert] = 'Nāo foi possível salvar a promoçāo'
       render :new
-    end    
+    end
   end
 
   private
-  
+
   def promotion_params
-    params.require(:promotion).permit(:name, :description, :value_percent_discount, :discount_max, :cod_promotion, :cupom_number, :begin_promotion, :end_promotion)
-  end  
+    params.require(:promotion).permit(:name, :description,
+                                      :value_percent_discount, :discount_max,
+                                      :cod_promotion, :cupom_number,
+                                      :begin_promotion, :end_promotion)
+  end
 end
