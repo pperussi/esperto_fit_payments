@@ -20,7 +20,7 @@ feature 'Admin apply cupon' do
       click_on cupon.code
     end
 
-    expect(page).to have_css('h2', text: registration.name)
+    expect(page).to have_css('h4', text: registration.name)
   end
 
   scenario 'usage  in two registration cupon' do
