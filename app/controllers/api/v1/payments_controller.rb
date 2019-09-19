@@ -1,8 +1,9 @@
 class Api::V1::PaymentsController < Api::V1::ApiController
   def show
     @payments = Registration.where('cpf LIKE ?', params[:id]).take!
-    render json: @payments, only: :cpf, status: :ok,
-           include: { payments: { only: %i[value dt_venc status] } }
+    render json: @payments.as_json(
+      only: :cpf, include: { payments: { only: %i[value dt_venc status] } }),
+    status: :ok
   end
 
   def ban

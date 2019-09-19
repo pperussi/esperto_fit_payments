@@ -13,9 +13,9 @@ pay_bitcoin = PayMethod.create(name: 'Bitcoin', tax: 10, limit_days: 7)
 pay_credit = PayMethod.create(name: 'Cartão de Credito', tax: 5, limit_days: 1)
 pay_billet = PayMethod.create(name: 'Boleto Bancario', tax: 0, limit_days: 15)
 
-reg = Registration.create(name: 'Alexander',cpf: '111111111',unity: unity_BF, plan: plan_master, pay_method: pay_bitcoin)
-reg_unpaid = Registration.create(name: 'John',cpf: '222222222',unity: unity_S, plan: plan_basic, pay_method: pay_billet)
-reg_single_class = Registration.create(name: 'Bruna',cpf: '4444444444',unity: unity_P, plan: plan_premium, pay_method: pay_credit)
+reg = Registration.create(name: 'Alexander',cpf: '12345678900',unity: unity_BF, plan: plan_master, pay_method: pay_bitcoin)
+reg_unpaid = Registration.create(name: 'John',cpf: '12345678910',unity: unity_S, plan: plan_basic, pay_method: pay_billet)
+reg_single_class = Registration.create(name: 'Bruna',cpf: '14692289805',unity: unity_P, plan: plan_premium, pay_method: pay_credit)
 
 reg.generate_anual_payments
 reg_unpaid.generate_anual_payments
