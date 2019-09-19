@@ -39,16 +39,16 @@ RSpec.describe SingleClass, type: :model do
     expect(registration.payments[1].value).to eq 90
     expect(registration.payments.find_by(status: 'pending').value).to eq 90
   end
-  
+
   it 'launch another single class in next pending payment' do
     pay_method = create(:pay_method, name: 'Cartāo', tax: 5, limit_days: 1)
     registration = create(:registration, name: 'Henrique', pay_method: pay_method)
     registration.generate_anual_payments
-    single_class = create(:single_class, name: 'BOXE', date:Time.zone.now.to_date + 30 )
+    single_class = create(:single_class, name: 'BOXE', date:Time.zone.now.to_date + 1.month)
     ClientsClass.create!(registration: registration, single_class: single_class)
 
     single_class.class_debit(registration)
-    
+
     expect(registration.payments[0].status).to eq 'closed'
     expect(registration.payments[0].value).to eq 42
     expect(registration.payments[1].value).to eq 94.5
@@ -72,9 +72,9 @@ RSpec.describe SingleClass, type: :model do
     registration = create(:registration, name: 'José', pay_method: pay_method)
     registration.generate_anual_payments
     single_class = create(:single_class, name: 'Zumba', price: 80 )
-  
+
     ClientsClass.create!(registration: registration, single_class: single_class)
-  
+
     single_class.class_debit(registration)
     expect(registration.payments.find_by(status: 'pending').value).to eq 126
   end
