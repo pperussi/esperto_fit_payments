@@ -15,9 +15,7 @@ feature 'Change status' do
     login_as user
     visit root_path
     click_on 'Matrículas'
-    within("tr#registration-#{registration.id}") do
-      click_on 'Mostrar'
-    end
+    click_on 'Mostrar'
     within("td#payment-#{registration.payments.first.id}") do
       click_on 'Pagar'
     end

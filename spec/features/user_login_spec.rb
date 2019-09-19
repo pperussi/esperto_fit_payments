@@ -24,7 +24,7 @@ describe 'User have a page to login' do
     click_on 'Log in'
 
     expect(page).to have_content('Login efetuado com sucesso')
-    expect(page).to have_content('BEM VINDO AO SISTEMA ADMINISTRADOR')
+    expect(current_path).to eq administrator_index_path
   end
 
 end

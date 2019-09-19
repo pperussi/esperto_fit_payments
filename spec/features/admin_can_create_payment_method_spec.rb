@@ -10,7 +10,7 @@ describe 'admin can create payment method' do
     fill_in 'Taxa de Cobrança', with: 0
     fill_in 'Limite de Dias', with: 15
 
-    click_on 'Criar'
+    click_on 'Enviar'
 
     expect(page).to have_content('Cadastrado com sucesso')
     expect(PayMethod.count).to eq 1
@@ -40,7 +40,7 @@ describe 'admin can create payment method' do
     fill_in 'Nome', with: 'Boleto'
     fill_in 'Taxa de Cobrança', with: 0
     fill_in 'Limite de Dias', with: 15
-    click_on 'Criar'
+    click_on 'Enviar'
 
     expect(page).to have_content('Nome já está em uso')
     expect(PayMethod.count).not_to eq 2
@@ -54,7 +54,7 @@ describe 'admin can create payment method' do
     click_on 'Criar metodo de pagamento'
     fill_in 'Nome', with: ''
     fill_in 'Taxa de Cobrança', with: ''
-    click_on 'Criar'
+    click_on 'Enviar'
 
     expect(page).to have_content("Nome não pode ficar em branco")
   end

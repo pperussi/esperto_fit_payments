@@ -8,9 +8,7 @@ feature 'new registration'do
     create(:pay_method, name: 'Boleto')
 
     login_as user
-
     visit root_path
-
     click_on 'Nova Matrícula'
     fill_in 'Nome', with: 'Fulano de tal'
     fill_in 'CPF', with: '345678098'
@@ -30,11 +28,9 @@ feature 'new registration'do
 
     login_as user
     visit root_path
-
     click_on 'Nova Matrícula'
     fill_in 'Nome', with: ''
     fill_in 'CPF', with: ''
-
     click_on 'Enviar'
 
     expect(page).to have_content('Nao foi possivel salvar matricula')
@@ -48,7 +44,6 @@ feature 'new registration'do
 
     login_as user
     visit root_path
-
     click_on 'Nova Matrícula'
     fill_in 'Nome', with: 'Fulano de tal'
     fill_in 'CPF', with: '345678098'
@@ -61,7 +56,6 @@ feature 'new registration'do
     expect(page).to have_css('p', text: '345678098')
     expect(page).to have_css('p', text: 'Paulista')
     expect(page).to have_css('p', text: 'Executivo')
-
     expect(page).to have_content('Pagamento 1')
     expect(page).to have_content(plan.name)
     expect(page).to have_content(plan.value)
@@ -82,7 +76,6 @@ feature 'new registration'do
 
     login_as user
     visit root_path
-
     click_on 'Nova Matrícula'
     fill_in 'Nome', with: 'Fulano de tal'
     fill_in 'CPF', with: '123456789'

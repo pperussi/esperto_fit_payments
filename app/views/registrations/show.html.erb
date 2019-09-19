@@ -14,13 +14,20 @@
               <th>Valor</th>
               <th>Data de vencimento</th>
               <th>Método de pagamento</th>
+              <th>Status</th>
             </thead>
             <% @registration.payments.each do |payment| %>
-              <tr>
+              <tr id="payment-<%=payment.id%>">
                 <td><%= "Pagamento #{payment.id}"%></td>
                 <td><%= payment.value %></td>
                 <td><%= payment.dt_venc %></td>
                 <td><%= payment.pay_method.name %></td>
+                <td><%= payment.status %></td>
+                <% if payment.status != 'paid'%>
+                  <td id="payment-<%=payment.id%>"><%= link_to 'Pagar', new_payment_payment_transaction_path(payment.id)%></td>
+                <% else %>
+                   <td id="payment-<%=payment.id%>"><%= link_to 'Mostrar', payment_payment_transaction_path(payment.id)%></td>
+                <%end%>
               </tr>
             <%end%>
           </table>

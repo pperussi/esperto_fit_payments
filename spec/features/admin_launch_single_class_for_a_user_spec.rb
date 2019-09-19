@@ -11,9 +11,13 @@ feature 'admin launch single class for a user' do
     visit root_path
 
     click_on "Matrículas"
+<<<<<<< HEAD
     fill_in 'Pesquisar Aluno', with: 'Joao'
+=======
+    fill_in 'Pesquisar Aluno:', with: 'Joao'
+>>>>>>> d79a0014f76843ab05bf82f66674f157a5033001
 
-    click_on 'Buscar'
+    click_on 'Procurar'
     click_on 'Joao'
 
     fill_in 'Nome da aula', with: 'Zumba'
@@ -37,9 +41,13 @@ feature 'admin launch single class for a user' do
     visit root_path
 
     click_on "Matrículas"
+<<<<<<< HEAD
     fill_in 'Pesquisar Aluno', with: 'Joao'
+=======
+    fill_in 'Pesquisar Aluno:', with: 'Joao'
+>>>>>>> d79a0014f76843ab05bf82f66674f157a5033001
 
-    click_on 'Buscar'
+    click_on 'Procurar'
     click_on 'Joao'
 
     fill_in 'Nome da aula', with: ''
