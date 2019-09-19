@@ -27,7 +27,7 @@ p {
 }
 
 .text-faded {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .site-heading {
@@ -78,7 +78,7 @@ p {
 }
 
 .bg-faded {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.90);
 }
 
 #mainNav {
@@ -161,20 +161,17 @@ p {
 .cta {
   padding-top: 5rem;
   padding-bottom: 5rem;
-  background-color: rgba(213, 210, 217, 0.9);
+  background-color: rgba(213, 210, 217, 0.2);
 }
 
-.cta .cta-inner {
-  position: relative;
+.cont .cont-inner {
   padding: 3rem;
   margin: 0.5rem;
   background-color: rgba(230, 167, 86, 0.65);
 }
 
-.cta .cta-inner:before {
+.cont .cont-inner:before {
   border-radius: 0.5rem;
-  content: '';
-  position: absolute;
   top: -0.5rem;
   bottom: -0.5rem;
   left: -0.5rem;

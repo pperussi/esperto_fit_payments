@@ -8,7 +8,7 @@ feature 'new registration'do
     create(:pay_method, name: 'Boleto')
 
     login_as user
-    visit root_path 
+    visit root_path
     click_on 'Nova Matrícula'
     fill_in 'Nome', with: 'Fulano de tal'
     fill_in 'CPF', with: '345678098'

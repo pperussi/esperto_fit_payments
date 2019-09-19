@@ -9,7 +9,7 @@ feature 'Adm can search clients' do
     visit root_path
     click_on 'Matrículas'
     fill_in 'Pesquisar Aluno', with: 'Joao'
-    click_on 'Procurar'
+    click_on 'Buscar'
 
     expect(page).to have_content('Joao')
   end

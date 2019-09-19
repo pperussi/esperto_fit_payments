@@ -3,7 +3,7 @@
   <%= form_tag(promotion_apply_path(@promotion),method: :post) do %>
     <li >
          <%= label_tag(:code, 'Código do cupom') %>
-         <%= text_field_tag(:code) %> 
+         <%= text_field_tag(:code) %>
          <%= label_tag(:registration_id, 'Número da matricula') %>
          <%= text_field_tag(:registration_id) %>
         <%= submit_tag('Aplicar') %>
@@ -16,15 +16,14 @@
 <h3>Cupons</h3>
 <% @cupons.each do |cupon|%>
   <% if cupon.applied? %>
-      <li id="<%=cupon.id%>"> 
+      <li id="<%=cupon.id%>">
         <%= link_to cupon.code, registration_path(cupon.cupon_burn.registration_id) %>
         <span><%= cupon.status%></span>
     </li>
   <% else %>
-    <li id="<%=cupon.id%>"> 
+    <li id="<%=cupon.id%>">
         <%= cupon.code %>
         <span><%= cupon.status %></span>
     </li>
   <% end %>
 <%end%>
-

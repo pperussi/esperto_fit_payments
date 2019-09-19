@@ -1,11 +1,59 @@
-Valor: <%= @payment.value %>
-<p>Método de pagamento: <%= @payment.pay_method.name %></p>
-<p>Status: <%= @payment.status %>
-<p>Código da transação: <%= @transaction.code %>
-<p>Data de vencimento: <%= @payment.dt_venc %>
-<p>Data do pagamento: <%= @transaction.date_payment %>
+<div class="row">
+    <div class="col-xl-9 mx-auto">
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper ">Pagamentos</span>
+          </h2>
+            <div class='row'>
+              <div class='col-md-3'>
+               <b>Valor: </b>
+             </div>
+               <div class='col-md-3'><%= @payment.value %>
+               </div>
+            </div>
+              <div class='row'>
+                <div class='col-md-3'>
+                <b>Método de pagamento: </b>
+              </div>
+                <div class='col-md-3'><%= @payment.pay_method.name %>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-3'>
+                <b>Status: </b>
+              </div>
+                <div class='col-md-3'><%= @payment.status %>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-3'>
+                <b>Código da transação: </b>
+              </div>
+                <div class='col-md-3'><%= @transaction.code %>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-3'>
+                <b>Data de vencimento: </b>
+              </div>
+                <div class='col-md-3'><%= @payment.dt_venc %>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-md-3'>
+                <b>Data do pagamento: </b>
+              </div> 
+                <div class='col-md-3'><%= @transaction.date_payment %>
+                </div>
+              </div>
+            <div class='row'>
+              <div class='col-md-3'>
+              <b>Valor pago: </b>
+            </div> 
+              <div class='col-md-3'><%= @transaction.value%>
+              </div>
+            </div>
 
-<p>Valor pago: <%= @transaction.value%>
-
-
-<p><%= link_to 'Cancelar pagamento',  edit_payment_payment_transaction_path %>
+            <p><%= link_to 'Cancelar pagamento',  edit_payment_payment_transaction_path %>
+            </div>
+        </div>
+    </div>

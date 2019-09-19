@@ -1,14 +1,23 @@
-<%= form_for([@payment, @transaction]) do |f| %>
+<div class="row">
+    <div class="col-xl-9 mx-auto">
+          <h2 class="section-heading mb-4">
+            <span class="section-heading-upper ">Pagamentos</span>
+          </h2>
 
-  <p class="form-group"><%= f.label :code, 'Código de Transaçāo'%>
-  <%= f.text_field :code %></p>
+          <%= form_for([@payment, @transaction]) do |f| %>
 
-  <p class="form-group"><%= f.label :value, 'Valor Pago'%>
-  <%= f.text_field :value %></p>
+            <p class="form-group col-md-7"><%= f.label :code, 'Código de Transaçāo'%>
+            <%= f.text_field :code, class: "form-control" %></p>
 
-  <p>Data de pagamento:<%= f.date_field(:date_payment, order: [:day, :month, :year])%></p>
+            <p class="form-group col-md-7"><%= f.label :value, 'Valor Pago'%>
+            <%= f.text_field :value, class: "form-control" %></p>
 
-  <p>Usuário: <%= current_user.email %></p>
-  <%= f.submit btn_payment %>
+            <p>Data de pagamento: <%= f.date_field(:date_payment, order: [:day, :month, :year])%></p>
 
-<% end %>
+            <p>Usuário: <%= current_user.email %></p>
+            <%= f.submit 'Pagar',  class: "btn btn-primary btn-xl2" %>
+
+          <% end %>
+        </div>
+    </div>
+</div>
