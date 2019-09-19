@@ -8,49 +8,26 @@
 2.6.4
 
 ### API
--Disponibiliza todos os metodos de pagamentos disponiveis:
-
-### Exemplo de pesquisa: 
-
-```
-get /api/v1/pay_methods
-
-http://localhost:3000/api/v1/pay_methods
-```
-
-### *Exemplo de resultado:*
-
+-Disponibiliza os metodos de pagamentos disponiveis:
 ```JSON
-[
-  {
-      "id":1,
-  "name":"Cartão de Crédito",
-  "tax":5,
-  "limit_days":4
-  },
-    { 
+{
+    "id":1,
+    "name":"Cartão de Crédito",
+    "tax":5,
+    "limit_days":4
+},
+{   
     "id":2,
     "name":"Boleto",
     "tax":0,
     "limit_days":15
-    }
-
-   ...
-
-]
+}
 ```
-
-
-- Disponibiliza as mensalidades por CPF:
-
-### Exemplo de pesquisa: 
+- Disponibiliza o histórico de mensalidades:
 
 ```
 get "/api/v1/payments/**cpf**"
-
-http://localhost:3000/api/v1/payments/123456
 ```
-
 # Consultar todos os pagamentos para um determinado cpf:
 
 
@@ -76,29 +53,28 @@ http://localhost:3000/api/v1/payments/123456
 
    ]
 }
-```
+  ```
 
 # Listar todos os planos:
-
-
-### Exemplo de pesquisa: 
+```
+get "/api/v1/plans"
+```
+### **Exemplo:**
 
 ```
 {
-get /api/v1/plans
-
-http://localhost:3000/api/v1/plans
+    http://localhost:3000/api/v1/plans
 }
 ```
 
-### *Exemplo de resultado:*
+### Resultado:
 
-```json 
+```
 [
     {
         "id": 1,
         "name": "Paulista",
-        "value": 40
+        "value": null
     }
 
     ...
@@ -141,12 +117,12 @@ http://localhost:3000/api/v1/plans
 
 ### Resultado:
 
-```json
+```
 [
     {
         "id": 1,
         "name": "Paulista",
-        "value": 40
+        "value": null
     }
 
     ...
@@ -168,7 +144,7 @@ http://localhost:3000/api/v1/pay_methods
 
 ### Resultado:
 
-```json
+```
 [
     {
         "id": 1,
@@ -176,9 +152,52 @@ http://localhost:3000/api/v1/pay_methods
     },
 
     ...
+]
 
 
 ```
+
+# Informar matrícula para gerar os pagamentos da matrícula:
+```
+ post 'http://localhost:3000/api/v1/registrations', params: { name: 'Godofredo', cpf: '123456', unity_id: unity.id, plan_id: plan.id, pay_method_id: pay_method.id}
+```
+### Resultado:
+
+```
+[
+    {
+        "id": 1,
+        "name": "Godofredo",
+        "cpf": "123456",
+        "unity": "Paulista",
+        "plan": "Executivo",
+        pagamentos: [
+            {
+                "cpf": "123456",
+                "status": "pending",
+                "value": 40.0
+                "dt_venc": "2019-10-19"
+            }
+            {
+                "cpf": "123456",
+                "status": "pending",
+                "value": 40.0
+                "dt_venc": "2019-11-19"
+            }
+            {
+                "cpf": "123456",
+                "status": "pending",
+                "value": 40.0
+                "dt_venc": "2019-12-19"
+            }
+            ...
+        ]
+    }
+]
+
+
+
+
 
 # Consultar metodo de pagamento pelo nome:
 ```
@@ -194,12 +213,13 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
 
 ### Resultado:
 
-```json
+```
 [
     {
         "id": 1,
         "name": "boleto"
     }
+]
 
 ```
 - Lançar aulas avulsa 
@@ -335,7 +355,7 @@ http://localhost:3000/api/v1/unity?unity[name]=Augusta
 
 ### **Exemplo:**
 
-```
+```json
 post 'http://localhost:3000/api/v1/pay_methods', params: { pay_method: { name: 'Boleto', tax: 1, limit_days: 15}}
 
 http://localhost:3000/api/v1/pay_methods?pay_method[name]=Bit&pay_method[tax]=1&pay_method[limit_days]=1
@@ -344,7 +364,7 @@ http://localhost:3000/api/v1/pay_methods?pay_method[name]=Bit&pay_method[tax]=1&
 
 ### Resultado:
 
-```
+```json
 
 {
     "id": 2,
@@ -355,4 +375,14 @@ http://localhost:3000/api/v1/pay_methods?pay_method[name]=Bit&pay_method[tax]=1&
     "limit_days": 1
 }
 
+```
+
+- Banir usuario transformando suas faturas pendentes em canceladas
+
+```json
+post "/api/v1/payments/ban" params: { cpf: '123456' }
+```
+
+```json
+   {"msg": "CPF 123456 com todas as suas faturas canceladas"}
 ```

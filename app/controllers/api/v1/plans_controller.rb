@@ -4,7 +4,7 @@ module Api::V1
       @plan = Plan.new(set_params)
       if @plan.save!
         render json: @plan, only: [:id, :name, :value], status:201
-      end 
+      end
     end
 
     def index
