@@ -286,36 +286,31 @@ http://localhost:3000/api/v1/pay_methods?name=boleto
 ]
 
 ```
-<<<<<<< HEAD
 
-### Lançar aula avulsa 
+- Lançar aula avulsa 
   post '/api/v1/single_class'
 
-  Exemplo
-  ```
-   post '/api/v1/single_class', params: {single_class:
-=======
-- Lançar aulas avulsa 
-
-### **Exemplo:**
+#### **Exemplo:**
 ```
     post '/api/v1/single_class'
 
     http://localhost:3000/api/v1/single_class
 
-``` 
+```
 
 ### Resultado:
 
 ```
-   post '/api/v1/single_class', params: {single_class: 
->>>>>>> api_refactoring
-    { name: 'Boxe',
-      unit: 'Paulista',
-      date: '2019-09-17',
-      price: 100,
-      cpf: '123456'
-    }
+   post '/api/v1/single_class', params: {
+    single_class: 
+     { 
+       name: 'Boxe',
+       unit: 'Paulista',
+       date: '2019-09-17',
+       price: 100,
+       cpf: '123456'
+     }
+   }
  ```
 
 
@@ -455,13 +450,11 @@ http://localhost:3000/api/v1/pay_methods?pay_method[name]=Bit&pay_method[tax]=1&
 
 ```json
 post "/api/v1/payments/ban" params: { cpf: '123456' }
-<<<<<<< HEAD
-=======
 ```
->>>>>>> api_refactoring
 
+#### Resultado:
 ```json
-   {"msg": "CPF 123456 com todas as suas faturas canceladas"}
+  {"msg": "CPF 123456 com todas as suas faturas canceladas"}
 ```
 
 ### API
