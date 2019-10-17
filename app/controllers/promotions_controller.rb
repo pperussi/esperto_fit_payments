@@ -7,7 +7,7 @@ class PromotionsController < AdministratorController
 
   def show
     @promotion = Promotion.find(params[:id])
-    @registration = Registration.find_by(params[:id])
+    @registration = Registration.find(params[:id])
     @cupons = @promotion.cupons
   end
 

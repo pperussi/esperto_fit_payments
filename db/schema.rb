@@ -12,18 +12,27 @@
 
 ActiveRecord::Schema.define(version: 201909156164408) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "clients", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
   create_table "clients_classes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "single_class_id"
-    t.integer "registration_id"
+    t.bigint "single_class_id"
+    t.bigint "registration_id"
     t.index ["registration_id"], name: "index_clients_classes_on_registration_id"
     t.index ["single_class_id"], name: "index_clients_classes_on_single_class_id"
   end
 
   create_table "cupon_burns", force: :cascade do |t|
-    t.integer "cupon_id"
-    t.integer "registration_id"
+    t.bigint "cupon_id"
+    t.bigint "registration_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cupon_id"], name: "index_cupon_burns_on_cupon_id"
@@ -31,12 +40,12 @@ ActiveRecord::Schema.define(version: 201909156164408) do
   end
 
   create_table "cupons", force: :cascade do |t|
-    t.integer "promotion_id"
+    t.bigint "promotion_id"
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
-    t.integer "registration_id"
+    t.bigint "registration_id"
     t.index ["promotion_id"], name: "index_cupons_on_promotion_id"
     t.index ["registration_id"], name: "index_cupons_on_registration_id"
   end
@@ -53,10 +62,10 @@ ActiveRecord::Schema.define(version: 201909156164408) do
     t.string "code"
     t.float "value"
     t.date "date_payment"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "payment_id"
+    t.bigint "payment_id"
     t.index ["payment_id"], name: "index_payment_transactions_on_payment_id"
     t.index ["user_id"], name: "index_payment_transactions_on_user_id"
   end
@@ -66,8 +75,8 @@ ActiveRecord::Schema.define(version: 201909156164408) do
     t.datetime "updated_at", null: false
     t.float "value"
     t.date "dt_venc"
-    t.integer "registration_id"
-    t.integer "pay_method_id"
+    t.bigint "registration_id"
+    t.bigint "pay_method_id"
     t.integer "status", default: 0
     t.index ["pay_method_id"], name: "index_payments_on_pay_method_id"
     t.index ["registration_id"], name: "index_payments_on_registration_id"
@@ -76,7 +85,7 @@ ActiveRecord::Schema.define(version: 201909156164408) do
   create_table "payments_releases", force: :cascade do |t|
     t.string "name"
     t.float "value"
-    t.integer "payment_id"
+    t.bigint "payment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["payment_id"], name: "index_payments_releases_on_payment_id"
@@ -107,9 +116,9 @@ ActiveRecord::Schema.define(version: 201909156164408) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "cpf"
-    t.integer "unity_id"
-    t.integer "plan_id"
-    t.integer "pay_method_id"
+    t.bigint "unity_id"
+    t.bigint "plan_id"
+    t.bigint "pay_method_id"
     t.index ["pay_method_id"], name: "index_registrations_on_pay_method_id"
     t.index ["plan_id"], name: "index_registrations_on_plan_id"
     t.index ["unity_id"], name: "index_registrations_on_unity_id"
@@ -122,7 +131,7 @@ ActiveRecord::Schema.define(version: 201909156164408) do
     t.string "unit"
     t.date "date"
     t.float "price"
-    t.integer "registration_id"
+    t.bigint "registration_id"
     t.index ["registration_id"], name: "index_single_classes_on_registration_id"
   end
 
@@ -145,4 +154,19 @@ ActiveRecord::Schema.define(version: 201909156164408) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "clients_classes", "registrations"
+  add_foreign_key "clients_classes", "single_classes"
+  add_foreign_key "cupon_burns", "cupons"
+  add_foreign_key "cupon_burns", "registrations"
+  add_foreign_key "cupons", "promotions"
+  add_foreign_key "cupons", "registrations"
+  add_foreign_key "payment_transactions", "payments"
+  add_foreign_key "payment_transactions", "users"
+  add_foreign_key "payments", "pay_methods"
+  add_foreign_key "payments", "registrations"
+  add_foreign_key "payments_releases", "payments"
+  add_foreign_key "registrations", "pay_methods"
+  add_foreign_key "registrations", "plans"
+  add_foreign_key "registrations", "unities"
+  add_foreign_key "single_classes", "registrations"
 end

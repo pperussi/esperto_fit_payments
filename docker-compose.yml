@@ -5,15 +5,22 @@ services:
     volumes:
       - Payments:/var/lib/postgresql/data
 
+
   web:
     build: .
     ports:
-      - "3000"
+      - "3000:3000"
     depends_on:
       - db
-    # volumes:
-    #   - .:/espertofit_payments
+    volumes:
+      - .:/espertofit_payments
+
 
 volumes:
   Payments:
+
+networks:
+  default:
+    external:
+      name: EspertoFitNetwork
 
