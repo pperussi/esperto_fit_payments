@@ -10,7 +10,7 @@ module Api::V1
       @registration = Registration.new(set_params)
       if @registration.save!
         generate_payment
-        render json: {usuario: @registration, pagamentos: @registration.payments}, status:201
+        render json: @registration, status:201
       end
     rescue ActiveRecord::RecordInvalid
       render json: {msg: 'Dados inválidos'}, status: 404

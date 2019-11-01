@@ -3,18 +3,18 @@ module Api::V1
     def create
       @plan = Plan.new(set_params)
       if @plan.save!
-        render json: @plan, only: [:id, :name, :value], status:201
+        render json: @plan, status:201
       end
     end
 
     def index
-      @plan = Plan.all
-      return render json: @plan, only: [ :id, :name, :value ], status: 200 if @plan != nil
+      @plans = Plan.all
+       render json: @plans
     end
 
     def show
       @plan = Plan.find(params[:id])
-      return render json: @plan, only: [:id, :name, :value], status: 200 if @plan != nil
+      return render json: @plan, status: 200 if @plan != nil
     end
 
     private

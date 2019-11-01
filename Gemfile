@@ -5,12 +5,15 @@ ruby '2.6.4'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
+gem 'sidekiq'
+gem 'devise-jwt', '~> 0.5.9'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
 # Use SCSS for stylesheets
+gem 'active_model_serializers', '~> 0.10.0'
 # Use Uglifier as compressor for JavaScript assets
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # Use CoffeeScript for .coffee assets and views
@@ -21,7 +24,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+#gem 'redis', '~> 4.1', '>= 4.1.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'mini_racer', platforms: :ruby

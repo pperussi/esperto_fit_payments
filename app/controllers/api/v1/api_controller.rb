@@ -1,4 +1,5 @@
 class Api::V1::ApiController < ActionController::API
+  include ActionController::Serialization
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   private

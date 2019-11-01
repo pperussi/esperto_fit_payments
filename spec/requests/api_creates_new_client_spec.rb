@@ -2,14 +2,14 @@ require 'rails_helper'
 
 describe 'api creates new client' do
   it 'successfully' do
-    unity = Unity.create!(name: 'Paulista')
+    unity = Unity.create(name: 'Paulista')
     pay_method = create(:pay_method, name: 'Cheque')
-    plan = Plan.create!(name: 'Executivo', value: 70)
-    registration = Registration.create!(name: 'teste', cpf: '123', \
-                                        unity_id: 1, plan_id: 1, \
-                                        pay_method_id: 1)
+    plan = Plan.create(name: 'Executivo', value: 70)
+    registration = Registration.create(name: 'teste', cpf: '123', \
+                                        unity: unity, plan: plan, \
+                                        pay_method: pay_method)
     payment = registration.payments.create!(value: 50, registration_id: 1,\
-                                           pay_method_id: 1,\
+                                           pay_method: pay_method,\
                                            dt_venc: '2019-09-14 18:20:44')
 
     post 'http://localhost:3000/api/v1/registrations', params: { registration:{ plan_id: plan.id, unity_id: unity.id, name:'diogo', cpf: '1323', pay_method_id: pay_method.id}}

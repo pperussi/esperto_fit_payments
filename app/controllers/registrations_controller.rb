@@ -56,7 +56,8 @@ class RegistrationsController < ApplicationController
   end
 
   def search_single_class
-    @registrations = Registration.where("name LIKE ?", "%#{params[:q]}%")
+    @registration = Registration.all
+    #@registration = Registration.where("name LIKE ?", "%#{params[:q]}%")
   end
 
   private
@@ -68,7 +69,7 @@ class RegistrationsController < ApplicationController
   end
 
   def require_params
-    params.require(:registration).permit(:name, :cpf, :unity_id, :plan_id, :pay_method_id)
+    params.require(:registration).permit(:name, :email, :cpf, :unity_id, :plan_id, :pay_method_id)
   end
 
   def auth_redirect

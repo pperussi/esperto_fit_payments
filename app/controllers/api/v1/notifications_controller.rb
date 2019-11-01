@@ -5,8 +5,7 @@ class Api::V1::NotificationsController < Api::V1::ApiController
 
     if @registration.save
       @registration.generate_anual_payments
-      render json: @registration, only: %i[name cpf], status: :created,
-             include: { payments: { only: %i[status value dt_venc] } }
+      render json: @registration, status: :created
     else
       render json: { errors: @registration.errors },
              status: :unprocessable_entity

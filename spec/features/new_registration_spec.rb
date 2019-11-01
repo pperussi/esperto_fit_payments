@@ -56,7 +56,7 @@ feature 'new registration'do
     expect(page).to have_css('p', text: '345678098')
     expect(page).to have_css('p', text: 'Paulista')
     expect(page).to have_css('p', text: 'Executivo')
-    expect(page).to have_content('Pagamento 1')
+    expect(page).to have_content("Pagamento #{Registration.last.payments[0].id}")
     expect(page).to have_content(plan.name)
     expect(page).to have_content(plan.value)
   end

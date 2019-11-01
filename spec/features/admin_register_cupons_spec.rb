@@ -6,11 +6,9 @@ feature 'Admin register Cupons in promotion' do
 
     visit promotions_path
 
-
       fill_in 'Email', with: administrator.email
       fill_in 'Senha', with: administrator.password
       click_on 'Log in'
-
 
     click_on carnaval.name
     click_on 'Gerar cupons'

@@ -16,6 +16,7 @@ class SingleClassesController < AdministratorController
     @single_class.update(date: Time.zone.now.to_date)
     if @single_class.save
       @single_class.class_debit(@registration)
+      MailerWorker.perform_async(@registration, 5)
       redirect_to @single_class
     else
       flash.now[:alert] = 'Não foi possível salvar a nova Aula'

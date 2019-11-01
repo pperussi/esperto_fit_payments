@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 201909156164408) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "clients_classes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -110,6 +113,7 @@ ActiveRecord::Schema.define(version: 201909156164408) do
     t.integer "unity_id"
     t.integer "plan_id"
     t.integer "pay_method_id"
+    t.string "email"
     t.index ["pay_method_id"], name: "index_registrations_on_pay_method_id"
     t.index ["plan_id"], name: "index_registrations_on_plan_id"
     t.index ["unity_id"], name: "index_registrations_on_unity_id"

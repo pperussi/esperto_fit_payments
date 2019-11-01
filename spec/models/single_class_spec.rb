@@ -19,8 +19,8 @@ RSpec.describe SingleClass, type: :model do
     single_class = create(:single_class)
     another_single_class = create(:single_class, name: 'Zumba', price: 80 )
 
-    ClientsClass.create!(registration: registration, single_class: single_class)
-    ClientsClass.create!(registration: registration, single_class: another_single_class)
+    ClientsClass.create(registration: registration, single_class: single_class)
+    ClientsClass.create(registration: registration, single_class: another_single_class)
 
     single_class.class_debit(registration)
     another_single_class.class_debit(registration)
@@ -31,7 +31,8 @@ RSpec.describe SingleClass, type: :model do
   it 'launch single class in next pending payment' do
     registration = create(:registration, name: 'Henrique')
     registration.generate_anual_payments
-    single_class = create(:single_class, name: 'BOXE', date:'2019-10-16' )
+    single_class = create(:single_class, name: 'BOXE', date:'2019-12-16' )
+
     ClientsClass.create!(registration: registration, single_class: single_class)
     single_class.class_debit(registration)
     expect(registration.payments[0].status).to eq 'closed'

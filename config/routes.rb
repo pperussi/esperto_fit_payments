@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+  
   devise_for :users
 
   root to: 'user#index'
@@ -41,7 +44,7 @@ Rails.application.routes.draw do
       resources :plans, only: %i[create show index]
       resources :unity, only: %i[create show index]
       resources :notifications, only: %i[create]
-      resources :pay_methods, only: %i[index create]
+      resources :pay_methods, only: %i[index show create]
       resources :single_class, only: %i[create]
       resources :payments,only: %i[show] do
         post 'ban' , on: :collection
